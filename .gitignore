@@ -1,0 +1,19 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# Environment — NEVER commit API keys
+.env
+
+# Output files
+extraction_full_run.txt
+output.txt
+
+# Sample documents (large PDFs, not source code)
+sample_docs/
+
+# OS
+.DS_Store

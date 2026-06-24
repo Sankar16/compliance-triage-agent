@@ -1,0 +1,4024 @@
+=== extract_compliance_entities (all of 21 chunks from sample_docs/fatf_grey_list.pdf) ===
+
+
+--- chunk_index=0 section_title='ALGERIA' ---
+[extract_compliance_entities] chunk_index=0: 33 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "financial sanctions for terrorism financing",
+      "source_quote": "financial sanctions for terrorism financing",
+      "source_char_range": [
+        4384,
+        4427
+      ]
+    },
+    {
+      "value": "risk-based approach to oversight of non-profit organisations",
+      "source_quote": "implementing a risk-based\napproach to oversight of non-profit organisations, without disrupting or\ndiscouraging legitimate activity",
+      "source_char_range": [
+        4437,
+        4568
+      ]
+    },
+    {
+      "value": "ML/TF risks understanding gaps",
+      "source_quote": "enhancing its understanding of ML/TF risks",
+      "source_char_range": [
+        4813,
+        4855
+      ]
+    },
+    {
+      "value": "risk-based supervision of non-financial banking entities and DNFBPs",
+      "source_quote": "improving\nrisk-based supervision of non-financial banking entities and DNFBPs",
+      "source_char_range": [
+        4861,
+        4938
+      ]
+    },
+    {
+      "value": "beneficial ownership information access and accuracy",
+      "source_quote": "ensuring competent authorities have adequate, accurate and timely access to\nbeneficial ownership information and that breaches to obligations are\nadequately addressed",
+      "source_char_range": [
+        4944,
+        5110
+      ]
+    },
+    {
+      "value": "ML investigations and prosecutions deficiencies",
+      "source_quote": "demonstrating an increase in ML investigations\nand prosecutions",
+      "source_char_range": [
+        5116,
+        5179
+      ]
+    },
+    {
+      "value": "terrorism financing investigation and prosecution gaps",
+      "source_quote": "demonstrating the ability to identify, investigate and\nprosecute TF",
+      "source_char_range": [
+        5185,
+        5252
+      ]
+    },
+    {
+      "value": "targeted financial sanctions implementation delays",
+      "source_quote": "demonstrating an effective process to implement\ntargeted financial sanctions without delay",
+      "source_char_range": [
+        5262,
+        5352
+      ]
+    },
+    {
+      "value": "beneficial ownership information accuracy (Bolivia)",
+      "source_quote": "ensuring that beneficial ownership information is accurate and up-to-date",
+      "source_char_range": [
+        5573,
+        5646
+      ]
+    },
+    {
+      "value": "risk-based supervision of real estate agents, lawyers, accountants and DPMS",
+      "source_quote": "implementing risk-based supervision of real estate agents,\nlawyers, accountants and DPMS",
+      "source_char_range": [
+        5811,
+        5899
+      ]
+    },
+    {
+      "value": "beneficial ownership obligations sanctions",
+      "source_quote": "ensuring that breaches to beneficial\nownership obligations are sanctioned",
+      "source_char_range": [
+        5905,
+        5978
+      ]
+    },
+    {
+      "value": "ML investigations and prosecutions aligned to country risk",
+      "source_quote": "increasing ML investigations\nand prosecutions in line with the country\u2019s risks (including other high-risk\npredicates in addition to corruption and drug trafficking)",
+      "source_char_range": [
+        5988,
+        6152
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Algeria: Implement a risk-based approach to oversight of non-profit organisations without disrupting or discouraging legitimate activity",
+      "owner_type": "competent authorities / supervisory body",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "implementing a risk-based\napproach to oversight of non-profit organisations, without disrupting or\ndiscouraging legitimate activity",
+      "source_char_range": [
+        4437,
+        4568
+      ]
+    },
+    {
+      "action": "Algeria: Apply financial sanctions for terrorism financing",
+      "owner_type": "competent authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "financial sanctions for terrorism financing",
+      "source_char_range": [
+        4384,
+        4427
+      ]
+    },
+    {
+      "action": "Angola: Enhance understanding of ML/TF risks",
+      "owner_type": "government / competent authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing its understanding of ML/TF risks",
+      "source_char_range": [
+        4813,
+        4855
+      ]
+    },
+    {
+      "action": "Angola: Improve risk-based supervision of non-financial banking entities and DNFBPs",
+      "owner_type": "supervisory authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "improving\nrisk-based supervision of non-financial banking entities and DNFBPs",
+      "source_char_range": [
+        4861,
+        4938
+      ]
+    },
+    {
+      "action": "Angola: Ensure competent authorities have adequate, accurate and timely access to beneficial ownership information and that breaches to obligations are adequately addressed",
+      "owner_type": "competent authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring competent authorities have adequate, accurate and timely access to\nbeneficial ownership information and that breaches to obligations are\nadequately addressed",
+      "source_char_range": [
+        4944,
+        5110
+      ]
+    },
+    {
+      "action": "Angola: Demonstrate an increase in ML investigations and prosecutions",
+      "owner_type": "law enforcement / prosecution authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating an increase in ML investigations\nand prosecutions",
+      "source_char_range": [
+        5116,
+        5179
+      ]
+    },
+    {
+      "action": "Angola: Demonstrate the ability to identify, investigate and prosecute TF",
+      "owner_type": "law enforcement / prosecution authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "demonstrating the ability to identify, investigate and\nprosecute TF",
+      "source_char_range": [
+        5185,
+        5252
+      ]
+    },
+    {
+      "action": "Angola: Demonstrate an effective process to implement targeted financial sanctions without delay",
+      "owner_type": "competent authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "demonstrating an effective process to implement\ntargeted financial sanctions without delay",
+      "source_char_range": [
+        5262,
+        5352
+      ]
+    },
+    {
+      "action": "Bolivia: Ensure relevant special investigative techniques can be used in ML investigations",
+      "owner_type": "law enforcement authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring relevant special investigative techniques can be used in ML\ninvestigations",
+      "source_char_range": [
+        5722,
+        5805
+      ]
+    },
+    {
+      "action": "Bolivia: Implement risk-based supervision of real estate agents, lawyers, accountants and DPMS",
+      "owner_type": "supervisory authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "implementing risk-based supervision of real estate agents,\nlawyers, accountants and DPMS",
+      "source_char_range": [
+        5811,
+        5899
+      ]
+    },
+    {
+      "action": "Bolivia: Ensure that breaches to beneficial ownership obligations are sanctioned",
+      "owner_type": "competent authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring that breaches to beneficial\nownership obligations are sanctioned",
+      "source_char_range": [
+        5905,
+        5978
+      ]
+    },
+    {
+      "action": "Bolivia: Increase ML investigations and prosecutions in line with country risks, including high-risk predicates beyond corruption and drug trafficking",
+      "owner_type": "law enforcement / prosecution authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "increasing ML investigations\nand prosecutions in line with the country\u2019s risks (including other high-risk\npredicates in addition to corruption and drug trafficking)",
+      "source_char_range": [
+        5988,
+        6152
+      ]
+    },
+    {
+      "action": "Bolivia: Ensure beneficial ownership information is accurate and up-to-date",
+      "owner_type": "competent authorities / registries",
+      "deadline_raw": "Since June 2025",
+      "deadline_parsed": "2025-06-01",
+      "priority": "high",
+      "source_quote": "Since June 2025, when Bolivia made a high-level political commitment to\nwork with the FATF and GAFILAT to strengthen the effectiveness of its\nAML/CFT regime, Bolivia has taken steps to improve its AML/CFT regime by\nensuring that beneficial ownership information is accurate and up-to-date",
+      "source_char_range": [
+        5358,
+        5646
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "FATF",
+      "source_quote": "Angola made a high-level political commitment to work with\nthe FATF and ESAAMLG to strengthen the effectiveness of its AML/CFT\nregime",
+      "source_char_range": [
+        4591,
+        4724
+      ]
+    },
+    {
+      "value": "ESAAMLG",
+      "source_quote": "work with\nthe FATF and ESAAMLG to strengthen the effectiveness of its AML/CFT\nregime",
+      "source_char_range": [
+        4640,
+        4724
+      ]
+    },
+    {
+      "value": "GAFILAT",
+      "source_quote": "Bolivia made a high-level political commitment to\nwork with the FATF and GAFILAT to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        5380,
+        5514
+      ]
+    },
+    {
+      "value": "Angola",
+      "source_quote": "Angola should continue to work with the FATF to implement its FATF\naction plan",
+      "source_char_range": [
+        4726,
+        4804
+      ]
+    },
+    {
+      "value": "Bolivia",
+      "source_quote": "Bolivia should continue working to implement its FATF action plan",
+      "source_char_range": [
+        5648,
+        5713
+      ]
+    },
+    {
+      "value": "competent authorities",
+      "source_quote": "ensuring competent authorities have adequate, accurate and timely access to\nbeneficial ownership information",
+      "source_char_range": [
+        4944,
+        5052
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "October 2024",
+      "source_quote": "In October 2024, Angola made a high-level political commitment to work with\nthe FATF and ESAAMLG",
+      "source_char_range": [
+        4574,
+        4670
+      ]
+    },
+    {
+      "value": "Since June 2025",
+      "source_quote": "Since June 2025, when Bolivia made a high-level political commitment to\nwork with the FATF and GAFILAT",
+      "source_char_range": [
+        5358,
+        5460
+      ]
+    }
+  ],
+  "source_chunk_index": 0,
+  "extraction_confidence": 0.82
+}
+
+--- chunk_index=1 section_title='ANGOLA' ---
+[extract_compliance_entities] chunk_index=1: 0 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [],
+  "action_items": [],
+  "responsible_parties": [],
+  "deadlines": [],
+  "source_chunk_index": 1,
+  "extraction_confidence": 0.1
+}
+
+--- chunk_index=2 section_title='BOLIVIA' ---
+[extract_compliance_entities] chunk_index=2: 17 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "strategic deficiency in relation to improving investigations and prosecutions of different types of money laundering in line with risks, including high-scale corruption and organised crime",
+      "source_quote": "remaining\nstrategic deficiency in relation to improving investigations and prosecutions of\ndifferent types of money laundering in line with risks, including high-scale\ncorruption and organised crime",
+      "source_char_range": [
+        6780,
+        6978
+      ]
+    },
+    {
+      "value": "AML/CFT regime effectiveness gaps (Bulgaria)",
+      "source_quote": "all deadlines have now expired and work remains to address its remaining\nstrategic deficiency in relation to improving investigations and prosecutions of\ndifferent types of money laundering in line with risks, including high-scale\ncorruption and organised crime",
+      "source_char_range": [
+        6717,
+        6978
+      ]
+    },
+    {
+      "value": "risk-based supervision gaps for banks, non-bank FIs and DNFBPs (Cameroon)",
+      "source_quote": "enhancing risk-based supervision of banks and implementing effective risk-\nbased supervision for non-bank FIs and DNFBPs, and conducting\nappropriate outreach to high-risk FIs and DNFBPs",
+      "source_char_range": [
+        7753,
+        7938
+      ]
+    },
+    {
+      "value": "NPO abuse for terrorist financing purposes",
+      "source_quote": "demonstrating initial implementation of risk-based monitoring of NPOs to\nprevent abuse for TF purposes",
+      "source_char_range": [
+        6537,
+        6639
+      ]
+    },
+    {
+      "value": "AML/CFT supervision of DNFBPs (Cameroon)",
+      "source_quote": "designating an authority for AML/CFT supervision of all DNFBPs",
+      "source_char_range": [
+        7375,
+        7437
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Bulgaria must continue to implement its action plan to address the remaining strategic deficiency related to improving investigations and prosecutions of different types of money laundering, including high-scale corruption and organised crime.",
+      "owner_type": "Government of Bulgaria / competent authorities",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "The FATF encourages Bulgaria to build on its\nrecent progress and continue to implement its action plan to address the\nabove-mentioned strategic deficiency as soon as possible.",
+      "source_char_range": [
+        6980,
+        7155
+      ]
+    },
+    {
+      "action": "Cameroon must enhance risk-based supervision of banks and implement effective risk-based supervision for non-bank financial institutions and DNFBPs, and conduct appropriate outreach to high-risk FIs and DNFBPs.",
+      "owner_type": "Cameroonian supervisory authorities",
+      "deadline_raw": "should continue working",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing risk-based supervision of banks and implementing effective risk-\nbased supervision for non-bank FIs and DNFBPs, and conducting\nappropriate outreach to high-risk FIs and DNFBPs",
+      "source_char_range": [
+        7753,
+        7938
+      ]
+    },
+    {
+      "action": "Cameroon must enhance secure [communications / systems \u2014 per ongoing action plan items].",
+      "owner_type": "Cameroonian competent authorities",
+      "deadline_raw": "should continue working",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "Cameroon should continue working on implementing its\nFATF action plan to address its strategic deficiencies",
+      "source_char_range": [
+        7626,
+        7733
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "Bulgaria",
+      "source_quote": "Since October 2023, when Bulgaria made a high-level political commitment to\nwork with the FATF and MONEYVAL to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        6173,
+        6334
+      ]
+    },
+    {
+      "value": "FATF",
+      "source_quote": "The FATF notes Bulgaria continued progress across its action plan",
+      "source_char_range": [
+        6642,
+        6707
+      ]
+    },
+    {
+      "value": "MONEYVAL",
+      "source_quote": "work with the FATF and MONEYVAL to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        6249,
+        6334
+      ]
+    },
+    {
+      "value": "Cameroon",
+      "source_quote": "Since June 2023, when Cameroon made a high-level political commitment to\nwork with the FATF and GABAC to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        7160,
+        7315
+      ]
+    },
+    {
+      "value": "GABAC",
+      "source_quote": "work with the FATF and GABAC to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        7233,
+        7315
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "October 2023",
+      "source_quote": "Since October 2023, when Bulgaria made a high-level political commitment",
+      "source_char_range": [
+        6173,
+        6245
+      ]
+    },
+    {
+      "value": "all deadlines have now expired",
+      "source_quote": "all deadlines have now expired and work remains to address its remaining\nstrategic deficiency",
+      "source_char_range": [
+        6717,
+        6810
+      ]
+    },
+    {
+      "value": "as soon as possible",
+      "source_quote": "continue to implement its action plan to address the\nabove-mentioned strategic deficiency as soon as possible",
+      "source_char_range": [
+        7045,
+        7154
+      ]
+    },
+    {
+      "value": "June 2023",
+      "source_quote": "Since June 2023, when Cameroon made a high-level political commitment",
+      "source_char_range": [
+        7160,
+        7229
+      ]
+    }
+  ],
+  "source_chunk_index": 2,
+  "extraction_confidence": 0.82
+}
+
+--- chunk_index=3 section_title='BULGARIA' ---
+[extract_compliance_entities] chunk_index=3: 0 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [],
+  "action_items": [],
+  "responsible_parties": [],
+  "deadlines": [],
+  "source_chunk_index": 3,
+  "extraction_confidence": 0.1
+}
+
+--- chunk_index=4 section_title='CAMEROON' ---
+[extract_compliance_entities] chunk_index=4: 24 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "information exchange between the FIU, reporting entities and competent authorities",
+      "source_quote": "information exchange between the FIU, reporting entities and competent\nauthorities and demonstrating an increase in dissemination of intelligence\nreports to support operational needs of competent authorities",
+      "source_char_range": [
+        7979,
+        8186
+      ]
+    },
+    {
+      "value": "Seizure and confiscation of proceeds and instrumentalities of crime",
+      "source_quote": "implementing policies and procedures for seizing and confiscating proceeds\nand instrumentalities of crime and managing frozen, seized and confiscated\nproperty, and prioritising seizure and confiscation of assets at the border",
+      "source_char_range": [
+        8192,
+        8417
+      ]
+    },
+    {
+      "value": "TF and PF Targeted Financial Sanctions (TFS) regime deficiencies",
+      "source_quote": "demonstrating effective implementation of TF and PF TFS regimes and\nimplementing a risk-based approach to NPOs without disrupting legitimate\nNPO activities",
+      "source_char_range": [
+        8423,
+        8578
+      ]
+    },
+    {
+      "value": "Strategic AML/CFT deficiencies (Cameroon)",
+      "source_quote": "The FATF\nencourages Cameroon to continue to implement its action plan to address\nthe above-mentioned strategic deficiencies as soon as possible",
+      "source_char_range": [
+        8705,
+        8848
+      ]
+    },
+    {
+      "value": "Risk-based supervision of financial institutions and DNFBPs (C\u00f4te d'Ivoire)",
+      "source_quote": "improving the implementation of risk-based\nsupervision of financial institutions and designated non-financial businesses\nand professions",
+      "source_char_range": [
+        9082,
+        9218
+      ]
+    },
+    {
+      "value": "ML investigations and prosecutions gaps (C\u00f4te d'Ivoire)",
+      "source_quote": "demonstrating a sustained increase in the\nnumber of investigations and prosecutions of different types of ML offences in\nline with the country\u2019s risk profile",
+      "source_char_range": [
+        9594,
+        9751
+      ]
+    },
+    {
+      "value": "TF investigations and prosecutions (C\u00f4te d'Ivoire)",
+      "source_quote": "demonstrating a sustained increase in the number of TF investigations and\nprosecutions in line with the country\u2019s risk profile",
+      "source_char_range": [
+        9339,
+        9465
+      ]
+    },
+    {
+      "value": "Expired action plan deadlines (Cameroon)",
+      "source_quote": "all deadlines have now expired and work remains",
+      "source_char_range": [
+        8656,
+        8703
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Increase dissemination of intelligence reports from the FIU to support operational needs of competent authorities in Cameroon.",
+      "owner_type": "FIU / competent authorities",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "demonstrating an increase in dissemination of intelligence\nreports to support operational needs of competent authorities",
+      "source_char_range": [
+        8066,
+        8186
+      ]
+    },
+    {
+      "action": "Implement policies and procedures for seizing and confiscating proceeds and instrumentalities of crime, managing frozen/seized/confiscated property, and prioritise asset seizure and confiscation at the border.",
+      "owner_type": "competent authorities / law enforcement",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "implementing policies and procedures for seizing and confiscating proceeds\nand instrumentalities of crime and managing frozen, seized and confiscated\nproperty, and prioritising seizure and confiscation of assets at the border",
+      "source_char_range": [
+        8192,
+        8417
+      ]
+    },
+    {
+      "action": "Demonstrate effective implementation of TF and PF TFS regimes and implement a risk-based approach to NPOs without disrupting legitimate NPO activities.",
+      "owner_type": "competent authorities / compliance officers",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "demonstrating effective implementation of TF and PF TFS regimes and\nimplementing a risk-based approach to NPOs without disrupting legitimate\nNPO activities",
+      "source_char_range": [
+        8423,
+        8578
+      ]
+    },
+    {
+      "action": "Cameroon to continue implementing its FATF action plan to address all remaining strategic deficiencies.",
+      "owner_type": "government / national authorities",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "The FATF\nencourages Cameroon to continue to implement its action plan to address\nthe above-mentioned strategic deficiencies as soon as possible",
+      "source_char_range": [
+        8705,
+        8848
+      ]
+    },
+    {
+      "action": "C\u00f4te d'Ivoire to continue working on its FATF action plan and demonstrate a sustained increase in ML investigations and prosecutions across different offence types, in line with the country's risk profile.",
+      "owner_type": "government / law enforcement / competent authorities",
+      "deadline_raw": "continue working",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "C\u00f4te d\u2019Ivoire should\ncontinue working on implementing its FATF action plan to address its\nstrategic deficiencies, including by demonstrating a sustained increase in the\nnumber of investigations and prosecutions of different types of ML offences in\nline with the country\u2019s risk profile",
+      "source_char_range": [
+        9467,
+        9751
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "FIU",
+      "source_quote": "information exchange between the FIU, reporting entities and competent\nauthorities",
+      "source_char_range": [
+        7979,
+        8061
+      ]
+    },
+    {
+      "value": "reporting entities",
+      "source_quote": "information exchange between the FIU, reporting entities and competent\nauthorities",
+      "source_char_range": [
+        7979,
+        8061
+      ]
+    },
+    {
+      "value": "competent authorities",
+      "source_quote": "information exchange between the FIU, reporting entities and competent\nauthorities and demonstrating an increase in dissemination of intelligence\nreports to support operational needs of competent authorities",
+      "source_char_range": [
+        7979,
+        8186
+      ]
+    },
+    {
+      "value": "FATF",
+      "source_quote": "The FATF notes Cameroon continued progress across its action plan",
+      "source_char_range": [
+        8581,
+        8646
+      ]
+    },
+    {
+      "value": "Cameroon",
+      "source_quote": "The FATF\nencourages Cameroon to continue to implement its action plan to address\nthe above-mentioned strategic deficiencies as soon as possible",
+      "source_char_range": [
+        8705,
+        8848
+      ]
+    },
+    {
+      "value": "C\u00f4te d'Ivoire",
+      "source_quote": "C\u00f4te d\u2019Ivoire should\ncontinue working on implementing its FATF action plan to address its\nstrategic deficiencies",
+      "source_char_range": [
+        9467,
+        9579
+      ]
+    },
+    {
+      "value": "GIABA",
+      "source_quote": "C\u00f4te d\u2019Ivoire made a high-level political\ncommitment to work with the FATF and GIABA to strengthen the\neffectiveness of its AML/CFT regime",
+      "source_char_range": [
+        8879,
+        9017
+      ]
+    },
+    {
+      "value": "law enforcement authorities",
+      "source_quote": "enhancing the use of financial intelligence by law\nenforcement authorities",
+      "source_char_range": [
+        9220,
+        9294
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "all deadlines have now expired",
+      "source_quote": "all deadlines have now expired and work remains",
+      "source_char_range": [
+        8656,
+        8703
+      ]
+    },
+    {
+      "value": "as soon as possible",
+      "source_quote": "The FATF\nencourages Cameroon to continue to implement its action plan to address\nthe above-mentioned strategic deficiencies as soon as possible",
+      "source_char_range": [
+        8705,
+        8848
+      ]
+    },
+    {
+      "value": "Since October 2024",
+      "source_quote": "Since October 2024, when C\u00f4te d\u2019Ivoire made a high-level political\ncommitment to work with the FATF and GIABA to strengthen the\neffectiveness of its AML/CFT regime",
+      "source_char_range": [
+        8854,
+        9017
+      ]
+    }
+  ],
+  "source_chunk_index": 4,
+  "extraction_confidence": 0.88
+}
+
+--- chunk_index=5 section_title="CÔTE D'IVOIRE" ---
+[extract_compliance_entities] chunk_index=5: 0 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [],
+  "action_items": [],
+  "responsible_parties": [],
+  "deadlines": [],
+  "source_chunk_index": 5,
+  "extraction_confidence": 0.1
+}
+
+--- chunk_index=6 section_title='DEMOCRATIC REPUBLIC OF THE CONGO' ---
+[extract_compliance_entities] chunk_index=6: 22 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "strategic AML/CFT deficiencies",
+      "source_quote": "The DRC should continue to work to implement its FATF action\nplan to address its strategic deficiencies",
+      "source_char_range": [
+        10389,
+        10492
+      ]
+    },
+    {
+      "value": "risk-based supervision gaps",
+      "source_quote": "implementing its\nrisk-based supervision plan",
+      "source_char_range": [
+        10512,
+        10556
+      ]
+    },
+    {
+      "value": "terrorist financing (TF) identification and investigation",
+      "source_quote": "identifying and investigating TF activities\nin line with its risks",
+      "source_char_range": [
+        10566,
+        10632
+      ]
+    },
+    {
+      "value": "expired action plan deadlines",
+      "source_quote": "all deadlines have now expired and work remains",
+      "source_char_range": [
+        10714,
+        10761
+      ]
+    },
+    {
+      "value": "AML/CFT supervision for financial institutions",
+      "source_quote": "implementing risk-based AML/CFT supervision for all financial\ninstitutions",
+      "source_char_range": [
+        11162,
+        11236
+      ]
+    },
+    {
+      "value": "FIU resource and operational adequacy",
+      "source_quote": "ensuring the FIU has adequate resources and processes to\nproduce and disseminate operational and strategic analysis to competent\nauthorities for combatting ML and TF",
+      "source_char_range": [
+        11242,
+        11407
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Implement the risk-based supervision plan for financial institutions and designated non-financial businesses and professions in the DRC.",
+      "owner_type": "DRC supervisory authority / compliance authority",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "implementing its\nrisk-based supervision plan",
+      "source_char_range": [
+        10512,
+        10556
+      ]
+    },
+    {
+      "action": "Identify and investigate terrorist financing (TF) activities in line with the DRC's risks.",
+      "owner_type": "DRC law enforcement / competent authorities",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "identifying and investigating TF activities\nin line with its risks",
+      "source_char_range": [
+        10566,
+        10632
+      ]
+    },
+    {
+      "action": "Continue to implement the FATF action plan to address strategic AML/CFT deficiencies as soon as possible.",
+      "owner_type": "DRC government / national AML/CFT authority",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "The FATF\nencourages the DRC to continue to implement its action plan to address the\nabove-mentioned strategic deficiencies as soon as possible.",
+      "source_char_range": [
+        10763,
+        10906
+      ]
+    },
+    {
+      "action": "Implement risk-based AML/CFT supervision for all financial institutions in Haiti.",
+      "owner_type": "Haiti supervisory authority",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "implementing risk-based AML/CFT supervision for all financial\ninstitutions",
+      "source_char_range": [
+        11162,
+        11236
+      ]
+    },
+    {
+      "action": "Ensure the FIU has adequate resources and processes to produce and disseminate operational and strategic analysis to competent authorities for combatting ML and TF.",
+      "owner_type": "Haiti FIU / government",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring the FIU has adequate resources and processes to\nproduce and disseminate operational and strategic analysis to competent\nauthorities for combatting ML and TF",
+      "source_char_range": [
+        11242,
+        11407
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "DRC",
+      "source_quote": "The DRC should continue to work to implement its FATF action\nplan to address its strategic deficiencies",
+      "source_char_range": [
+        10389,
+        10492
+      ]
+    },
+    {
+      "value": "FATF",
+      "source_quote": "The FATF notes that the DRC continued progress across its action plan",
+      "source_char_range": [
+        10635,
+        10704
+      ]
+    },
+    {
+      "value": "GABAC",
+      "source_quote": "the DRC made a high-level political commitment\nto work with the FATF and GABAC to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        9829,
+        9961
+      ]
+    },
+    {
+      "value": "Haiti",
+      "source_quote": "Haiti should continue to work on",
+      "source_char_range": [
+        11636,
+        11668
+      ]
+    },
+    {
+      "value": "CFATF",
+      "source_quote": "Haiti made a high-level political commitment to work\nwith the FATF and CFATF to strengthen the effectiveness of its AML/CFT\nregime",
+      "source_char_range": [
+        10960,
+        11090
+      ]
+    },
+    {
+      "value": "FIU",
+      "source_quote": "ensuring the FIU has adequate resources and processes to\nproduce and disseminate operational and strategic analysis to competent\nauthorities for combatting ML and TF",
+      "source_char_range": [
+        11242,
+        11407
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "all deadlines have now expired",
+      "source_quote": "all deadlines have now expired and work remains",
+      "source_char_range": [
+        10714,
+        10761
+      ]
+    },
+    {
+      "value": "as soon as possible",
+      "source_quote": "The FATF\nencourages the DRC to continue to implement its action plan to address the\nabove-mentioned strategic deficiencies as soon as possible.",
+      "source_char_range": [
+        10763,
+        10906
+      ]
+    },
+    {
+      "value": "Since October 2022",
+      "source_quote": "Since October 2022, when the DRC made a high-level political commitment",
+      "source_char_range": [
+        9804,
+        9875
+      ]
+    },
+    {
+      "value": "Since June 2021",
+      "source_quote": "Since June 2021, when Haiti made a high-level political commitment",
+      "source_char_range": [
+        10938,
+        11004
+      ]
+    },
+    {
+      "value": "Statement from June 2025",
+      "source_quote": "(Statement from June 2025)",
+      "source_char_range": [
+        10911,
+        10937
+      ]
+    }
+  ],
+  "source_chunk_index": 6,
+  "extraction_confidence": 0.88
+}
+
+--- chunk_index=7 section_title='HAITI' ---
+[extract_compliance_entities] chunk_index=7: 33 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "ML/TF risk assessment process",
+      "source_quote": "completing its ML/TF risk assessment process and disseminating the\nfindings",
+      "source_char_range": [
+        11761,
+        11836
+      ]
+    },
+    {
+      "value": "AML/CFT supervision gaps for DNFBPs",
+      "source_quote": "implementing risk-based AML/CFT supervision for DNFBPs\ndeemed to constitute a higher ML/TF risk",
+      "source_char_range": [
+        11842,
+        11937
+      ]
+    },
+    {
+      "value": "Beneficial ownership information accessibility",
+      "source_quote": "ensuring basic and beneficial\nownership information are maintained and accessible in a timely manner",
+      "source_char_range": [
+        11943,
+        12043
+      ]
+    },
+    {
+      "value": "ML investigation and prosecution deficiencies",
+      "source_quote": "demonstrating authorities are identifying, investigating and prosecuting ML\ncases in a manner consistent with Haiti\u2019s risk profile",
+      "source_char_range": [
+        12049,
+        12179
+      ]
+    },
+    {
+      "value": "Proceeds of crime recovery",
+      "source_quote": "demonstrating an\nincrease of identification, tracing and recovery of proceeds of crimes",
+      "source_char_range": [
+        12185,
+        12272
+      ]
+    },
+    {
+      "value": "Targeted financial sanctions regime deficiencies",
+      "source_quote": "addressing the technical deficiencies in its targeted financial sanctions\nregime",
+      "source_char_range": [
+        12278,
+        12358
+      ]
+    },
+    {
+      "value": "NPO vulnerability to TF abuse",
+      "source_quote": "conducting appropriate risk-based monitoring of NPOs\nvulnerable to TF abuse without disrupting or discouraging legitimate NPO\nactivities",
+      "source_char_range": [
+        12368,
+        12504
+      ]
+    },
+    {
+      "value": "Strategic AML/CFT deficiencies (Haiti)",
+      "source_quote": "implementing its action plan to address its strategic deficiencies",
+      "source_char_range": [
+        11675,
+        11741
+      ]
+    },
+    {
+      "value": "AML/CFT supervision of FIs and DNFBPs (Kenya)",
+      "source_quote": "improving risk-based AML/CFT\nsupervision of FIs and DNFBPs",
+      "source_char_range": [
+        13373,
+        13431
+      ]
+    },
+    {
+      "value": "STR filing and TFS implementation (Kenya)",
+      "source_quote": "enhancing the understanding of\npreventive measures by FIs and DNFBPs, including to increase STR filing\nand implement TFS without delay",
+      "source_char_range": [
+        13437,
+        13571
+      ]
+    },
+    {
+      "value": "Beneficial ownership information and trust regulation (Kenya)",
+      "source_quote": "designating an authority for the\nregulation of trusts and collection of accurate and up-to-date beneficial\nownership information and implementing remedial actions for breaches of",
+      "source_char_range": [
+        13577,
+        13755
+      ]
+    },
+    {
+      "value": "Virtual assets service provider regulation (Kenya)",
+      "source_quote": "adopting a legal framework for the licensing and supervision of virtual assets\nservice providers",
+      "source_char_range": [
+        13037,
+        13133
+      ]
+    },
+    {
+      "value": "TF investigations and prosecutions (Kenya)",
+      "source_quote": "demonstrating a sustained increase in TF\ninvestigations and prosecutions in line with the country\u2019s risk profile",
+      "source_char_range": [
+        13138,
+        13250
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Complete the ML/TF risk assessment process and disseminate the findings (Haiti)",
+      "owner_type": "Haitian government / competent authorities",
+      "deadline_raw": "all deadlines have expired",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "completing its ML/TF risk assessment process and disseminating the\nfindings",
+      "source_char_range": [
+        11761,
+        11836
+      ]
+    },
+    {
+      "action": "Implement risk-based AML/CFT supervision for DNFBPs deemed higher ML/TF risk (Haiti)",
+      "owner_type": "AML/CFT supervisory authority (Haiti)",
+      "deadline_raw": "all deadlines have expired",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "implementing risk-based AML/CFT supervision for DNFBPs\ndeemed to constitute a higher ML/TF risk",
+      "source_char_range": [
+        11842,
+        11937
+      ]
+    },
+    {
+      "action": "Ensure basic and beneficial ownership information is maintained and accessible in a timely manner (Haiti)",
+      "owner_type": "Haitian government / competent authorities",
+      "deadline_raw": "all deadlines have expired",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring basic and beneficial\nownership information are maintained and accessible in a timely manner",
+      "source_char_range": [
+        11943,
+        12043
+      ]
+    },
+    {
+      "action": "Demonstrate that authorities are identifying, investigating and prosecuting ML cases consistent with Haiti's risk profile",
+      "owner_type": "Law enforcement / prosecution authorities (Haiti)",
+      "deadline_raw": "all deadlines have expired",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "demonstrating authorities are identifying, investigating and prosecuting ML\ncases in a manner consistent with Haiti\u2019s risk profile",
+      "source_char_range": [
+        12049,
+        12179
+      ]
+    },
+    {
+      "action": "Demonstrate an increase in identification, tracing and recovery of proceeds of crimes (Haiti)",
+      "owner_type": "Law enforcement / competent authorities (Haiti)",
+      "deadline_raw": "all deadlines have expired",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating an\nincrease of identification, tracing and recovery of proceeds of crimes",
+      "source_char_range": [
+        12185,
+        12272
+      ]
+    },
+    {
+      "action": "Address technical deficiencies in the targeted financial sanctions regime (Haiti)",
+      "owner_type": "Haitian government / competent authorities",
+      "deadline_raw": "all deadlines have expired",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "addressing the technical deficiencies in its targeted financial sanctions\nregime",
+      "source_char_range": [
+        12278,
+        12358
+      ]
+    },
+    {
+      "action": "Conduct appropriate risk-based monitoring of NPOs vulnerable to TF abuse without disrupting legitimate NPO activities (Haiti)",
+      "owner_type": "AML/CFT supervisory authority / competent authorities (Haiti)",
+      "deadline_raw": "all deadlines have expired",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "conducting appropriate risk-based monitoring of NPOs\nvulnerable to TF abuse without disrupting or discouraging legitimate NPO\nactivities",
+      "source_char_range": [
+        12368,
+        12504
+      ]
+    },
+    {
+      "action": "Improve risk-based AML/CFT supervision of FIs and DNFBPs (Kenya)",
+      "owner_type": "AML/CFT supervisors (Kenya)",
+      "deadline_raw": "Since February 2024, when Kenya made a high-level political commitment",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "improving risk-based AML/CFT\nsupervision of FIs and DNFBPs",
+      "source_char_range": [
+        13373,
+        13431
+      ]
+    },
+    {
+      "action": "Enhance understanding of preventive measures by FIs and DNFBPs, including increasing STR filing and implementing TFS without delay (Kenya)",
+      "owner_type": "AML/CFT supervisors / FIs and DNFBPs (Kenya)",
+      "deadline_raw": "implement TFS without delay",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing the understanding of\npreventive measures by FIs and DNFBPs, including to increase STR filing\nand implement TFS without delay",
+      "source_char_range": [
+        13437,
+        13571
+      ]
+    },
+    {
+      "action": "Designate an authority for the regulation of trusts and collection of accurate and up-to-date beneficial ownership information, and implement remedial actions for breaches (Kenya)",
+      "owner_type": "Kenyan government / competent authorities",
+      "deadline_raw": "Since February 2024, when Kenya made a high-level political commitment",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "designating an authority for the\nregulation of trusts and collection of accurate and up-to-date beneficial\nownership information and implementing remedial actions for breaches of",
+      "source_char_range": [
+        13577,
+        13755
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "Haiti",
+      "source_quote": "implementing its action plan to address its strategic deficiencies",
+      "source_char_range": [
+        11675,
+        11741
+      ]
+    },
+    {
+      "value": "FATF",
+      "source_quote": "The FATF notes Haiti\u2019s continued progress across its action plan",
+      "source_char_range": [
+        12506,
+        12570
+      ]
+    },
+    {
+      "value": "Kenya",
+      "source_quote": "when Kenya made a high-level political commitment to\nwork with the FATF and ESAAMLG to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        12772,
+        12909
+      ]
+    },
+    {
+      "value": "ESAAMLG",
+      "source_quote": "work with the FATF and ESAAMLG to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        12825,
+        12909
+      ]
+    },
+    {
+      "value": "AML/CFT supervisors (Kenya)",
+      "source_quote": "strengthening the capacities of AML/CFT supervisors",
+      "source_char_range": [
+        12984,
+        13035
+      ]
+    },
+    {
+      "value": "virtual assets service providers (Kenya)",
+      "source_quote": "adopting a legal framework for the licensing and supervision of virtual assets\nservice providers",
+      "source_char_range": [
+        13037,
+        13133
+      ]
+    },
+    {
+      "value": "FIs and DNFBPs (Kenya)",
+      "source_quote": "enhancing the understanding of\npreventive measures by FIs and DNFBPs",
+      "source_char_range": [
+        13437,
+        13505
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "all deadlines have expired (Haiti)",
+      "source_quote": "all\ndeadlines have expired and work remains",
+      "source_char_range": [
+        12580,
+        12623
+      ]
+    },
+    {
+      "value": "Since February 2024 (Kenya commitment)",
+      "source_quote": "Since February 2024, when Kenya made a high-level political commitment to\nwork with the FATF and ESAAMLG",
+      "source_char_range": [
+        12751,
+        12855
+      ]
+    },
+    {
+      "value": "without delay (TFS implementation)",
+      "source_quote": "implement TFS without delay",
+      "source_char_range": [
+        13544,
+        13571
+      ]
+    }
+  ],
+  "source_chunk_index": 7,
+  "extraction_confidence": 0.88
+}
+
+--- chunk_index=8 section_title='KENYA' ---
+[extract_compliance_entities] chunk_index=8: 23 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "Transparency requirements for legal persons and arrangements",
+      "source_quote": "compliance with transparency requirements for legal persons and\narrangements",
+      "source_char_range": [
+        13762,
+        13838
+      ]
+    },
+    {
+      "value": "Financial intelligence quality and use",
+      "source_quote": "improving the use and quality of financial intelligence\nproducts",
+      "source_char_range": [
+        13844,
+        13908
+      ]
+    },
+    {
+      "value": "ML investigations and prosecutions gaps",
+      "source_quote": "increasing ML investigations and prosecutions in line with risks",
+      "source_char_range": [
+        13914,
+        13978
+      ]
+    },
+    {
+      "value": "TFS framework non-compliance",
+      "source_quote": "bringing the TFS framework in compliance with R.6 and ensure its\neffective implementation",
+      "source_char_range": [
+        13984,
+        14073
+      ]
+    },
+    {
+      "value": "NPO regulation and oversight framework",
+      "source_quote": "revising the framework for NPO regulation\nand oversight to ensure that mitigating measures are risk-based and do not\ndisrupt or discourage legitimate NPO activity",
+      "source_char_range": [
+        14083,
+        14245
+      ]
+    },
+    {
+      "value": "STR reporting gaps in real estate and DPMS sectors",
+      "source_quote": "enhancing outreach to real estate agents and DPMSs on\nSTR reporting, including through distribution of sector-based indicators of\nML/TF",
+      "source_char_range": [
+        14923,
+        15058
+      ]
+    },
+    {
+      "value": "Beneficial ownership information accuracy",
+      "source_quote": "ensuring that beneficial ownership information in the registry is\naccurate, and applying effective, proportionate and dissuasive sanctions in\ncases of inaccurate information where appropriate",
+      "source_char_range": [
+        15064,
+        15255
+      ]
+    },
+    {
+      "value": "Cross-border currency and BNI movement risks",
+      "source_quote": "increasing ML\ninvestigations and prosecutions in relation to cross-border movements of\ncurrency and BNIs",
+      "source_char_range": [
+        15261,
+        15365
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Improve compliance with transparency requirements for legal persons and arrangements",
+      "owner_type": "Government / competent authorities",
+      "deadline_raw": "February 2026",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "compliance with transparency requirements for legal persons and\narrangements",
+      "source_char_range": [
+        13762,
+        13838
+      ]
+    },
+    {
+      "action": "Improve the use and quality of financial intelligence products",
+      "owner_type": "Government / competent authorities",
+      "deadline_raw": "February 2026",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "improving the use and quality of financial intelligence\nproducts",
+      "source_char_range": [
+        13844,
+        13908
+      ]
+    },
+    {
+      "action": "Increase ML investigations and prosecutions in line with risks",
+      "owner_type": "Law enforcement / prosecutorial authorities",
+      "deadline_raw": "February 2026",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "increasing ML investigations and prosecutions in line with risks",
+      "source_char_range": [
+        13914,
+        13978
+      ]
+    },
+    {
+      "action": "Bring the TFS framework into compliance with R.6 and ensure its effective implementation",
+      "owner_type": "Government / competent authorities",
+      "deadline_raw": "February 2026",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "bringing the TFS framework in compliance with R.6 and ensure its\neffective implementation",
+      "source_char_range": [
+        13984,
+        14073
+      ]
+    },
+    {
+      "action": "Revise the framework for NPO regulation and oversight to ensure mitigating measures are risk-based and do not disrupt or discourage legitimate NPO activity",
+      "owner_type": "Regulatory / supervisory authorities",
+      "deadline_raw": "February 2026",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "revising the framework for NPO regulation\nand oversight to ensure that mitigating measures are risk-based and do not\ndisrupt or discourage legitimate NPO activity",
+      "source_char_range": [
+        14083,
+        14245
+      ]
+    },
+    {
+      "action": "Enhance outreach to real estate agents and DPMSs on STR reporting, including through distribution of sector-based indicators of ML/TF",
+      "owner_type": "Supervisory / regulatory authorities (Kuwait)",
+      "deadline_raw": "February 2026",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing outreach to real estate agents and DPMSs on\nSTR reporting, including through distribution of sector-based indicators of\nML/TF",
+      "source_char_range": [
+        14923,
+        15058
+      ]
+    },
+    {
+      "action": "Ensure that beneficial ownership information in the registry is accurate, and apply effective, proportionate and dissuasive sanctions in cases of inaccurate information where appropriate",
+      "owner_type": "Registry / competent authorities (Kuwait)",
+      "deadline_raw": "February 2026",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring that beneficial ownership information in the registry is\naccurate, and applying effective, proportionate and dissuasive sanctions in\ncases of inaccurate information where appropriate",
+      "source_char_range": [
+        15064,
+        15255
+      ]
+    },
+    {
+      "action": "Increase ML investigations and prosecutions in relation to cross-border movements of currency and BNIs",
+      "owner_type": "Law enforcement / prosecutorial authorities (Kuwait)",
+      "deadline_raw": "February 2026",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "increasing ML\ninvestigations and prosecutions in relation to cross-border movements of\ncurrency and BNIs",
+      "source_char_range": [
+        15261,
+        15365
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "FATF",
+      "source_quote": "Kuwait made a high-level political commitment to work with\nthe FATF and MENAFATF to strengthen the effectiveness of its AML/CFT\nregime",
+      "source_char_range": [
+        14269,
+        14403
+      ]
+    },
+    {
+      "value": "MENAFATF",
+      "source_quote": "Kuwait made a high-level political commitment to work with\nthe FATF and MENAFATF to strengthen the effectiveness of its AML/CFT\nregime",
+      "source_char_range": [
+        14269,
+        14403
+      ]
+    },
+    {
+      "value": "Kuwait",
+      "source_quote": "In February 2026, Kuwait made a high-level political commitment to work with\nthe FATF and MENAFATF to strengthen the effectiveness of its AML/CFT\nregime",
+      "source_char_range": [
+        14251,
+        14403
+      ]
+    },
+    {
+      "value": "APG",
+      "source_quote": "Lao PDR made a high-level political commitment to work\nwith the FATF and APG to strengthen the effectiveness of its AML/CFT",
+      "source_char_range": [
+        15389,
+        15512
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "February 2026",
+      "source_quote": "In February 2026, Kuwait made a high-level political commitment to work with\nthe FATF and MENAFATF to strengthen the effectiveness of its AML/CFT\nregime",
+      "source_char_range": [
+        14251,
+        14403
+      ]
+    },
+    {
+      "value": "June 2024",
+      "source_quote": "Since the adoption of its MER in June 2024, Kuwait has made\nsignificant progress on the vast majority of its MER\u2019s recommended actions",
+      "source_char_range": [
+        14405,
+        14539
+      ]
+    },
+    {
+      "value": "February 2025",
+      "source_quote": "In February 2025, Lao PDR made a high-level political commitment to work\nwith the FATF and APG to strengthen the effectiveness of its AML/CFT",
+      "source_char_range": [
+        15371,
+        15512
+      ]
+    }
+  ],
+  "source_chunk_index": 8,
+  "extraction_confidence": 0.82
+}
+
+--- chunk_index=9 section_title='KUWAIT' ---
+[extract_compliance_entities] chunk_index=9: 0 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [],
+  "action_items": [],
+  "responsible_parties": [],
+  "deadlines": [],
+  "source_chunk_index": 9,
+  "extraction_confidence": 0.1
+}
+
+--- chunk_index=10 section_title='LAO PDR' ---
+[extract_compliance_entities] chunk_index=10: 35 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "ML/TF risks",
+      "source_quote": "enhancing its\nunderstanding of ML/TF risks",
+      "source_char_range": [
+        15659,
+        15701
+      ]
+    },
+    {
+      "value": "Risk-based supervision of casinos, banks, and reporting entities in SEZs",
+      "source_quote": "improving risk-based supervision of\ncasinos, banks, and reporting entities in SEZs, including fit and proper\nchecks",
+      "source_char_range": [
+        15707,
+        15822
+      ]
+    },
+    {
+      "value": "Financial intelligence analysis gaps",
+      "source_quote": "enhancing the quality and quantity of financial intelligence\nanalysis and spontaneous dissemination to law enforcement agencies",
+      "source_char_range": [
+        15828,
+        15955
+      ]
+    },
+    {
+      "value": "Money laundering investigations and prosecutions",
+      "source_quote": "demonstrating an increase in ML investigations and\nprosecutions in line with Lao PDR\u2019s risk profile, with an emphasis on crimes\nwith a transnational element that require international co-operation",
+      "source_char_range": [
+        16055,
+        16251
+      ]
+    },
+    {
+      "value": "Confiscation policy gaps",
+      "source_quote": "developing a national confiscation policy consistent with its ML/TF risks",
+      "source_char_range": [
+        16257,
+        16330
+      ]
+    },
+    {
+      "value": "Proceeds and instrumentalities of crime seizure and confiscation",
+      "source_quote": "demonstrating that relevant competent authorities are taking measures to\nidentify, seize, and, where applicable, confiscate proceeds and\ninstrumentalities of crime in line with the risk profile",
+      "source_char_range": [
+        16336,
+        16529
+      ]
+    },
+    {
+      "value": "PF TFS compliance monitoring",
+      "source_quote": "monitoring FIs\u2019 and\nDNFBPs\u2019 compliance with PF TFS obligations",
+      "source_char_range": [
+        16535,
+        16597
+      ]
+    },
+    {
+      "value": "Technical compliance deficiencies",
+      "source_quote": "addressing technical\ncompliance deficiencies in Recommendations 6, 7, and 10",
+      "source_char_range": [
+        16607,
+        16683
+      ]
+    },
+    {
+      "value": "Terrorist financing and money laundering risks (Lebanon)",
+      "source_quote": "conducting\nassessments of specific terrorist financing and money laundering risks\nidentified in the MER and ensuring that policies and measures are in place to\nmitigate these risks",
+      "source_char_range": [
+        17045,
+        17225
+      ]
+    },
+    {
+      "value": "Mutual legal assistance, extradition and asset recovery",
+      "source_quote": "enhancing mechanisms to ensure the timely and\neffective execution of requests for mutual legal assistance, extradition and\nasset recovery",
+      "source_char_range": [
+        17231,
+        17368
+      ]
+    },
+    {
+      "value": "DNFBPs AML/CFT compliance and sanctions",
+      "source_quote": "enhancing DNFBPs\u2019 risk understanding and applying\neffective, proportionate and dissuasive sanctions for breaches of AML/CFT\nobligations",
+      "source_char_range": [
+        17374,
+        17509
+      ]
+    },
+    {
+      "value": "Beneficial ownership information gaps",
+      "source_quote": "ensuring beneficial ownership information is up-to-date and\nthat there are adequate sanctions and risk-mitigating in place for legal\npersons",
+      "source_char_range": [
+        17515,
+        17655
+      ]
+    },
+    {
+      "value": "FIU product utilization by competent authorities",
+      "source_quote": "enhancing competent authorities\u2019 use of products of the FIU",
+      "source_char_range": [
+        17661,
+        17720
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Enhance understanding of ML/TF risks in Lao PDR",
+      "owner_type": "Government of Lao PDR / competent authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing its\nunderstanding of ML/TF risks",
+      "source_char_range": [
+        15659,
+        15701
+      ]
+    },
+    {
+      "action": "Improve risk-based supervision of casinos, banks, and reporting entities in SEZs, including fit and proper checks",
+      "owner_type": "Supervisory authorities (Lao PDR)",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "improving risk-based supervision of\ncasinos, banks, and reporting entities in SEZs, including fit and proper\nchecks",
+      "source_char_range": [
+        15707,
+        15822
+      ]
+    },
+    {
+      "action": "Enhance the quality and quantity of financial intelligence analysis and spontaneous dissemination to law enforcement agencies",
+      "owner_type": "Financial intelligence unit / competent authorities (Lao PDR)",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing the quality and quantity of financial intelligence\nanalysis and spontaneous dissemination to law enforcement agencies",
+      "source_char_range": [
+        15828,
+        15955
+      ]
+    },
+    {
+      "action": "Ensure that law enforcement agencies receive training and guidance on money laundering",
+      "owner_type": "Law enforcement agencies (Lao PDR)",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring that law enforcement agencies receive training and guidance on\nmoney laundering",
+      "source_char_range": [
+        15961,
+        16049
+      ]
+    },
+    {
+      "action": "Demonstrate an increase in ML investigations and prosecutions in line with Lao PDR's risk profile, with emphasis on crimes with a transnational element requiring international co-operation",
+      "owner_type": "Law enforcement / prosecution authorities (Lao PDR)",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating an increase in ML investigations and\nprosecutions in line with Lao PDR\u2019s risk profile, with an emphasis on crimes\nwith a transnational element that require international co-operation",
+      "source_char_range": [
+        16055,
+        16251
+      ]
+    },
+    {
+      "action": "Develop a national confiscation policy consistent with ML/TF risks",
+      "owner_type": "Government of Lao PDR / policy authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "developing a national confiscation policy consistent with its ML/TF risks",
+      "source_char_range": [
+        16257,
+        16330
+      ]
+    },
+    {
+      "action": "Demonstrate that competent authorities are taking measures to identify, seize, and where applicable confiscate proceeds and instrumentalities of crime in line with the risk profile",
+      "owner_type": "Competent authorities (Lao PDR)",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating that relevant competent authorities are taking measures to\nidentify, seize, and, where applicable, confiscate proceeds and\ninstrumentalities of crime in line with the risk profile",
+      "source_char_range": [
+        16336,
+        16529
+      ]
+    },
+    {
+      "action": "Monitor FIs' and DNFBPs' compliance with PF TFS obligations",
+      "owner_type": "Supervisory authorities (Lao PDR)",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "monitoring FIs\u2019 and\nDNFBPs\u2019 compliance with PF TFS obligations",
+      "source_char_range": [
+        16535,
+        16597
+      ]
+    },
+    {
+      "action": "Address technical compliance deficiencies in Recommendations 6, 7, and 10",
+      "owner_type": "Government of Lao PDR / competent authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "addressing technical\ncompliance deficiencies in Recommendations 6, 7, and 10",
+      "source_char_range": [
+        16607,
+        16683
+      ]
+    },
+    {
+      "action": "Conduct assessments of specific terrorist financing and money laundering risks identified in the MER and ensure policies and measures are in place to mitigate these risks",
+      "owner_type": "Government of Lebanon / competent authorities",
+      "deadline_raw": "continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "conducting\nassessments of specific terrorist financing and money laundering risks\nidentified in the MER and ensuring that policies and measures are in place to\nmitigate these risks",
+      "source_char_range": [
+        17045,
+        17225
+      ]
+    },
+    {
+      "action": "Enhance mechanisms to ensure timely and effective execution of requests for mutual legal assistance, extradition and asset recovery",
+      "owner_type": "Government of Lebanon / competent authorities",
+      "deadline_raw": "continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing mechanisms to ensure the timely and\neffective execution of requests for mutual legal assistance, extradition and\nasset recovery",
+      "source_char_range": [
+        17231,
+        17368
+      ]
+    },
+    {
+      "action": "Enhance DNFBPs' risk understanding and apply effective, proportionate and dissuasive sanctions for breaches of AML/CFT obligations",
+      "owner_type": "Supervisory authorities (Lebanon)",
+      "deadline_raw": "continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing DNFBPs\u2019 risk understanding and applying\neffective, proportionate and dissuasive sanctions for breaches of AML/CFT\nobligations",
+      "source_char_range": [
+        17374,
+        17509
+      ]
+    },
+    {
+      "action": "Ensure beneficial ownership information is up-to-date and that adequate sanctions and risk-mitigating measures are in place for legal persons",
+      "owner_type": "Government of Lebanon / competent authorities",
+      "deadline_raw": "continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring beneficial ownership information is up-to-date and\nthat there are adequate sanctions and risk-mitigating in place for legal\npersons",
+      "source_char_range": [
+        17515,
+        17655
+      ]
+    },
+    {
+      "action": "Enhance competent authorities' use of products of the FIU",
+      "owner_type": "Competent authorities (Lebanon)",
+      "deadline_raw": "continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "medium",
+      "source_quote": "enhancing competent authorities\u2019 use of products of the FIU",
+      "source_char_range": [
+        17661,
+        17720
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "Lao PDR",
+      "source_quote": "Lao PDR should continue to work on implementing its FATF action\nplan to address its strategic deficiencies",
+      "source_char_range": [
+        15536,
+        15642
+      ]
+    },
+    {
+      "value": "law enforcement agencies",
+      "source_quote": "ensuring that law enforcement agencies receive training and guidance on\nmoney laundering",
+      "source_char_range": [
+        15961,
+        16049
+      ]
+    },
+    {
+      "value": "relevant competent authorities",
+      "source_quote": "demonstrating that relevant competent authorities are taking measures to\nidentify, seize, and, where applicable, confiscate proceeds and\ninstrumentalities of crime in line with the risk profile",
+      "source_char_range": [
+        16336,
+        16529
+      ]
+    },
+    {
+      "value": "FIs and DNFBPs",
+      "source_quote": "monitoring FIs\u2019 and\nDNFBPs\u2019 compliance with PF TFS obligations",
+      "source_char_range": [
+        16535,
+        16597
+      ]
+    },
+    {
+      "value": "Lebanon",
+      "source_quote": "Lebanon should continue working on implementing its\nFATF action plan to address its strategic deficiencies",
+      "source_char_range": [
+        16930,
+        17036
+      ]
+    },
+    {
+      "value": "FATF and MENAFATF",
+      "source_quote": "Lebanon made a high-level political commitment to work\nwith the FATF and MENAFATF to strengthen the effectiveness of its AML/CFT\nregime",
+      "source_char_range": [
+        16706,
+        16841
+      ]
+    },
+    {
+      "value": "competent authorities (Lebanon)",
+      "source_quote": "enhancing competent authorities\u2019 use of products of the FIU",
+      "source_char_range": [
+        17661,
+        17720
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "October 2024",
+      "source_quote": "In October 2024, Lebanon made a high-level political commitment to work\nwith the FATF and MENAFATF",
+      "source_char_range": [
+        16689,
+        16787
+      ]
+    }
+  ],
+  "source_chunk_index": 10,
+  "extraction_confidence": 0.88
+}
+
+--- chunk_index=11 section_title='LEBANON' ---
+[extract_compliance_entities] chunk_index=11: 27 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "financial intelligence gaps",
+      "source_quote": "financial intelligence;",
+      "source_char_range": [
+        17733,
+        17756
+      ]
+    },
+    {
+      "value": "ML investigations, prosecutions and court rulings",
+      "source_quote": "demonstrating a sustained increase in\ninvestigations, prosecutions and court rulings for types of ML in line with the\nrisk",
+      "source_char_range": [
+        17761,
+        17883
+      ]
+    },
+    {
+      "value": "asset recovery and illicit cross-border movements",
+      "source_quote": "improving its approach to asset recovery and identifying and seizing\nillicit cross-border movements of currency and precious metals and stones",
+      "source_char_range": [
+        17889,
+        18031
+      ]
+    },
+    {
+      "value": "terrorist financing investigations and international information sharing",
+      "source_quote": "pursuing TF investigations and sharing information with foreign partners\nrelated to investigations of TF as called for in the MER",
+      "source_char_range": [
+        18037,
+        18166
+      ]
+    },
+    {
+      "value": "targeted financial sanctions implementation \u2014 DNFBPs and non-banking financial institutions",
+      "source_quote": "enhancing the\nimplementation of targeted financial sanctions without delay, particularly at\nDNFBPs and certain non-banking financial institutions",
+      "source_char_range": [
+        18172,
+        18317
+      ]
+    },
+    {
+      "value": "high-risk NPO monitoring",
+      "source_quote": "undertaking\ntargeted and risk-based monitoring of high-risk NPOs, without disrupting or\ndiscouraging legitimate NPO activities",
+      "source_char_range": [
+        18328,
+        18454
+      ]
+    },
+    {
+      "value": "AML/CFT sanctions effectiveness \u2014 Monaco",
+      "source_quote": "enhancing the application of sanctions for AML/CFT\nbreaches and (2) applying effective, dissuasive and proportionate sanctions\nfor ML",
+      "source_char_range": [
+        18844,
+        18977
+      ]
+    },
+    {
+      "value": "STR reporting timeliness \u2014 Monaco",
+      "source_quote": "strengthening the timeliness\nof STR reporting",
+      "source_char_range": [
+        18721,
+        18766
+      ]
+    },
+    {
+      "value": "strategic AML/CFT deficiencies \u2014 Monaco",
+      "source_quote": "continue to implement its action\nplan to address the above-mentioned strategic deficiencies as soon as\npossible",
+      "source_char_range": [
+        19165,
+        19276
+      ]
+    },
+    {
+      "value": "expired FATF action plan deadlines \u2014 Monaco",
+      "source_quote": "all deadlines have now expired and work remains",
+      "source_char_range": [
+        19053,
+        19100
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Demonstrate a sustained increase in investigations, prosecutions and court rulings for ML types in line with risk",
+      "owner_type": "law enforcement / judiciary",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating a sustained increase in\ninvestigations, prosecutions and court rulings for types of ML in line with the\nrisk",
+      "source_char_range": [
+        17761,
+        17883
+      ]
+    },
+    {
+      "action": "Improve approach to asset recovery and identify and seize illicit cross-border movements of currency, precious metals and stones",
+      "owner_type": "law enforcement / competent authorities",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "improving its approach to asset recovery and identifying and seizing\nillicit cross-border movements of currency and precious metals and stones",
+      "source_char_range": [
+        17889,
+        18031
+      ]
+    },
+    {
+      "action": "Pursue TF investigations and share information with foreign partners related to TF investigations as called for in the MER",
+      "owner_type": "financial intelligence unit / law enforcement",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "pursuing TF investigations and sharing information with foreign partners\nrelated to investigations of TF as called for in the MER",
+      "source_char_range": [
+        18037,
+        18166
+      ]
+    },
+    {
+      "action": "Enhance the implementation of targeted financial sanctions without delay, particularly at DNFBPs and certain non-banking financial institutions",
+      "owner_type": "compliance officer / supervisory authority",
+      "deadline_raw": "without delay",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "enhancing the\nimplementation of targeted financial sanctions without delay, particularly at\nDNFBPs and certain non-banking financial institutions",
+      "source_char_range": [
+        18172,
+        18317
+      ]
+    },
+    {
+      "action": "Undertake targeted and risk-based monitoring of high-risk NPOs without disrupting or discouraging legitimate NPO activities",
+      "owner_type": "supervisory authority",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "medium",
+      "source_quote": "undertaking\ntargeted and risk-based monitoring of high-risk NPOs, without disrupting or\ndiscouraging legitimate NPO activities",
+      "source_char_range": [
+        18328,
+        18454
+      ]
+    },
+    {
+      "action": "Enhance the application of sanctions for AML/CFT breaches (Monaco)",
+      "owner_type": "compliance officer / supervisory authority",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing the application of sanctions for AML/CFT\nbreaches",
+      "source_char_range": [
+        18844,
+        18903
+      ]
+    },
+    {
+      "action": "Apply effective, dissuasive and proportionate sanctions for ML (Monaco)",
+      "owner_type": "supervisory authority / judiciary",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "applying effective, dissuasive and proportionate sanctions\nfor ML",
+      "source_char_range": [
+        18912,
+        18977
+      ]
+    },
+    {
+      "action": "Continue to implement Monaco's FATF action plan to address strategic deficiencies",
+      "owner_type": "government / national AML/CFT authority",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "The FATF encourages\nMonaco to build on its recent progress and continue to implement its action\nplan to address the above-mentioned strategic deficiencies as soon as\npossible.",
+      "source_char_range": [
+        19102,
+        19277
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "Monaco",
+      "source_quote": "Since June 2024, when Monaco made a high-level political commitment to\nwork with the FATF and MONEYVAL to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        18461,
+        18617
+      ]
+    },
+    {
+      "value": "FATF",
+      "source_quote": "The FATF notes Monaco continued progress across its action plan",
+      "source_char_range": [
+        18980,
+        19043
+      ]
+    },
+    {
+      "value": "MONEYVAL",
+      "source_quote": "Monaco made a high-level political commitment to\nwork with the FATF and MONEYVAL to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        18483,
+        18617
+      ]
+    },
+    {
+      "value": "DNFBPs",
+      "source_quote": "enhancing the\nimplementation of targeted financial sanctions without delay, particularly at\nDNFBPs and certain non-banking financial institutions",
+      "source_char_range": [
+        18172,
+        18317
+      ]
+    },
+    {
+      "value": "certain non-banking financial institutions",
+      "source_quote": "particularly at\nDNFBPs and certain non-banking financial institutions",
+      "source_char_range": [
+        18248,
+        18317
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "as soon as possible",
+      "source_quote": "continue to implement its action\nplan to address the above-mentioned strategic deficiencies as soon as\npossible",
+      "source_char_range": [
+        19165,
+        19276
+      ]
+    },
+    {
+      "value": "without delay",
+      "source_quote": "enhancing the\nimplementation of targeted financial sanctions without delay",
+      "source_char_range": [
+        18172,
+        18246
+      ]
+    },
+    {
+      "value": "all deadlines have now expired",
+      "source_quote": "all deadlines have now expired and work remains",
+      "source_char_range": [
+        19053,
+        19100
+      ]
+    },
+    {
+      "value": "Since June 2024",
+      "source_quote": "Since June 2024, when Monaco made a high-level political commitment to\nwork with the FATF and MONEYVAL",
+      "source_char_range": [
+        18461,
+        18563
+      ]
+    }
+  ],
+  "source_chunk_index": 11,
+  "extraction_confidence": 0.88
+}
+
+--- chunk_index=12 section_title='MONACO' ---
+[extract_compliance_entities] chunk_index=12: 0 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [],
+  "action_items": [],
+  "responsible_parties": [],
+  "deadlines": [],
+  "source_chunk_index": 12,
+  "extraction_confidence": 0.1
+}
+
+--- chunk_index=13 section_title='NAMIBIA' ---
+[extract_compliance_entities] chunk_index=13: 27 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "AML/CFT risk based supervision",
+      "source_quote": "strengthening its AML/CFT risk based supervision\nthrough enhancing the human and resource capacities, conducting offsite\nand onsite inspections informed by supervisory risk assessment tools and\napplying effective, proportionate and dissuasive sanctions for breaches of\nAML/CFT obligations",
+      "source_char_range": [
+        19846,
+        20134
+      ]
+    },
+    {
+      "value": "Preventive measures and due diligence deficiencies",
+      "source_quote": "enhancing preventive measures through\ninspections and outreach to ensure that FIs and DNFBPs apply enhanced\ndue diligence measures as well as TFS obligations related to TF and PF\nwithout delay",
+      "source_char_range": [
+        20140,
+        20332
+      ]
+    },
+    {
+      "value": "Beneficial ownership transparency",
+      "source_quote": "increasing the filing of beneficial ownership information of\nlegal persons and arrangements, and applying remedial actions and/or\neffective, proportionate and dissuasive sanctions against breaches of\ncompliance with BO obligations",
+      "source_char_range": [
+        20338,
+        20568
+      ]
+    },
+    {
+      "value": "Financial intelligence capacity",
+      "source_quote": "providing the FIU with adequate human\nand financial resources, as well as trainings, to improve operational and\nstrategic analysis",
+      "source_char_range": [
+        20574,
+        20704
+      ]
+    },
+    {
+      "value": "FIU and LEA cooperation gaps",
+      "source_quote": "improving the cooperation between the FIU and LEAs\nto enhance the use and integration of financial intelligence in investigations",
+      "source_char_range": [
+        20710,
+        20839
+      ]
+    },
+    {
+      "value": "ML/TF investigation and prosecution capability",
+      "source_quote": "enhancing the operational capabilities of authorities involved in ML and TF\ninvestigations and prosecutions by providing them with adequate resources\nand targeted trainings",
+      "source_char_range": [
+        20845,
+        21017
+      ]
+    },
+    {
+      "value": "Counter Terrorism Strategy",
+      "source_quote": "approving the amended\nNational Counter Terrorism Strategy",
+      "source_char_range": [
+        21122,
+        21179
+      ]
+    },
+    {
+      "value": "Strategic AML/CFT deficiencies (Nepal)",
+      "source_quote": "Nepal should continue to work on implementing its FATF action plan to\naddress its strategic deficiencies",
+      "source_char_range": [
+        21333,
+        21437
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Conduct an on-site assessment of Namibia to verify that AML/CFT reforms have begun, are being sustained, and that political commitment remains in place.",
+      "owner_type": "FATF / ESAAMLG assessors",
+      "deadline_raw": "February 2026 Plenary",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "At its February 2026 Plenary the FATF made the initial determination\nthat Namibia has substantially completed its action plan and warrants an on-\nsite assessment to verify that the implementation of AML/CFT reforms has\nbegun and is being sustained, and that the necessary political commitment\nremains in place to sustain implementation in the future.",
+      "source_char_range": [
+        19451,
+        19801
+      ]
+    },
+    {
+      "action": "Strengthen AML/CFT risk-based supervision by enhancing human and resource capacities, conducting offsite and onsite inspections using supervisory risk assessment tools, and applying effective, proportionate and dissuasive sanctions for breaches.",
+      "owner_type": "Namibian supervisory authorities",
+      "deadline_raw": "February 2026 Plenary",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "strengthening its AML/CFT risk based supervision\nthrough enhancing the human and resource capacities, conducting offsite\nand onsite inspections informed by supervisory risk assessment tools and\napplying effective, proportionate and dissuasive sanctions for breaches of\nAML/CFT obligations",
+      "source_char_range": [
+        19846,
+        20134
+      ]
+    },
+    {
+      "action": "Enhance preventive measures through inspections and outreach to ensure FIs and DNFBPs apply enhanced due diligence and TFS obligations related to TF and PF without delay.",
+      "owner_type": "Namibian supervisory authorities",
+      "deadline_raw": "without delay",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "enhancing preventive measures through\ninspections and outreach to ensure that FIs and DNFBPs apply enhanced\ndue diligence measures as well as TFS obligations related to TF and PF\nwithout delay",
+      "source_char_range": [
+        20140,
+        20332
+      ]
+    },
+    {
+      "action": "Increase the filing of beneficial ownership information of legal persons and arrangements, and apply remedial actions and/or sanctions against breaches of BO compliance obligations.",
+      "owner_type": "Namibian regulatory authorities",
+      "deadline_raw": "February 2026 Plenary",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "increasing the filing of beneficial ownership information of\nlegal persons and arrangements, and applying remedial actions and/or\neffective, proportionate and dissuasive sanctions against breaches of\ncompliance with BO obligations",
+      "source_char_range": [
+        20338,
+        20568
+      ]
+    },
+    {
+      "action": "Provide the FIU with adequate human and financial resources, as well as training, to improve operational and strategic analysis.",
+      "owner_type": "Namibian government / competent authorities",
+      "deadline_raw": "February 2026 Plenary",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "providing the FIU with adequate human\nand financial resources, as well as trainings, to improve operational and\nstrategic analysis",
+      "source_char_range": [
+        20574,
+        20704
+      ]
+    },
+    {
+      "action": "Improve cooperation between the FIU and LEAs to enhance the use and integration of financial intelligence in investigations.",
+      "owner_type": "FIU and law enforcement agencies",
+      "deadline_raw": "February 2026 Plenary",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "improving the cooperation between the FIU and LEAs\nto enhance the use and integration of financial intelligence in investigations",
+      "source_char_range": [
+        20710,
+        20839
+      ]
+    },
+    {
+      "action": "Enhance operational capabilities of authorities involved in ML and TF investigations and prosecutions by providing adequate resources and targeted training.",
+      "owner_type": "Law enforcement agencies / prosecutorial authorities",
+      "deadline_raw": "February 2026 Plenary",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing the operational capabilities of authorities involved in ML and TF\ninvestigations and prosecutions by providing them with adequate resources\nand targeted trainings",
+      "source_char_range": [
+        20845,
+        21017
+      ]
+    },
+    {
+      "action": "Demonstrate LEA capabilities to effectively investigate and prosecute ML/TF cases.",
+      "owner_type": "Law enforcement agencies",
+      "deadline_raw": "February 2026 Plenary",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating the LEAs\u2019 capabilities to effectively\ninvestigate and prosecute ML/TF cases",
+      "source_char_range": [
+        21023,
+        21112
+      ]
+    },
+    {
+      "action": "Approve the amended National Counter Terrorism Strategy.",
+      "owner_type": "Namibian government",
+      "deadline_raw": "February 2026 Plenary",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "approving the amended\nNational Counter Terrorism Strategy",
+      "source_char_range": [
+        21122,
+        21179
+      ]
+    },
+    {
+      "action": "Nepal should continue to work on implementing its FATF action plan to address its strategic deficiencies.",
+      "owner_type": "Nepalese government / competent authorities",
+      "deadline_raw": "February 2025",
+      "deadline_parsed": "2025-02-01",
+      "priority": "high",
+      "source_quote": "In February 2025, Nepal made a high-level political commitment to work with\nthe FATF and APG to strengthen the effectiveness of its AML/CFT regime.\nNepal should continue to work on implementing its FATF action plan to\naddress its strategic deficiencies",
+      "source_char_range": [
+        21185,
+        21437
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "FATF and ESAAMLG",
+      "source_quote": "Namibia made a high-level political commitment to work\nwith the FATF and ESAAMLG to strengthen the effectiveness of its AML/CFT\nregime.",
+      "source_char_range": [
+        19315,
+        19450
+      ]
+    },
+    {
+      "value": "FIU",
+      "source_quote": "providing the FIU with adequate human\nand financial resources, as well as trainings, to improve operational and\nstrategic analysis",
+      "source_char_range": [
+        20574,
+        20704
+      ]
+    },
+    {
+      "value": "LEAs",
+      "source_quote": "improving the cooperation between the FIU and LEAs\nto enhance the use and integration of financial intelligence in investigations",
+      "source_char_range": [
+        20710,
+        20839
+      ]
+    },
+    {
+      "value": "FIs and DNFBPs",
+      "source_quote": "inspections and outreach to ensure that FIs and DNFBPs apply enhanced\ndue diligence measures as well as TFS obligations related to TF and PF\nwithout delay",
+      "source_char_range": [
+        20178,
+        20332
+      ]
+    },
+    {
+      "value": "FATF and APG",
+      "source_quote": "Nepal made a high-level political commitment to work with\nthe FATF and APG to strengthen the effectiveness of its AML/CFT regime.",
+      "source_char_range": [
+        21203,
+        21332
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "February 2024",
+      "source_quote": "In February 2024, Namibia made a high-level political commitment to work\nwith the FATF and ESAAMLG to strengthen the effectiveness of its AML/CFT\nregime.",
+      "source_char_range": [
+        19297,
+        19450
+      ]
+    },
+    {
+      "value": "February 2026 Plenary",
+      "source_quote": "At its February 2026 Plenary the FATF made the initial determination\nthat Namibia has substantially completed its action plan",
+      "source_char_range": [
+        19451,
+        19576
+      ]
+    },
+    {
+      "value": "without delay",
+      "source_quote": "TFS obligations related to TF and PF\nwithout delay",
+      "source_char_range": [
+        20282,
+        20332
+      ]
+    },
+    {
+      "value": "February 2025",
+      "source_quote": "In February 2025, Nepal made a high-level political commitment to work with\nthe FATF and APG to strengthen the effectiveness of its AML/CFT regime.",
+      "source_char_range": [
+        21185,
+        21332
+      ]
+    }
+  ],
+  "source_chunk_index": 13,
+  "extraction_confidence": 0.88
+}
+
+--- chunk_index=14 section_title='NEPAL' ---
+[extract_compliance_entities] chunk_index=14: 34 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "ML/TF risks",
+      "source_quote": "key ML/TF risks",
+      "source_char_range": [
+        21491,
+        21506
+      ]
+    },
+    {
+      "value": "Risk-based supervision gaps (commercial banks, cooperatives, casinos, DPMS, real estate)",
+      "source_quote": "improving risk-based supervision of commercial banks,\nhigher-risk cooperatives, casinos, DPMS, and the real estate sector",
+      "source_char_range": [
+        21512,
+        21633
+      ]
+    },
+    {
+      "value": "Illegal MVTS/hundi providers",
+      "source_quote": "demonstrating the identification and sanctioning of materially significant\nillegal MVTS/hundi providers, without hindering financial inclusion",
+      "source_char_range": [
+        21639,
+        21781
+      ]
+    },
+    {
+      "value": "ML investigations and prosecutions capacity",
+      "source_quote": "increasing capacity and co-ordination of competent authorities to conduct ML\ninvestigations",
+      "source_char_range": [
+        21787,
+        21878
+      ]
+    },
+    {
+      "value": "Proceeds and instrumentalities of crime",
+      "source_quote": "demonstrating measures to identify, trace, restrain, seize,\nand, where applicable, confiscate proceeds and instrumentalities of crime in\nline with the risk profile",
+      "source_char_range": [
+        21953,
+        22116
+      ]
+    },
+    {
+      "value": "Technical compliance deficiencies in targeted financial sanctions regime for TF and PF",
+      "source_quote": "addressing remaining technical compliance\ndeficiencies in its targeted financial sanctions regime for TF and PF",
+      "source_char_range": [
+        22122,
+        22233
+      ]
+    },
+    {
+      "value": "ML risks understanding and National AML/CFT/CPF Strategic Plan",
+      "source_quote": "improving its understanding of ML risks\nand endorsing the National AML/CFT/CPF Strategic Plan",
+      "source_char_range": [
+        22834,
+        22927
+      ]
+    },
+    {
+      "value": "Criminal property identification and tracing abroad",
+      "source_quote": "proactively\nseeking outbound international cooperation to identify and trace criminal\nproperty abroad",
+      "source_char_range": [
+        22933,
+        23034
+      ]
+    },
+    {
+      "value": "Risk-based supervision gaps (banks, MVTS/FX dealers, DNFBPs)",
+      "source_quote": "improving risk-based supervision of banks, MVTS/FX\ndealers and higher risk DNFBPs",
+      "source_char_range": [
+        23040,
+        23121
+      ]
+    },
+    {
+      "value": "Freezing, seizing and confiscation of criminal proceeds",
+      "source_quote": "demonstrating an increase in\nfreezing/seizing and confiscation of criminal proceeds, instrumentalities and\nproperty of equivalent value",
+      "source_char_range": [
+        23196,
+        23331
+      ]
+    },
+    {
+      "value": "TFS-PF implementation",
+      "source_quote": "conducting training for competent authorities\nto enhance their understanding of TFS-PF implementation",
+      "source_char_range": [
+        23337,
+        23438
+      ]
+    },
+    {
+      "value": "Technical compliance deficiencies (ML offence, TF offence, TFS-PF, PEPs, STR)",
+      "source_quote": "addressing\ntechnical compliance deficiencies, including with respect to the ML offence,\nTF offence, TFS-PF, politically exposed persons and suspicious transaction\nreporting",
+      "source_char_range": [
+        23444,
+        23616
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Improve Nepal's understanding of key ML/TF risks",
+      "owner_type": "competent authorities / government of Nepal",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "key ML/TF risks",
+      "source_char_range": [
+        21491,
+        21506
+      ]
+    },
+    {
+      "action": "Improve risk-based supervision of commercial banks, higher-risk cooperatives, casinos, DPMS, and the real estate sector in Nepal",
+      "owner_type": "supervisory authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "improving risk-based supervision of commercial banks,\nhigher-risk cooperatives, casinos, DPMS, and the real estate sector",
+      "source_char_range": [
+        21512,
+        21633
+      ]
+    },
+    {
+      "action": "Demonstrate identification and sanctioning of materially significant illegal MVTS/hundi providers without hindering financial inclusion in Nepal",
+      "owner_type": "competent authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating the identification and sanctioning of materially significant\nillegal MVTS/hundi providers, without hindering financial inclusion",
+      "source_char_range": [
+        21639,
+        21781
+      ]
+    },
+    {
+      "action": "Increase capacity and co-ordination of competent authorities to conduct ML investigations in Nepal",
+      "owner_type": "competent authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "increasing capacity and co-ordination of competent authorities to conduct ML\ninvestigations",
+      "source_char_range": [
+        21787,
+        21878
+      ]
+    },
+    {
+      "action": "Demonstrate an increase in ML investigations and prosecutions in Nepal",
+      "owner_type": "law enforcement / prosecution authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating an increase in ML investigations and\nprosecutions",
+      "source_char_range": [
+        21884,
+        21947
+      ]
+    },
+    {
+      "action": "Demonstrate measures to identify, trace, restrain, seize, and confiscate proceeds and instrumentalities of crime in line with Nepal's risk profile",
+      "owner_type": "law enforcement / competent authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating measures to identify, trace, restrain, seize,\nand, where applicable, confiscate proceeds and instrumentalities of crime in\nline with the risk profile",
+      "source_char_range": [
+        21953,
+        22116
+      ]
+    },
+    {
+      "action": "Address remaining technical compliance deficiencies in Nepal's targeted financial sanctions regime for TF and PF",
+      "owner_type": "compliance officer / government of Nepal",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "addressing remaining technical compliance\ndeficiencies in its targeted financial sanctions regime for TF and PF",
+      "source_char_range": [
+        22122,
+        22233
+      ]
+    },
+    {
+      "action": "Papua New Guinea to improve understanding of ML risks and endorse the National AML/CFT/CPF Strategic Plan",
+      "owner_type": "government of Papua New Guinea",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "improving its understanding of ML risks\nand endorsing the National AML/CFT/CPF Strategic Plan",
+      "source_char_range": [
+        22834,
+        22927
+      ]
+    },
+    {
+      "action": "Papua New Guinea to proactively seek outbound international cooperation to identify and trace criminal property abroad",
+      "owner_type": "competent authorities / government of Papua New Guinea",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "proactively\nseeking outbound international cooperation to identify and trace criminal\nproperty abroad",
+      "source_char_range": [
+        22933,
+        23034
+      ]
+    },
+    {
+      "action": "Papua New Guinea to improve risk-based supervision of banks, MVTS/FX dealers and higher risk DNFBPs",
+      "owner_type": "supervisory authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "improving risk-based supervision of banks, MVTS/FX\ndealers and higher risk DNFBPs",
+      "source_char_range": [
+        23040,
+        23121
+      ]
+    },
+    {
+      "action": "Papua New Guinea to demonstrate an increase in ML investigations and prosecutions",
+      "owner_type": "law enforcement / prosecution authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating an increase in ML investigations and\nprosecutions",
+      "source_char_range": [
+        21884,
+        21947
+      ]
+    },
+    {
+      "action": "Papua New Guinea to demonstrate an increase in freezing/seizing and confiscation of criminal proceeds, instrumentalities and property of equivalent value",
+      "owner_type": "law enforcement / competent authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating an increase in\nfreezing/seizing and confiscation of criminal proceeds, instrumentalities and\nproperty of equivalent value",
+      "source_char_range": [
+        23196,
+        23331
+      ]
+    },
+    {
+      "action": "Papua New Guinea to conduct training for competent authorities to enhance their understanding of TFS-PF implementation",
+      "owner_type": "training / competent authorities",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "medium",
+      "source_quote": "conducting training for competent authorities\nto enhance their understanding of TFS-PF implementation",
+      "source_char_range": [
+        23337,
+        23438
+      ]
+    },
+    {
+      "action": "Papua New Guinea to address technical compliance deficiencies including ML offence, TF offence, TFS-PF, politically exposed persons and suspicious transaction reporting",
+      "owner_type": "compliance officer / government of Papua New Guinea",
+      "deadline_raw": "not specified",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "addressing\ntechnical compliance deficiencies, including with respect to the ML offence,\nTF offence, TFS-PF, politically exposed persons and suspicious transaction\nreporting",
+      "source_char_range": [
+        23444,
+        23616
+      ]
+    },
+    {
+      "action": "Papua New Guinea to operationalize and strengthen the anti-corruption authority",
+      "owner_type": "government of Papua New Guinea",
+      "deadline_raw": "Since the adoption of its MER in September 2024",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "operationalizing and strengthening the anti-corruption\nauthority",
+      "source_char_range": [
+        22533,
+        22597
+      ]
+    },
+    {
+      "action": "Papua New Guinea to develop a national risk assessment and automate communication of UNSCR updates to relevant government agencies and reporting entities",
+      "owner_type": "government of Papua New Guinea",
+      "deadline_raw": "Since the adoption of its MER in September 2024",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "developing a national risk assessment and automating\ncommunication of UNSCR updates to relevant government agencies and\nreporting entities",
+      "source_char_range": [
+        22599,
+        22737
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "Nepal (competent authorities)",
+      "source_quote": "increasing capacity and co-ordination of competent authorities to conduct ML\ninvestigations",
+      "source_char_range": [
+        21787,
+        21878
+      ]
+    },
+    {
+      "value": "Papua New Guinea",
+      "source_quote": "In February 2026, Papua New Guinea made a high-level political commitment\nto work with the FATF and APG to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        22239,
+        22396
+      ]
+    },
+    {
+      "value": "FATF",
+      "source_quote": "Papua New Guinea made a high-level political commitment\nto work with the FATF and APG to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        22257,
+        22396
+      ]
+    },
+    {
+      "value": "APG",
+      "source_quote": "Papua New Guinea made a high-level political commitment\nto work with the FATF and APG to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        22257,
+        22396
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "February 2026",
+      "source_quote": "In February 2026, Papua New Guinea made a high-level political commitment",
+      "source_char_range": [
+        22239,
+        22312
+      ]
+    },
+    {
+      "value": "September 2024",
+      "source_quote": "Since the adoption of its MER in September 2024",
+      "source_char_range": [
+        22398,
+        22445
+      ]
+    }
+  ],
+  "source_chunk_index": 14,
+  "extraction_confidence": 0.88
+}
+
+--- chunk_index=15 section_title='PAPUA NEW GUINEA' ---
+[extract_compliance_entities] chunk_index=15: 22 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "AML/CFT supervision gaps for financial institutions",
+      "source_quote": "ensuring that competent authorities are suitably structured\nand capacitated to implement a risk-based approach to AML/CFT supervision\nfor financial institutions",
+      "source_char_range": [
+        24512,
+        24672
+      ]
+    },
+    {
+      "value": "Beneficial ownership transparency deficiencies",
+      "source_quote": "developing a comprehensive legal framework to\ncollect and verify the accuracy of beneficial ownership information for legal\npersons",
+      "source_char_range": [
+        24678,
+        24809
+      ]
+    },
+    {
+      "value": "Non-operational Financial Intelligence Unit",
+      "source_quote": "finalising the operationalisation of a fully functioning and\nindependent FIU",
+      "source_char_range": [
+        24815,
+        24891
+      ]
+    },
+    {
+      "value": "Targeted financial sanctions framework deficiencies",
+      "source_quote": "establishing and implementing the legal and institutional\nframework to implement targeted financial sanctions in compliance with\nUnited Nations Security Council Resolutions on terrorism and WMD\nproliferation financing",
+      "source_char_range": [
+        24897,
+        25114
+      ]
+    },
+    {
+      "value": "NPO sector exposure to terrorist financing",
+      "source_quote": "commencing implementation of targeted risk-\nbased supervision/monitoring of NPOs at risk of TF abuse",
+      "source_char_range": [
+        25124,
+        25224
+      ]
+    },
+    {
+      "value": "Strategic AML/CFT deficiencies",
+      "source_quote": "The FATF again encourages\nSouth Sudan to continue to implement its action plan to address the above-\nmentioned strategic deficiencies as soon as possible",
+      "source_char_range": [
+        25346,
+        25499
+      ]
+    },
+    {
+      "value": "ML/TF risks associated with legal persons and the NPO sector",
+      "source_quote": "conducting awareness raising to develop a\ncommon understanding among relevant stakeholders of the main ML/TF\nrisks, including those associated with legal persons and the NPO sector",
+      "source_char_range": [
+        23880,
+        24060
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Ensure competent authorities are suitably structured and capacitated to implement a risk-based approach to AML/CFT supervision for financial institutions.",
+      "owner_type": "Competent authorities / supervisory bodies",
+      "deadline_raw": "all deadlines now expired",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "ensuring that competent authorities are suitably structured\nand capacitated to implement a risk-based approach to AML/CFT supervision\nfor financial institutions",
+      "source_char_range": [
+        24512,
+        24672
+      ]
+    },
+    {
+      "action": "Develop a comprehensive legal framework to collect and verify the accuracy of beneficial ownership information for legal persons.",
+      "owner_type": "Government / legislative authorities",
+      "deadline_raw": "all deadlines now expired",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "developing a comprehensive legal framework to\ncollect and verify the accuracy of beneficial ownership information for legal\npersons",
+      "source_char_range": [
+        24678,
+        24809
+      ]
+    },
+    {
+      "action": "Finalise the operationalisation of a fully functioning and independent FIU.",
+      "owner_type": "Government / relevant authorities",
+      "deadline_raw": "all deadlines now expired",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "finalising the operationalisation of a fully functioning and\nindependent FIU",
+      "source_char_range": [
+        24815,
+        24891
+      ]
+    },
+    {
+      "action": "Establish and implement the legal and institutional framework to implement targeted financial sanctions in compliance with United Nations Security Council Resolutions on terrorism and WMD proliferation financing.",
+      "owner_type": "Government / legislative authorities",
+      "deadline_raw": "all deadlines now expired",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "establishing and implementing the legal and institutional\nframework to implement targeted financial sanctions in compliance with\nUnited Nations Security Council Resolutions on terrorism and WMD\nproliferation financing",
+      "source_char_range": [
+        24897,
+        25114
+      ]
+    },
+    {
+      "action": "Commence implementation of targeted risk-based supervision/monitoring of NPOs at risk of TF abuse.",
+      "owner_type": "Supervisory / competent authorities",
+      "deadline_raw": "all deadlines now expired",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "commencing implementation of targeted risk-\nbased supervision/monitoring of NPOs at risk of TF abuse",
+      "source_char_range": [
+        25124,
+        25224
+      ]
+    },
+    {
+      "action": "Demonstrate strong political and institutional commitment to strengthen the effectiveness of the AML/CFT regime, particularly in supporting the lead AML/CFT agency in coordinating national AML/CFT efforts.",
+      "owner_type": "Government / lead AML/CFT agency",
+      "deadline_raw": "as soon as possible",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrate strong\npolitical and institutional commitment to strengthen the effectiveness of its\nAML/CFT regime, particularly in supporting the lead AML/CFT agency in\ncoordinating national AML/CFT efforts",
+      "source_char_range": [
+        25504,
+        25708
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "South Sudan",
+      "source_quote": "South Sudan should continue to work to implement its action plan",
+      "source_char_range": [
+        24428,
+        24492
+      ]
+    },
+    {
+      "value": "competent authorities",
+      "source_quote": "ensuring that competent authorities are suitably structured\nand capacitated to implement a risk-based approach to AML/CFT supervision\nfor financial institutions",
+      "source_char_range": [
+        24512,
+        24672
+      ]
+    },
+    {
+      "value": "Law enforcement agencies, investigative authorities, and judiciary",
+      "source_quote": "Law\nenforcement agencies, investigative authorities, and judiciary have been\nprovided with the necessary resources (human, technical, financial) and\ntraining",
+      "source_char_range": [
+        24269,
+        24426
+      ]
+    },
+    {
+      "value": "lead AML/CFT agency",
+      "source_quote": "supporting the lead AML/CFT agency in\ncoordinating national AML/CFT efforts",
+      "source_char_range": [
+        25633,
+        25708
+      ]
+    },
+    {
+      "value": "FATF",
+      "source_quote": "The FATF notes South Sudan\u2019s limited progress across its action plan",
+      "source_char_range": [
+        25226,
+        25294
+      ]
+    },
+    {
+      "value": "ESAAMLG",
+      "source_quote": "South Sudan made a high-level political commitment\nto work with the FATF and ESAAMLG to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        23661,
+        23799
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "all deadlines now expired",
+      "source_quote": "The FATF notes South Sudan\u2019s limited progress across its action plan with all\ndeadlines now expired and work remaining",
+      "source_char_range": [
+        25226,
+        25344
+      ]
+    },
+    {
+      "value": "as soon as possible",
+      "source_quote": "The FATF again encourages\nSouth Sudan to continue to implement its action plan to address the above-\nmentioned strategic deficiencies as soon as possible",
+      "source_char_range": [
+        25346,
+        25499
+      ]
+    },
+    {
+      "value": "Since June 2021",
+      "source_quote": "Since June 2021, when South Sudan made a high-level political commitment\nto work with the FATF and ESAAMLG to strengthen the effectiveness of its\nAML/CFT regime",
+      "source_char_range": [
+        23639,
+        23799
+      ]
+    }
+  ],
+  "source_chunk_index": 15,
+  "extraction_confidence": 0.93
+}
+
+--- chunk_index=16 section_title='SOUTH SUDAN' ---
+[extract_compliance_entities] chunk_index=16: 27 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "strategic AML/CFT deficiencies",
+      "source_quote": "work with the FATF and MENAFATF to address its strategic AML/CFT\ndeficiencies",
+      "source_char_range": [
+        25832,
+        25909
+      ]
+    },
+    {
+      "value": "terrorist financing criminalisation",
+      "source_quote": "criminalising terrorist financing\nand establishing procedures for freezing terrorist assets",
+      "source_char_range": [
+        26090,
+        26181
+      ]
+    },
+    {
+      "value": "on-site visit verification gap",
+      "source_quote": "the FATF has been unable to conduct an on-site visit to\nconfirm whether the process of implementing the required reforms and\nactions has begun and is being sustained",
+      "source_char_range": [
+        26289,
+        26454
+      ]
+    },
+    {
+      "value": "ML/TF risk understanding gaps",
+      "source_quote": "strengthening its understanding of\nML/TF risks, including in relation to TF and legal persons and arrangements",
+      "source_char_range": [
+        26841,
+        26951
+      ]
+    },
+    {
+      "value": "AML/CFT supervision gaps for financial institutions and DNFBPs",
+      "source_quote": "ensuring the full range of financial institutions and DNFBPs are subject to\nAML/CFT measures and risk-based supervision",
+      "source_char_range": [
+        26957,
+        27076
+      ]
+    },
+    {
+      "value": "beneficial ownership information deficiencies",
+      "source_quote": "ensuring adequate,\naccurate and up-to-date beneficial ownership information is accessible in a\ntimely manner",
+      "source_char_range": [
+        27082,
+        27190
+      ]
+    },
+    {
+      "value": "FIU resource and financial intelligence gaps",
+      "source_quote": "enhancing the resources of the FIU and improving\ncompetent authorities\u2019 use of financial intelligence",
+      "source_char_range": [
+        27196,
+        27297
+      ]
+    },
+    {
+      "value": "ML/TF investigation and prosecution deficiencies",
+      "source_quote": "enhancing the\ninvestigation and prosecution of ML and TF",
+      "source_char_range": [
+        27303,
+        27359
+      ]
+    },
+    {
+      "value": "NPO sector abuse for terrorist financing",
+      "source_quote": "ensuring measures to\nprevent the abuse of NPOs for TF are targeted, proportionate, and risk-based\nand do not disrupt or discourage legitimate activities within the NPO sector",
+      "source_char_range": [
+        27365,
+        27539
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "FATF to conduct an on-site visit to Syria to confirm whether required reforms and actions have begun and are being sustained.",
+      "owner_type": "FATF",
+      "deadline_raw": "at the earliest possible date",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "the FATF has been unable to conduct an on-site visit to\nconfirm whether the process of implementing the required reforms and\nactions has begun and is being sustained. The FATF will continue to monitor\nthe situation, and will conduct an on-site visit at the earliest possible date.",
+      "source_char_range": [
+        26289,
+        26569
+      ]
+    },
+    {
+      "action": "Venezuela to strengthen its understanding of ML/TF risks, including in relation to TF and legal persons and arrangements.",
+      "owner_type": "Venezuelan government / competent authorities",
+      "deadline_raw": "should continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "strengthening its understanding of\nML/TF risks, including in relation to TF and legal persons and arrangements",
+      "source_char_range": [
+        26841,
+        26951
+      ]
+    },
+    {
+      "action": "Venezuela to ensure the full range of financial institutions and DNFBPs are subject to AML/CFT measures and risk-based supervision.",
+      "owner_type": "Venezuelan government / supervisory authorities",
+      "deadline_raw": "should continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring the full range of financial institutions and DNFBPs are subject to\nAML/CFT measures and risk-based supervision",
+      "source_char_range": [
+        26957,
+        27076
+      ]
+    },
+    {
+      "action": "Venezuela to ensure adequate, accurate and up-to-date beneficial ownership information is accessible in a timely manner.",
+      "owner_type": "Venezuelan government / competent authorities",
+      "deadline_raw": "should continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring adequate,\naccurate and up-to-date beneficial ownership information is accessible in a\ntimely manner",
+      "source_char_range": [
+        27082,
+        27190
+      ]
+    },
+    {
+      "action": "Venezuela to enhance the resources of the FIU and improve competent authorities' use of financial intelligence.",
+      "owner_type": "Venezuelan government / FIU",
+      "deadline_raw": "should continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing the resources of the FIU and improving\ncompetent authorities\u2019 use of financial intelligence",
+      "source_char_range": [
+        27196,
+        27297
+      ]
+    },
+    {
+      "action": "Venezuela to enhance the investigation and prosecution of ML and TF.",
+      "owner_type": "Venezuelan law enforcement / prosecution authorities",
+      "deadline_raw": "should continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing the\ninvestigation and prosecution of ML and TF",
+      "source_char_range": [
+        27303,
+        27359
+      ]
+    },
+    {
+      "action": "Venezuela to ensure measures to prevent the abuse of NPOs for TF are targeted, proportionate, and risk-based without disrupting legitimate NPO activities.",
+      "owner_type": "Venezuelan government / competent authorities",
+      "deadline_raw": "should continue working on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "medium",
+      "source_quote": "ensuring measures to\nprevent the abuse of NPOs for TF are targeted, proportionate, and risk-based\nand do not disrupt or discourage legitimate activities within the NPO sector",
+      "source_char_range": [
+        27365,
+        27539
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "FATF",
+      "source_quote": "The FATF will continue to monitor\nthe situation, and will conduct an on-site visit at the earliest possible date.",
+      "source_char_range": [
+        26456,
+        26569
+      ]
+    },
+    {
+      "value": "MENAFATF",
+      "source_quote": "work with the FATF and MENAFATF to address its strategic AML/CFT\ndeficiencies",
+      "source_char_range": [
+        25832,
+        25909
+      ]
+    },
+    {
+      "value": "Venezuela",
+      "source_quote": "In June 2024, Venezuela made a high-level political commitment to work with\nthe FATF and CFATF to strengthen the effectiveness of its AML/CFT regime.",
+      "source_char_range": [
+        26574,
+        26723
+      ]
+    },
+    {
+      "value": "CFATF",
+      "source_quote": "Venezuela made a high-level political commitment to work with\nthe FATF and CFATF to strengthen the effectiveness of its AML/CFT regime.",
+      "source_char_range": [
+        26588,
+        26723
+      ]
+    },
+    {
+      "value": "FIU",
+      "source_quote": "enhancing the resources of the FIU and improving\ncompetent authorities\u2019 use of financial intelligence",
+      "source_char_range": [
+        27196,
+        27297
+      ]
+    },
+    {
+      "value": "competent authorities",
+      "source_quote": "improving\ncompetent authorities\u2019 use of financial intelligence",
+      "source_char_range": [
+        27235,
+        27297
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "February 2023",
+      "source_quote": "Statement from February 2023",
+      "source_char_range": [
+        25728,
+        25756
+      ]
+    },
+    {
+      "value": "February 2010",
+      "source_quote": "Since February 2010, when Syria made a high-level political commitment",
+      "source_char_range": [
+        25758,
+        25828
+      ]
+    },
+    {
+      "value": "June 2014",
+      "source_quote": "In\nJune 2014, the FATF determined that Syria had substantially addressed its\naction plan",
+      "source_char_range": [
+        25966,
+        26054
+      ]
+    },
+    {
+      "value": "June 2024",
+      "source_quote": "In June 2024, Venezuela made a high-level political commitment",
+      "source_char_range": [
+        26574,
+        26636
+      ]
+    },
+    {
+      "value": "at the earliest possible date",
+      "source_quote": "will conduct an on-site visit at the earliest possible date",
+      "source_char_range": [
+        26509,
+        26568
+      ]
+    }
+  ],
+  "source_chunk_index": 16,
+  "extraction_confidence": 0.88
+}
+
+--- chunk_index=17 section_title='SYRIA' ---
+[extract_compliance_entities] chunk_index=17: 1 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "Syria",
+      "source_quote": "SYRIA",
+      "source_char_range": [
+        27541,
+        27546
+      ]
+    }
+  ],
+  "action_items": [],
+  "responsible_parties": [],
+  "deadlines": [],
+  "source_chunk_index": 17,
+  "extraction_confidence": 0.1
+}
+
+--- chunk_index=18 section_title='VENEZUELA' ---
+[extract_compliance_entities] chunk_index=18: 33 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "TF-and PF-related targeted financial sanctions",
+      "source_quote": "implementing TF-and PF-related targeted financial sanctions without\ndelay",
+      "source_char_range": [
+        27565,
+        27638
+      ]
+    },
+    {
+      "value": "NPO sector oversight",
+      "source_quote": "the FATF is especially concerned about Venezuela\u2019s approach\nto conducting oversight of the NPO sector",
+      "source_char_range": [
+        27655,
+        27756
+      ]
+    },
+    {
+      "value": "NPO law alignment with FATF risk-based approach",
+      "source_quote": "certain sections of the November 2024 NPO law\nshould be re-examined and potentially altered so that it is in line with the\nFATF\u2019s risk-based approach for supervision of the NPO sector and the\nFATF\u2019s best practices on Recommendation 8",
+      "source_char_range": [
+        27815,
+        28048
+      ]
+    },
+    {
+      "value": "Strategic AML/CFT deficiencies (Vietnam)",
+      "source_quote": "Vietnam should continue to work on\nimplementing its FATF action plan to address its strategic deficiencies",
+      "source_char_range": [
+        28370,
+        28476
+      ]
+    },
+    {
+      "value": "Risk understanding gaps",
+      "source_quote": "increasing risk understanding",
+      "source_char_range": [
+        28493,
+        28522
+      ]
+    },
+    {
+      "value": "International co-operation deficiencies",
+      "source_quote": "enhancing international co-\noperation",
+      "source_char_range": [
+        28528,
+        28565
+      ]
+    },
+    {
+      "value": "Risk-based supervision for FIs and DNFBPs",
+      "source_quote": "implementing effective risk-based supervision for FIs and\nDNFBPs",
+      "source_char_range": [
+        28571,
+        28635
+      ]
+    },
+    {
+      "value": "Virtual assets regulation",
+      "source_quote": "taking action to regulate virtual assets and virtual asset service\nproviders",
+      "source_char_range": [
+        28641,
+        28717
+      ]
+    },
+    {
+      "value": "Technical compliance deficiencies",
+      "source_quote": "addressing technical compliance deficiencies, including with\nrespect to the ML offence, targeted financial sanctions, customer due\ndiligence and suspicious transaction reporting",
+      "source_char_range": [
+        28723,
+        28900
+      ]
+    },
+    {
+      "value": "Beneficial ownership information gaps",
+      "source_quote": "establishing a regime that provides\ncompetent authorities with adequate, accurate and up-to-date information on\nbeneficial ownership",
+      "source_char_range": [
+        28966,
+        29098
+      ]
+    },
+    {
+      "value": "Financial intelligence analysis and dissemination",
+      "source_quote": "enhancing the quality and quantity of financial\nintelligence analysis and dissemination",
+      "source_char_range": [
+        29104,
+        29191
+      ]
+    },
+    {
+      "value": "ML investigations and prosecutions",
+      "source_quote": "prioritising parallel financial\ninvestigations and demonstrating an increase in the number of ML\ninvestigations and prosecutions undertaken",
+      "source_char_range": [
+        29197,
+        29336
+      ]
+    },
+    {
+      "value": "PF TFS compliance monitoring and evasion prevention",
+      "source_quote": "demonstrating that\nthere is monitoring of FIs and DNFBPs for compliance with PF TFS\nobligations and that there is co-operation and co-ordination between\nauthorities to prevent PF TFS from being evaded",
+      "source_char_range": [
+        29347,
+        29547
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Implement TF- and PF-related targeted financial sanctions without delay",
+      "owner_type": "Venezuelan government / competent authorities",
+      "deadline_raw": "without delay",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "implementing TF-and PF-related targeted financial sanctions without\ndelay",
+      "source_char_range": [
+        27565,
+        27638
+      ]
+    },
+    {
+      "action": "Re-examine and potentially alter certain sections of the November 2024 NPO law to align with FATF's risk-based approach for NPO sector supervision and best practices on Recommendation 8",
+      "owner_type": "Venezuelan government / legislative authority",
+      "deadline_raw": "urgently",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "the FATF calls on Venezuela to\nurgently consider whether certain sections of the November 2024 NPO law\nshould be re-examined and potentially altered so that it is in line with the\nFATF\u2019s risk-based approach for supervision of the NPO sector and the\nFATF\u2019s best practices on Recommendation 8",
+      "source_char_range": [
+        27758,
+        28048
+      ]
+    },
+    {
+      "action": "Increase risk understanding as part of Vietnam's FATF action plan",
+      "owner_type": "Vietnamese government / competent authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "Vietnam should continue to work on\nimplementing its FATF action plan to address its strategic deficiencies,\nincluding: (1) increasing risk understanding",
+      "source_char_range": [
+        28370,
+        28522
+      ]
+    },
+    {
+      "action": "Enhance international co-operation",
+      "owner_type": "Vietnamese government / competent authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing international co-\noperation",
+      "source_char_range": [
+        28528,
+        28565
+      ]
+    },
+    {
+      "action": "Implement effective risk-based supervision for FIs and DNFBPs",
+      "owner_type": "Vietnamese supervisory authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "implementing effective risk-based supervision for FIs and\nDNFBPs",
+      "source_char_range": [
+        28571,
+        28635
+      ]
+    },
+    {
+      "action": "Take action to regulate virtual assets and virtual asset service providers",
+      "owner_type": "Vietnamese government / regulatory authority",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "taking action to regulate virtual assets and virtual asset service\nproviders",
+      "source_char_range": [
+        28641,
+        28717
+      ]
+    },
+    {
+      "action": "Address technical compliance deficiencies including with respect to the ML offence, targeted financial sanctions, customer due diligence and suspicious transaction reporting",
+      "owner_type": "Vietnamese government / competent authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "addressing technical compliance deficiencies, including with\nrespect to the ML offence, targeted financial sanctions, customer due\ndiligence and suspicious transaction reporting",
+      "source_char_range": [
+        28723,
+        28900
+      ]
+    },
+    {
+      "action": "Conduct outreach activities with the private sector",
+      "owner_type": "Vietnamese government / competent authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "medium",
+      "source_quote": "conducting outreach\nactivities with the private sector",
+      "source_char_range": [
+        28906,
+        28960
+      ]
+    },
+    {
+      "action": "Establish a regime providing competent authorities with adequate, accurate and up-to-date beneficial ownership information",
+      "owner_type": "Vietnamese government / competent authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "establishing a regime that provides\ncompetent authorities with adequate, accurate and up-to-date information on\nbeneficial ownership",
+      "source_char_range": [
+        28966,
+        29098
+      ]
+    },
+    {
+      "action": "Enhance the quality and quantity of financial intelligence analysis and dissemination",
+      "owner_type": "Vietnamese financial intelligence unit / competent authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing the quality and quantity of financial\nintelligence analysis and dissemination",
+      "source_char_range": [
+        29104,
+        29191
+      ]
+    },
+    {
+      "action": "Prioritise parallel financial investigations and demonstrate an increase in ML investigations and prosecutions",
+      "owner_type": "Vietnamese law enforcement / prosecutorial authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "prioritising parallel financial\ninvestigations and demonstrating an increase in the number of ML\ninvestigations and prosecutions undertaken",
+      "source_char_range": [
+        29197,
+        29336
+      ]
+    },
+    {
+      "action": "Demonstrate monitoring of FIs and DNFBPs for PF TFS compliance and ensure co-operation and co-ordination between authorities to prevent PF TFS evasion",
+      "owner_type": "Vietnamese supervisory / competent authorities",
+      "deadline_raw": "continue to work on implementing its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "demonstrating that\nthere is monitoring of FIs and DNFBPs for compliance with PF TFS\nobligations and that there is co-operation and co-ordination between\nauthorities to prevent PF TFS from being evaded",
+      "source_char_range": [
+        29347,
+        29547
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "Venezuela",
+      "source_quote": "the FATF is especially concerned about Venezuela\u2019s approach\nto conducting oversight of the NPO sector",
+      "source_char_range": [
+        27655,
+        27756
+      ]
+    },
+    {
+      "value": "FATF",
+      "source_quote": "the FATF calls on Venezuela to\nurgently consider whether certain sections of the November 2024 NPO law\nshould be re-examined",
+      "source_char_range": [
+        27758,
+        27882
+      ]
+    },
+    {
+      "value": "Vietnam",
+      "source_quote": "Vietnam should continue to work on\nimplementing its FATF action plan to address its strategic deficiencies",
+      "source_char_range": [
+        28370,
+        28476
+      ]
+    },
+    {
+      "value": "APG",
+      "source_quote": "Vietnam made a high-level political commitment to\nwork with the FATF and APG to strengthen the effectiveness of its AML/CFT\nregime",
+      "source_char_range": [
+        28076,
+        28206
+      ]
+    },
+    {
+      "value": "competent authorities",
+      "source_quote": "establishing a regime that provides\ncompetent authorities with adequate, accurate and up-to-date information on\nbeneficial ownership",
+      "source_char_range": [
+        28966,
+        29098
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "without delay",
+      "source_quote": "implementing TF-and PF-related targeted financial sanctions without\ndelay",
+      "source_char_range": [
+        27565,
+        27638
+      ]
+    },
+    {
+      "value": "urgently",
+      "source_quote": "the FATF calls on Venezuela to\nurgently consider whether certain sections of the November 2024 NPO law\nshould be re-examined",
+      "source_char_range": [
+        27758,
+        27882
+      ]
+    },
+    {
+      "value": "Since June 2023",
+      "source_quote": "Since June 2023, when Vietnam made a high-level political commitment to\nwork with the FATF and APG to strengthen the effectiveness of its AML/CFT\nregime",
+      "source_char_range": [
+        28054,
+        28206
+      ]
+    }
+  ],
+  "source_chunk_index": 18,
+  "extraction_confidence": 0.93
+}
+
+--- chunk_index=19 section_title='VIETNAM' ---
+[extract_compliance_entities] chunk_index=19: 28 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "strategic AML/CFT deficiencies",
+      "source_quote": "The FATF strongly urges Vietnam to swiftly implement its action plan to\naddress the above-mentioned strategic deficiencies as soon as possible as\nall deadlines expired in May 2025.",
+      "source_char_range": [
+        29557,
+        29737
+      ]
+    },
+    {
+      "value": "fit and proper checks",
+      "source_quote": "strengthening fit and proper checks",
+      "source_char_range": [
+        29987,
+        30022
+      ]
+    },
+    {
+      "value": "legal persons misuse for money laundering and terrorist financing",
+      "source_quote": "raising awareness of how legal persons can be misused for money\nlaundering and terrorist financing",
+      "source_char_range": [
+        30108,
+        30206
+      ]
+    },
+    {
+      "value": "risk-based supervision of TCSPs, Investment Businesses and VASPs",
+      "source_quote": "enhancing risk-based\nsupervision of TCSPs, Investment Businesses and VASPs",
+      "source_char_range": [
+        30298,
+        30372
+      ]
+    },
+    {
+      "value": "beneficial ownership information gaps",
+      "source_quote": "ensuring that\naccurate and up-to-date beneficial ownership information is available to\ncompetent authorities and breaches to obligations are sanctioned",
+      "source_char_range": [
+        30378,
+        30529
+      ]
+    },
+    {
+      "value": "quality of Suspicious Activity Reports (SARs)",
+      "source_quote": "improving the quality of SARs and ensuring that reporting is in line with risk",
+      "source_char_range": [
+        30535,
+        30613
+      ]
+    },
+    {
+      "value": "money laundering investigations and prosecutions",
+      "source_quote": "systematically pursuing ML investigations and prosecutions in line with\nrisk",
+      "source_char_range": [
+        30619,
+        30695
+      ]
+    },
+    {
+      "value": "seizure and confiscation of criminal proceeds",
+      "source_quote": "increasing the seizure and confiscation of criminal proceeds",
+      "source_char_range": [
+        30701,
+        30761
+      ]
+    },
+    {
+      "value": "asset management framework",
+      "source_quote": "operationalising the new asset management framework",
+      "source_char_range": [
+        30771,
+        30822
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Vietnam must swiftly implement its FATF action plan to address strategic AML/CFT deficiencies.",
+      "owner_type": "government / national authority (Vietnam)",
+      "deadline_raw": "as soon as possible as all deadlines expired in May 2025",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "The FATF strongly urges Vietnam to swiftly implement its action plan to\naddress the above-mentioned strategic deficiencies as soon as possible as\nall deadlines expired in May 2025.",
+      "source_char_range": [
+        29557,
+        29737
+      ]
+    },
+    {
+      "action": "Enhance risk-based supervision of TCSPs, Investment Businesses and VASPs.",
+      "owner_type": "supervisory authority (Virgin Islands UK)",
+      "deadline_raw": "continue working to implement its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "enhancing risk-based\nsupervision of TCSPs, Investment Businesses and VASPs",
+      "source_char_range": [
+        30298,
+        30372
+      ]
+    },
+    {
+      "action": "Ensure that accurate and up-to-date beneficial ownership information is available to competent authorities and that breaches to obligations are sanctioned.",
+      "owner_type": "competent authorities (Virgin Islands UK)",
+      "deadline_raw": "continue working to implement its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "ensuring that\naccurate and up-to-date beneficial ownership information is available to\ncompetent authorities and breaches to obligations are sanctioned",
+      "source_char_range": [
+        30378,
+        30529
+      ]
+    },
+    {
+      "action": "Improve the quality of SARs and ensure that reporting is in line with risk.",
+      "owner_type": "reporting entities / financial intelligence unit (Virgin Islands UK)",
+      "deadline_raw": "continue working to implement its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "improving the quality of SARs and ensuring that reporting is in line with risk",
+      "source_char_range": [
+        30535,
+        30613
+      ]
+    },
+    {
+      "action": "Systematically pursue ML investigations and prosecutions in line with risk.",
+      "owner_type": "law enforcement / prosecutorial authorities (Virgin Islands UK)",
+      "deadline_raw": "continue working to implement its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "systematically pursuing ML investigations and prosecutions in line with\nrisk",
+      "source_char_range": [
+        30619,
+        30695
+      ]
+    },
+    {
+      "action": "Increase the seizure and confiscation of criminal proceeds.",
+      "owner_type": "law enforcement / judicial authorities (Virgin Islands UK)",
+      "deadline_raw": "continue working to implement its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "increasing the seizure and confiscation of criminal proceeds",
+      "source_char_range": [
+        30701,
+        30761
+      ]
+    },
+    {
+      "action": "Operationalise the new asset management framework.",
+      "owner_type": "government / regulatory authority (Virgin Islands UK)",
+      "deadline_raw": "continue working to implement its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "operationalising the new asset management framework",
+      "source_char_range": [
+        30771,
+        30822
+      ]
+    },
+    {
+      "action": "Ensure basic information on legal persons is available to the general public.",
+      "owner_type": "government / regulatory authority (Virgin Islands UK)",
+      "deadline_raw": "continue working to implement its FATF action plan",
+      "deadline_parsed": null,
+      "priority": "medium",
+      "source_quote": "ensuring basic information on legal persons is available to the general public",
+      "source_char_range": [
+        30024,
+        30102
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "Vietnam",
+      "source_quote": "The FATF strongly urges Vietnam to swiftly implement its action plan to\naddress the above-mentioned strategic deficiencies as soon as possible as\nall deadlines expired in May 2025.",
+      "source_char_range": [
+        29557,
+        29737
+      ]
+    },
+    {
+      "value": "Virgin Islands (UK)",
+      "source_quote": "Since June 2025, when the Virgin Islands (UK) made a high-level political\ncommitment to work with the FATF and CFATF to strengthen the\neffectiveness of its AML/CFT regime",
+      "source_char_range": [
+        29742,
+        29912
+      ]
+    },
+    {
+      "value": "FATF",
+      "source_quote": "The FATF strongly urges Vietnam to swiftly implement its action plan",
+      "source_char_range": [
+        29557,
+        29625
+      ]
+    },
+    {
+      "value": "CFATF",
+      "source_quote": "the Virgin Islands (UK) made a high-level political\ncommitment to work with the FATF and CFATF",
+      "source_char_range": [
+        29764,
+        29858
+      ]
+    },
+    {
+      "value": "MENAFATF",
+      "source_quote": "when Yemen made a high-level political commitment to\nwork with the FATF and MENAFATF to address its strategic AML/CFT\ndeficiencies",
+      "source_char_range": [
+        30880,
+        31010
+      ]
+    },
+    {
+      "value": "Yemen",
+      "source_quote": "Since February 2010, when Yemen made a high-level political commitment to\nwork with the FATF and MENAFATF to address its strategic AML/CFT\ndeficiencies",
+      "source_char_range": [
+        30859,
+        31010
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "May 2025 (all deadlines expired)",
+      "source_quote": "all deadlines expired in May 2025",
+      "source_char_range": [
+        29703,
+        29736
+      ]
+    },
+    {
+      "value": "Since June 2025",
+      "source_quote": "Since June 2025, when the Virgin Islands (UK) made a high-level political\ncommitment",
+      "source_char_range": [
+        29742,
+        29826
+      ]
+    },
+    {
+      "value": "Statement from February 2023",
+      "source_quote": "(Statement from February 2023)",
+      "source_char_range": [
+        30828,
+        30858
+      ]
+    },
+    {
+      "value": "Since February 2010",
+      "source_quote": "Since February 2010, when Yemen made a high-level political commitment",
+      "source_char_range": [
+        30859,
+        30929
+      ]
+    },
+    {
+      "value": "In June 2014",
+      "source_quote": "In\nJune 2014, the FATF determined that Yemen had substantially addressed its\naction plan at a technical level",
+      "source_char_range": [
+        31067,
+        31176
+      ]
+    }
+  ],
+  "source_chunk_index": 19,
+  "extraction_confidence": 0.88
+}
+
+--- chunk_index=20 section_title='YEMEN' ---
+[extract_compliance_entities] chunk_index=20: 14 quote(s) verified, 0 quote(s) rejected
+{
+  "risk_areas": [
+    {
+      "value": "money laundering and terrorist financing",
+      "source_quote": "money laundering and terrorist financing",
+      "source_char_range": [
+        31247,
+        31287
+      ]
+    },
+    {
+      "value": "terrorist asset freezing",
+      "source_quote": "establishing procedures to\nidentify and freeze terrorist assets",
+      "source_char_range": [
+        31293,
+        31356
+      ]
+    },
+    {
+      "value": "customer due diligence gaps",
+      "source_quote": "improving its customer due diligence\nand suspicious transaction reporting requirements",
+      "source_char_range": [
+        31362,
+        31448
+      ]
+    },
+    {
+      "value": "financial sector supervisory capacity",
+      "source_quote": "developing the monitoring and supervisory capacity of the financial sector\nsupervisory authorities and the financial intelligence unit",
+      "source_char_range": [
+        31476,
+        31610
+      ]
+    },
+    {
+      "value": "strategic deficiencies in AML/CFT/CPF regimes",
+      "source_quote": "strategic deficiencies in their regimes\nto counter money laundering, terrorist financing, and\nproliferation financing",
+      "source_char_range": [
+        32523,
+        32640
+      ]
+    }
+  ],
+  "action_items": [
+    {
+      "action": "Conduct an on-site visit to Yemen to confirm whether the process of implementing the required reforms and actions has begun and is being sustained.",
+      "owner_type": "FATF",
+      "deadline_raw": "at the earliest possible date",
+      "deadline_parsed": null,
+      "priority": "high",
+      "source_quote": "the FATF has been unable to conduct an on-site visit\nto confirm whether the process of implementing the required reforms and\nactions has begun and is being sustained. The FATF will continue to monitor\nthe situation, and conduct an on-site visit at the earliest possible date.",
+      "source_char_range": [
+        31816,
+        32091
+      ]
+    },
+    {
+      "action": "Continue to monitor the situation in Yemen regarding AML/CFT reform implementation.",
+      "owner_type": "FATF",
+      "deadline_raw": "at the earliest possible date",
+      "deadline_parsed": null,
+      "priority": "medium",
+      "source_quote": "The FATF will continue to monitor\nthe situation, and conduct an on-site visit at the earliest possible date.",
+      "source_char_range": [
+        31983,
+        32091
+      ]
+    },
+    {
+      "action": "Establish a fully operational and effectively functioning financial intelligence unit in Yemen.",
+      "owner_type": "compliance officer",
+      "deadline_raw": "at the earliest possible date",
+      "deadline_parsed": null,
+      "priority": "critical",
+      "source_quote": "establishing\na fully operational and effectively functioning financial intelligence unit",
+      "source_char_range": [
+        31620,
+        31708
+      ]
+    }
+  ],
+  "responsible_parties": [
+    {
+      "value": "FATF",
+      "source_quote": "the FATF has been unable to conduct an on-site visit\nto confirm whether the process of implementing the required reforms and\nactions has begun and is being sustained.",
+      "source_char_range": [
+        31816,
+        31982
+      ]
+    },
+    {
+      "value": "Elisa de Anda Madrazo",
+      "source_quote": "The fifth Financial Action Task Force (FATF) Plenary meeting\nunder the Mexican Presidency of Elisa de Anda Madrazo\nconcluded today",
+      "source_char_range": [
+        32128,
+        32258
+      ]
+    },
+    {
+      "value": "financial sector supervisory authorities",
+      "source_quote": "developing the monitoring and supervisory capacity of the financial sector\nsupervisory authorities and the financial intelligence unit",
+      "source_char_range": [
+        31476,
+        31610
+      ]
+    },
+    {
+      "value": "financial intelligence unit",
+      "source_quote": "developing the monitoring and supervisory capacity of the financial sector\nsupervisory authorities and the financial intelligence unit",
+      "source_char_range": [
+        31476,
+        31610
+      ]
+    }
+  ],
+  "deadlines": [
+    {
+      "value": "13 Feb 2026",
+      "source_quote": "13 Feb\n2026",
+      "source_char_range": [
+        32116,
+        32127
+      ]
+    },
+    {
+      "value": "at the earliest possible date",
+      "source_quote": "conduct an on-site visit at the earliest possible date",
+      "source_char_range": [
+        32036,
+        32090
+      ]
+    }
+  ],
+  "source_chunk_index": 20,
+  "extraction_confidence": 0.78
+}
+
+============================================================
+AGGREGATE SUMMARY — sample_docs/fatf_grey_list.pdf (all)
+============================================================
+Total chunks processed    : 21
+Total claimed quotes      : 400
+Total verified quotes     : 400
+Total rejected quotes     : 0
+Overall verification rate : 100.0%
+
+Chunks with 0 verified extractions (5):
+  chunk_index=1  section_title='ANGOLA'
+  chunk_index=3  section_title='BULGARIA'
+  chunk_index=5  section_title="CÔTE D'IVOIRE"
+  chunk_index=9  section_title='KUWAIT'
+  chunk_index=12  section_title='MONACO'
+
+No quotes rejected.

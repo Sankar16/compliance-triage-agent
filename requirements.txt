@@ -1,0 +1,7 @@
+anthropic
+langgraph
+langchain-anthropic
+langsmith
+pymupdf
+pydantic
+python-dotenv
