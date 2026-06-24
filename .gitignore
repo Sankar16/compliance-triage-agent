@@ -17,3 +17,19 @@ sample_docs/
 
 # OS
 .DS_Store
+# Python cache
+__pycache__/
+*.pyc
+
+# Output files
+extraction_full_run.txt
+extraction_output.txt
+
+# macOS
+.DS_Store
+
+# PDFs (large files, not source code)
+sample_docs/
+
+# Example env should never have real keys
+# .env.example is OK to commit BUT only with placeholder values
