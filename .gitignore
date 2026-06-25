@@ -34,3 +34,4 @@ sample_docs/
 # Example env should never have real keys
 # .env.example is OK to commit BUT only with placeholder values
 audit_logs/*.json
+prompt_eval_results.json
