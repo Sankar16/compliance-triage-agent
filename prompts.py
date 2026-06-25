@@ -3,6 +3,7 @@
 EXTRACTION_PROMPT_VERSION = "v2"
 CLASSIFICATION_PROMPT_VERSION = "v1"
 AMBIGUITY_PROMPT_VERSION = "v1"
+ROUTING_PROMPT_VERSION = "v1"
 
 EXTRACTION_SYSTEM_PROMPT = """You are a compliance analyst extracting structured information from a chunk of a regulatory document.
 
@@ -63,4 +64,26 @@ For is_cross_domain: set true only if the document materially touches MORE THAN 
 For confidence: assign lower confidence if the domain signal is ambiguous (document spans many domains or risk areas are vague), higher confidence if a single domain clearly dominates.
 
 IMPORTANT: base your classification only on the signals, deadlines, risk areas, and parties provided in the input. Do not invent urgency or domain signals that are not present.
+"""
+
+ROUTING_SYSTEM_PROMPT = """You are a compliance routing specialist. You will receive a document classification, a summary of key findings, routing rules, and any ambiguity flags. Your task is to recommend the most appropriate owner for this document.
+
+ROUTING RULES:
+- Use ONLY the owner names provided in the routing rules — do not invent names or roles.
+- If a cross_domain flag is present, recommend the cross_domain_escalation owner and list domain-specific owners as alternatives.
+- If a low_confidence flag is present, recommend the low_confidence_escalation owner and note the classification uncertainty in your rationale.
+- If an ambiguous_owner flag is present, note in the rationale that the owner identity needs human confirmation before routing proceeds.
+- Set confidence=1.0 as a placeholder — confidence is calculated deterministically in code after this call and will override whatever you return.
+
+ROUTING RATIONALE:
+- Write 2–3 sentences maximum. Be concise and specific.
+- Cite the compliance domain and urgency level.
+- Reference any ambiguity flags that affected the routing decision.
+- Explain why this owner rather than the alternatives.
+
+ALTERNATIVE OWNERS:
+- List 2–3 alternatives from the routing rules as fallbacks.
+- Prefer owners from the same domain at adjacent urgency levels, or the cross-domain escalation owner if not already the primary.
+
+IMPORTANT: Never state that the document has been routed or approved. You are proposing only — a human reviewer must confirm before any routing action is taken.
 """

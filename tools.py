@@ -12,9 +12,15 @@ import unicodedata
 
 import anthropic
 import fitz  # PyMuPDF
+import yaml
 from pydantic import ValidationError
 
-from prompts import CLASSIFICATION_SYSTEM_PROMPT, EXTRACTION_SYSTEM_PROMPT, JURISDICTION_CHECK_PROMPT
+from prompts import (
+    CLASSIFICATION_SYSTEM_PROMPT,
+    EXTRACTION_SYSTEM_PROMPT,
+    JURISDICTION_CHECK_PROMPT,
+    ROUTING_SYSTEM_PROMPT,
+)
 from schemas import (
     ActionItem,
     AmbiguityFlag,
@@ -25,6 +31,7 @@ from schemas import (
     ExtractedEntities,
     GroundedClaim,
     MergedFindings,
+    RoutingProposal,
     UrgencyLevel,
 )
 
@@ -992,6 +999,141 @@ def flag_ambiguities(
     return flags
 
 
+ROUTING_TOOL_SCHEMA = {
+    "name": "propose_routing",
+    "description": "Propose a routing owner for a compliance document based on its classification and findings.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "recommended_owner": {
+                "type": "string",
+                "description": "The specific person, team, or role recommended as the primary owner.",
+            },
+            "owner_role": {
+                "type": "string",
+                "description": "The functional role of the recommended owner.",
+            },
+            "routing_rationale": {
+                "type": "string",
+                "description": "2-3 sentence explanation citing domain, urgency, and any flags that affected the decision.",
+            },
+            "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Confidence in this routing recommendation, from 0 to 1.",
+            },
+            "alternative_owners": {
+                "type": "array",
+                "items": {"type": "string"},
+                "minItems": 1,
+                "description": "2-3 alternative owner names from the routing rules.",
+            },
+        },
+        "required": ["recommended_owner", "owner_role", "routing_rationale", "confidence", "alternative_owners"],
+    },
+}
+
+
+def propose_routing(
+    findings: MergedFindings,
+    classification: Classification,
+    flags: list[AmbiguityFlag],
+    client: anthropic.Anthropic,
+    routing_rules_path: str = "routing_rules.yaml",
+) -> RoutingProposal:
+    """Call Claude (forced tool use) to propose a routing owner for a document.
+
+    Loads owner names from routing_rules.yaml — never hardcoded — so
+    routing targets can be updated without touching code. Uses
+    claude-haiku-4-5 (routing is simpler reasoning than extraction).
+    """
+    try:
+        with open(routing_rules_path) as f:
+            rules = yaml.safe_load(f)
+    except (FileNotFoundError, yaml.YAMLError) as exc:
+        raise RuntimeError(
+            "routing_rules.yaml not found or invalid — cannot propose routing without rules configuration"
+        ) from exc
+
+    domain = classification.compliance_domain.value
+    urgency = classification.urgency_level.value
+    domain_rules = rules["routing_rules"].get(domain, rules["routing_rules"]["other"])
+    primary_owner = domain_rules[urgency]
+    owner_role = rules["owner_roles"].get(primary_owner, primary_owner)
+    cross_domain_owner = rules["cross_domain_escalation"]
+    low_conf_owner = rules["low_confidence_escalation"]
+
+    # Build alternatives: other urgency tiers for this domain + escalation owners
+    alt_candidates = [
+        domain_rules[lvl] for lvl in ("critical", "high", "medium", "low")
+        if domain_rules[lvl] != primary_owner
+    ]
+    for escalation in (cross_domain_owner, low_conf_owner):
+        if escalation not in alt_candidates and escalation != primary_owner:
+            alt_candidates.append(escalation)
+    alternatives_block = "\n".join(f"- {a}" for a in alt_candidates[:4])
+
+    flags_block = (
+        "\n".join(f"- {f.flag_type.value}: {f.description}" for f in flags)
+        if flags else "None"
+    )
+    risk_values = [r.value for r in findings.all_risk_areas[:5]]
+    deadline_values = [d.value for d in findings.all_deadlines[:3]]
+
+    user_message = (
+        f"Routing Decision Request\n\n"
+        f"Document ID: {findings.document_id}\n"
+        f"Classification: {domain} | {urgency} | confidence {classification.confidence:.0%}\n\n"
+        f"ROUTING RULES (use these — do not invent owners):\n"
+        f"Primary owner for {domain}/{urgency}: {primary_owner}\n"
+        f"Cross-domain escalation: {cross_domain_owner}\n"
+        f"Low-confidence escalation: {low_conf_owner}\n\n"
+        f"Alternative owners to consider:\n{alternatives_block}\n\n"
+        f"AMBIGUITY FLAGS ({len(flags)} total):\n{flags_block}\n\n"
+        f"KEY FINDINGS SUMMARY:\n"
+        f"Risk areas: {'; '.join(risk_values) or 'None'}\n"
+        f"Active deadlines: {'; '.join(deadline_values) or 'None'}\n"
+        f"Urgency signals: {'; '.join(findings.dominant_urgency_signals) or 'None'}"
+    )
+
+    response = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=500,
+        system=ROUTING_SYSTEM_PROMPT,
+        tools=[ROUTING_TOOL_SCHEMA],
+        tool_choice={"type": "tool", "name": "propose_routing"},
+        messages=[{"role": "user", "content": user_message}],
+    )
+
+    tool_block = next(b for b in response.content if b.type == "tool_use")
+    raw = tool_block.input
+
+    try:
+        result = RoutingProposal(
+            recommended_owner=raw["recommended_owner"],
+            owner_role=raw["owner_role"],
+            routing_rationale=raw["routing_rationale"],
+            confidence=raw["confidence"],
+            alternative_owners=raw["alternative_owners"],
+        )
+    except ValidationError as exc:
+        raise RuntimeError(
+            f"[propose_routing] RoutingProposal validation failed for document "
+            f"{findings.document_id!r}: {exc}"
+        ) from exc
+
+    # Override LLM-supplied confidence with deterministic calculation:
+    # start from classification confidence, subtract 0.10 per flag, floor at 0.30.
+    result.confidence = max(0.30, classification.confidence - (0.10 * len(flags)))
+
+    print(
+        f"[propose_routing] owner={result.recommended_owner} "
+        f"confidence={result.confidence:.2f} flags={len(flags)}"
+    )
+    return result
+
+
 EXPECTED_GREY_LIST_COUNTRIES = [
     "Algeria", "Angola", "Bolivia", "Bulgaria", "Cameroon", "Cote d'Ivoire",
     "Democratic Republic of the Congo", "Haiti", "Kenya", "Kuwait", "Lao PDR",
@@ -1349,3 +1491,30 @@ if __name__ == "__main__":
     for flag in ambiguity_flags:
         print(json.dumps(flag.model_dump(mode="json"), indent=2))
     print(f"\n{len(ambiguity_flags)} flags raised: {[f.flag_type.value for f in ambiguity_flags]}")
+
+    # ------------------------------------------------------------------
+    # propose_routing() smoke test — 1 Haiku API call
+    # Expected confidence: max(0.30, 0.65 - 0.10*2) = max(0.30, 0.45) = 0.45
+    # ------------------------------------------------------------------
+    print("\n=== propose_routing() smoke test (1 Haiku API call) ===\n")
+
+    routing_flags = [
+        AmbiguityFlag(
+            flag_type=AmbiguityType.CROSS_DOMAIN,
+            description="Document spans multiple compliance domains: aml (primary) + kyc (secondary). Single-team routing may be insufficient — consider joint review.",
+            severity=UrgencyLevel.HIGH,
+        ),
+        AmbiguityFlag(
+            flag_type=AmbiguityType.LOW_CONFIDENCE,
+            description="Classification confidence is 65%. Domain assignment (aml) should be verified by human reviewer before routing.",
+            severity=UrgencyLevel.MEDIUM,
+        ),
+    ]
+
+    routing_proposal = propose_routing(
+        ambiguity_findings,
+        ambiguity_classification,
+        routing_flags,
+        anthropic_client,
+    )
+    print(json.dumps(routing_proposal.model_dump(mode="json"), indent=2))

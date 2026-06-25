@@ -5,3 +5,4 @@ langsmith
 pymupdf
 pydantic
 python-dotenv
+pyyaml

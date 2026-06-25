@@ -1,0 +1,66 @@
+routing_rules:
+  aml:
+    critical: "Head of AML Compliance"
+    high: "AML Compliance Officer"
+    medium: "AML Analyst"
+    low: "AML Analyst"
+  data_privacy:
+    critical: "Chief Privacy Officer"
+    high: "Data Privacy Officer"
+    medium: "Privacy Analyst"
+    low: "Privacy Analyst"
+  capital_requirements:
+    critical: "Chief Risk Officer"
+    high: "Capital Risk Manager"
+    medium: "Risk Analyst"
+    low: "Risk Analyst"
+  kyc:
+    critical: "Head of KYC Compliance"
+    high: "KYC Compliance Officer"
+    medium: "KYC Analyst"
+    low: "KYC Analyst"
+  sanctions:
+    critical: "Chief Compliance Officer"
+    high: "Sanctions Compliance Officer"
+    medium: "Sanctions Analyst"
+    low: "Sanctions Analyst"
+  reporting:
+    critical: "Chief Compliance Officer"
+    high: "Regulatory Reporting Manager"
+    medium: "Reporting Analyst"
+    low: "Reporting Analyst"
+  operational_risk:
+    critical: "Chief Risk Officer"
+    high: "Operational Risk Manager"
+    medium: "Risk Analyst"
+    low: "Risk Analyst"
+  other:
+    critical: "Chief Compliance Officer"
+    high: "Compliance Manager"
+    medium: "Compliance Analyst"
+    low: "Compliance Analyst"
+
+cross_domain_escalation: "Chief Compliance Officer"
+low_confidence_escalation: "Compliance Manager"
+
+owner_roles:
+  "Head of AML Compliance": "Senior AML Compliance Officer"
+  "AML Compliance Officer": "AML Compliance Officer"
+  "AML Analyst": "AML Compliance Analyst"
+  "Chief Privacy Officer": "Chief Privacy Officer"
+  "Data Privacy Officer": "Data Privacy Officer"
+  "Privacy Analyst": "Privacy Compliance Analyst"
+  "Chief Risk Officer": "Chief Risk Officer"
+  "Capital Risk Manager": "Capital Risk Manager"
+  "Risk Analyst": "Risk Analyst"
+  "Head of KYC Compliance": "Senior KYC Compliance Officer"
+  "KYC Compliance Officer": "KYC Compliance Officer"
+  "KYC Analyst": "KYC Compliance Analyst"
+  "Chief Compliance Officer": "Chief Compliance Officer"
+  "Sanctions Compliance Officer": "Sanctions Compliance Officer"
+  "Sanctions Analyst": "Sanctions Compliance Analyst"
+  "Regulatory Reporting Manager": "Regulatory Reporting Manager"
+  "Reporting Analyst": "Regulatory Reporting Analyst"
+  "Operational Risk Manager": "Operational Risk Manager"
+  "Compliance Manager": "Compliance Manager"
+  "Compliance Analyst": "Compliance Analyst"
