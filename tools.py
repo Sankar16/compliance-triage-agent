@@ -940,12 +940,19 @@ def flag_ambiguities(
             severity=UrgencyLevel.HIGH,
         ))
 
-    # CHECK 4 — low_confidence
-    if classification.confidence < 0.70:
+    # CHECK 4 — low_confidence (threshold loaded from routing_rules.yaml)
+    try:
+        with open("routing_rules.yaml") as _f:
+            _rules = yaml.safe_load(_f)
+        threshold = _rules["confidence_thresholds"]["low_confidence_flag"]
+    except (FileNotFoundError, KeyError, yaml.YAMLError):
+        threshold = 0.70  # fallback if config is missing
+    if classification.confidence < threshold:
         flags.append(AmbiguityFlag(
             flag_type=AmbiguityType.LOW_CONFIDENCE,
             description=(
-                f"Classification confidence is {classification.confidence:.0%}. "
+                f"Classification confidence is {classification.confidence:.0%} "
+                f"(threshold: {threshold:.0%}). "
                 f"Domain assignment ({classification.compliance_domain.value}) should be "
                 "verified by human reviewer before routing."
             ),
@@ -1123,9 +1130,12 @@ def propose_routing(
             f"{findings.document_id!r}: {exc}"
         ) from exc
 
-    # Override LLM-supplied confidence with deterministic calculation:
-    # start from classification confidence, subtract 0.10 per flag, floor at 0.30.
-    result.confidence = max(0.30, classification.confidence - (0.10 * len(flags)))
+    # Override LLM-supplied confidence with deterministic calculation using
+    # thresholds loaded from routing_rules.yaml:
+    # start from classification confidence, subtract penalty per flag, floor at confidence_floor.
+    penalty = rules["confidence_thresholds"]["flag_penalty_per_flag"]
+    floor = rules["confidence_thresholds"]["confidence_floor"]
+    result.confidence = max(floor, classification.confidence - (penalty * len(flags)))
 
     print(
         f"[propose_routing] owner={result.recommended_owner} "

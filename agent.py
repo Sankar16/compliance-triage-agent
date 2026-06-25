@@ -220,8 +220,34 @@ def run_propose_routing(state: AgentState) -> dict:
 
 
 def assemble_triage_result(state: AgentState) -> dict:
+    import yaml as _yaml
+
     timing = state.get("timing", {})
     audit_entries = build_audit_entries_from_state(state, timing)
+
+    routing_proposal = RoutingProposal(**state["routing_proposal"])
+
+    # Auto-escalate if routing confidence falls below threshold in routing_rules.yaml
+    try:
+        with open("routing_rules.yaml") as _f:
+            _rules = _yaml.safe_load(_f)
+        auto_escalate_threshold = _rules["confidence_thresholds"]["auto_escalate_below"]
+        escalation_owner = _rules["cross_domain_escalation"]
+    except (FileNotFoundError, KeyError, _yaml.YAMLError):
+        auto_escalate_threshold = 0.35  # fallback
+        escalation_owner = "Chief Compliance Officer"
+
+    confidence = routing_proposal.confidence
+    if confidence < auto_escalate_threshold:
+        print(
+            f"[assemble] AUTO-ESCALATED: confidence {confidence:.2f} below threshold "
+            f"{auto_escalate_threshold:.2f} — overriding owner to {escalation_owner!r}"
+        )
+        routing_proposal.recommended_owner = escalation_owner
+        routing_proposal.routing_rationale = (
+            routing_proposal.routing_rationale
+            + " [AUTO-ESCALATED: confidence below threshold]"
+        )
 
     result = TriageResult(
         document_id=state["document_id"],
@@ -229,7 +255,7 @@ def assemble_triage_result(state: AgentState) -> dict:
         ingested_at=datetime.now(timezone.utc),
         all_entities=[ExtractedEntities(**e) for e in state["all_entities"]],
         classification=Classification(**state["classification"]),
-        routing_proposal=RoutingProposal(**state["routing_proposal"]),
+        routing_proposal=routing_proposal,
         ambiguity_flags=[AmbiguityFlag(**f) for f in state["flags"]],
         audit_trail=audit_entries,
         status=DocumentStatus.PENDING_HUMAN_REVIEW,
