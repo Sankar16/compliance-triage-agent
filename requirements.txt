@@ -6,3 +6,4 @@ pymupdf
 pydantic
 python-dotenv
 pyyaml
+tenacity

@@ -77,6 +77,11 @@ HITL checkpoint, and `update_state`/`invoke(None)` resume pattern. End-to-end
 demo run confirmed on `fatf_grey_list.pdf`: domain=AML, urgency=CRITICAL,
 proposed owner=Chief Compliance Officer, human decision recorded, final
 status=approved.
+Two targeted fixes applied: (1) jurisdiction prompt updated to explicitly
+exclude sovereign nations (AMBIGUITY_PROMPT_VERSION bumped to v2), reducing
+country-name false positives; (2) `extract_one_chunk()` now retries on
+RateLimitError with exponential backoff via tenacity (max 4 attempts,
+1–60s wait).
 Next: `audit_log.py` (compliance paper trail), then end-to-end demo on
 second sample document.
 See DESIGN.md for full history and rationale.

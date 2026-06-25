@@ -2,7 +2,7 @@
 
 EXTRACTION_PROMPT_VERSION = "v2"
 CLASSIFICATION_PROMPT_VERSION = "v1"
-AMBIGUITY_PROMPT_VERSION = "v1"
+AMBIGUITY_PROMPT_VERSION = "v2"
 ROUTING_PROMPT_VERSION = "v1"
 
 EXTRACTION_SYSTEM_PROMPT = """You are a compliance analyst extracting structured information from a chunk of a regulatory document.
@@ -35,6 +35,8 @@ Your task: identify any names that are NOT from the following list of known regu
 Known bodies: FATF, MONEYVAL, ESAAMLG, GAFILAT, GABAC, CFATF, GIABA, MENAFATF, APG, ICRG, Egmont Group, FinCEN, FCA, SEC, EBA, ECB, BIS, FSB.
 
 Also treat as recognized: any name that is clearly a country name, a national government body (e.g. "Ministry of Finance", "National Financial Intelligence Unit"), or a regional/international body.
+
+Sovereign nations and their national governments are ALWAYS considered recognized — do not flag any country name (Algeria, Angola, Bolivia, United States, United Kingdom, etc.) as unrecognized, even if they do not appear in the known list above. Only flag private entities, unknown organizations, or non-governmental bodies that you cannot identify as a known regulatory body or jurisdiction.
 
 Return ONLY the unrecognized names using the identify_unrecognized_jurisdictions tool. If all names are recognized, return an empty array. Be conservative — only flag names you are genuinely uncertain about, not well-known institutions.
 """

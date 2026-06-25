@@ -50,7 +50,9 @@ from pathlib import Path
 from typing import Annotated, TypedDict
 
 import anthropic
+import anthropic as anthropic_module
 from dotenv import load_dotenv
+from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_exponential
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import Send
@@ -131,14 +133,24 @@ def fan_out_extraction(state: AgentState) -> list[Send]:
     ]
 
 
+@retry(
+    retry=retry_if_exception_type(anthropic_module.RateLimitError),
+    wait=wait_exponential(multiplier=1, min=1, max=60),
+    stop=stop_after_attempt(4),
+    reraise=False,
+)
+def _extract_with_retry(chunk, client):
+    return extract_compliance_entities(chunk, client)
+
+
 def extract_one_chunk(state: AgentState) -> dict:
     chunk = DocumentChunk(**state["chunk"])
     try:
-        entities = extract_compliance_entities(chunk, _client)
+        entities = _extract_with_retry(chunk, _client)
         print(f"[extract] chunk {chunk.chunk_index} done")
         return {"all_entities": [entities.model_dump(mode="json")]}
     except Exception as exc:
-        print(f"[extract] WARNING: chunk {chunk.chunk_index} failed — {exc}")
+        print(f"[extract] WARNING: chunk {chunk.chunk_index} failed after 4 attempts — skipping")
         return {"all_entities": []}
 
 

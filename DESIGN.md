@@ -268,6 +268,13 @@ after the full extraction pipeline was complete:
   routing proposal entirely and escalate directly to Chief Compliance
   Officer with a mandatory human decision flag.
 
+- **Rate limiting:** parallel chunk extraction can trigger API rate limits
+  (429 errors) when processing documents with many chunks. Implemented
+  retry with exponential backoff (tenacity, max 4 attempts, 1–60 second
+  wait). In production, consider adding a semaphore to limit concurrent
+  extraction calls to 5–10 at a time, reducing rate limit frequency
+  without sacrificing parallelism.
+
 **6. Typographic quote and hyphenation-artifact normalization (follow-up to whitespace normalization)**
 - *Observed:* After the whitespace-normalization pass was in place, real LLM
   extraction testing revealed two further classes of rejected quotes that were
@@ -299,3 +306,5 @@ after the full extraction pipeline was complete:
 | 2026-06-24 | Routing rules stored in `routing_rules.yaml`, not hardcoded in code | Routing targets change as staff change; code changes for personnel changes are a maintenance risk; YAML file can be updated without touching agent logic | Hardcoded routing (rejected: brittle, requires code deployment for org changes) |
 | 2026-06-24 | `propose_routing()` uses `claude-haiku-4-5` with focused text summary input | Routing is a lookup + rationale task, not complex reasoning; Haiku sufficient and ~10x cheaper than Sonnet | Sonnet for routing (rejected: unnecessary cost for this task complexity) |
 | 2026-06-24 | `resume_with_decision()` uses `graph.update_state()` then `invoke(None)` to resume from interrupt | `invoke({"human_decision": ...})` starts a fresh invocation, re-running the full pipeline. The correct LangGraph HITL resume pattern injects state into the checkpoint with `update_state`, then resumes from the interrupt point with `invoke(None)`. Discovered and fixed during end-to-end demo run. | `invoke(partial_state)` (rejected: re-runs entire pipeline, wastes tokens and latency, confirmed broken in testing) |
+| 2026-06-24 | Added retry with exponential backoff (tenacity) for chunk extraction | Parallel Send API fan-out triggers rate limits on documents with many chunks; without retry, temporary 429s cause permanent data loss for affected chunks | No retry (rejected: data loss risk unacceptable for compliance pipeline), synchronous extraction (rejected: ~10x slower) |
+| 2026-06-24 | Jurisdiction check updated to exclude sovereign nations explicitly | Initial implementation flagged every country name as unrecognized (17 flags on FATF grey list), drowning out genuinely useful flags for unknown private entities; prompt now instructs the LLM that sovereign nations are always recognized | Removing the check entirely (rejected: still useful for non-country entities), relying on the existing "treat as recognized" clause (rejected: LLM was not applying it reliably to country names) |
