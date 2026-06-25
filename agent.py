@@ -387,14 +387,18 @@ def resume_with_decision(
 
 if __name__ == "__main__":
     import json
+    import sys
+
+    document_path = sys.argv[1] if len(sys.argv) > 1 else "sample_docs/dear-ceo-letter.pdf"
+    document_id = sys.argv[2] if len(sys.argv) > 2 else "fca-dear-ceo-001"
 
     print("=== Compliance Triage Agent — End-to-End Run ===")
-    print("Document: sample_docs/fatf_grey_list.pdf")
+    print(f"Document: {document_path}")
     print("Running pipeline up to human checkpoint...\n")
 
     result = run_triage(
-        document_path="sample_docs/fatf_grey_list.pdf",
-        document_id="demo-001",
+        document_path=document_path,
+        document_id=document_id,
     )
 
     state = result["state"]
