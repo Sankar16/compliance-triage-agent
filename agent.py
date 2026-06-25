@@ -46,7 +46,7 @@ from __future__ import annotations
 import operator
 import os
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Annotated, TypedDict
 
@@ -60,6 +60,7 @@ from langgraph.types import Send
 
 from schemas import (
     AmbiguityFlag,
+    AuditEntry,
     Classification,
     DocumentChunk,
     DocumentStatus,
@@ -225,7 +226,7 @@ def assemble_triage_result(state: AgentState) -> dict:
     result = TriageResult(
         document_id=state["document_id"],
         document_name=Path(state["document_path"]).name,
-        ingested_at=datetime.utcnow(),
+        ingested_at=datetime.now(timezone.utc),
         all_entities=[ExtractedEntities(**e) for e in state["all_entities"]],
         classification=Classification(**state["classification"]),
         routing_proposal=RoutingProposal(**state["routing_proposal"]),
@@ -253,7 +254,7 @@ def record_decision(state: AgentState) -> dict:
         decision_id=decision.get("decision_id", ""),
         document_id=state["document_id"],
         reviewer_id=decision.get("reviewer_id", ""),
-        timestamp=decision.get("timestamp", datetime.utcnow().isoformat()),
+        timestamp=decision.get("timestamp", datetime.now(timezone.utc).isoformat()),
         action=decision["action"],
         original_proposal=RoutingProposal(**state["routing_proposal"]),
         final_routing=decision.get("final_routing", ""),
@@ -367,7 +368,7 @@ def resume_with_decision(
         "decision_id": str(uuid.uuid4())[:8],
         "document_id": None,   # filled from state inside record_decision
         "reviewer_id": reviewer_id,
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "action": action,
         "original_proposal": None,  # filled from state inside record_decision
         "final_routing": final_routing or "pending",
