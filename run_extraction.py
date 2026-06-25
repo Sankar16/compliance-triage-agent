@@ -1,9 +1,11 @@
-"""Run entity extraction against fatf_grey_list.pdf.
+"""Run entity extraction against a compliance PDF.
 
 Usage:
     python3 run_extraction.py              # smoke test: first 3 chunks
     python3 run_extraction.py --chunks 5   # first N chunks
     python3 run_extraction.py --all        # all chunks (21 API calls)
+    python3 run_extraction.py --chunks 3 --doc sample_docs/some_other.pdf
+    python3 run_extraction.py --all --doc sample_docs/some_other.pdf
 """
 
 from __future__ import annotations
@@ -23,10 +25,11 @@ PDF_PATH = "sample_docs/fatf_grey_list.pdf"
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Run compliance entity extraction on fatf_grey_list.pdf.")
+    parser = argparse.ArgumentParser(description="Run compliance entity extraction on a PDF.")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--chunks", type=int, default=3, metavar="N", help="Number of chunks to process (default: 3)")
     group.add_argument("--all", action="store_true", help="Process all chunks")
+    parser.add_argument("--doc", default=PDF_PATH, metavar="PATH", help=f"Path to PDF to extract from (default: {PDF_PATH})")
     args = parser.parse_args()
 
     load_dotenv()
@@ -36,11 +39,11 @@ def main() -> None:
 
     client = anthropic.Anthropic(api_key=api_key)
 
-    all_chunks = chunk_document(PDF_PATH)
+    all_chunks = chunk_document(args.doc)
     chunks_to_run = all_chunks if args.all else all_chunks[: args.chunks]
 
     label = "all" if args.all else f"first {len(chunks_to_run)}"
-    print(f"=== extract_compliance_entities ({label} of {len(all_chunks)} chunks from {PDF_PATH}) ===\n")
+    print(f"=== extract_compliance_entities ({label} of {len(all_chunks)} chunks from {args.doc}) ===\n")
 
     agg_claimed = 0
     agg_verified = 0
@@ -81,7 +84,7 @@ def main() -> None:
         sys.stdout.flush()
 
     print("\n" + "=" * 60)
-    print(f"AGGREGATE SUMMARY — {PDF_PATH} ({label})")
+    print(f"AGGREGATE SUMMARY — {args.doc} ({label})")
     print("=" * 60)
     print(f"Total chunks processed    : {len(chunks_to_run)}")
     print(f"Total claimed quotes      : {agg_claimed}")
