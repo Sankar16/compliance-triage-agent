@@ -2,6 +2,7 @@
 
 EXTRACTION_PROMPT_VERSION = "v2"
 CLASSIFICATION_PROMPT_VERSION = "v1"
+AMBIGUITY_PROMPT_VERSION = "v1"
 
 EXTRACTION_SYSTEM_PROMPT = """You are a compliance analyst extracting structured information from a chunk of a regulatory document.
 
@@ -24,6 +25,17 @@ For deadline_parsed: only provide a value if you can produce a COMPLETE YYYY-MM-
 If the chunk has no extractable content of a given type (for example, no action items are present in this chunk), return an empty list for that field. Do not invent content to fill it.
 
 Finally, assign extraction_confidence as a number between 0 and 1 reflecting how clear and unambiguous the extraction was for this specific chunk — not for the document as a whole.
+"""
+
+JURISDICTION_CHECK_PROMPT = """You are a compliance routing assistant. You will receive a list of responsible party names extracted from a regulatory document.
+
+Your task: identify any names that are NOT from the following list of known regulatory bodies, international organisations, or clearly recognizable government/country names:
+
+Known bodies: FATF, MONEYVAL, ESAAMLG, GAFILAT, GABAC, CFATF, GIABA, MENAFATF, APG, ICRG, Egmont Group, FinCEN, FCA, SEC, EBA, ECB, BIS, FSB.
+
+Also treat as recognized: any name that is clearly a country name, a national government body (e.g. "Ministry of Finance", "National Financial Intelligence Unit"), or a regional/international body.
+
+Return ONLY the unrecognized names using the identify_unrecognized_jurisdictions tool. If all names are recognized, return an empty array. Be conservative — only flag names you are genuinely uncertain about, not well-known institutions.
 """
 
 CLASSIFICATION_SYSTEM_PROMPT = """You are a compliance classification specialist. You will receive a structured summary of extracted findings from a regulatory document and must classify it by compliance domain and urgency level.

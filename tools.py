@@ -14,9 +14,11 @@ import anthropic
 import fitz  # PyMuPDF
 from pydantic import ValidationError
 
-from prompts import CLASSIFICATION_SYSTEM_PROMPT, EXTRACTION_SYSTEM_PROMPT
+from prompts import CLASSIFICATION_SYSTEM_PROMPT, EXTRACTION_SYSTEM_PROMPT, JURISDICTION_CHECK_PROMPT
 from schemas import (
     ActionItem,
+    AmbiguityFlag,
+    AmbiguityType,
     Classification,
     ComplianceDomain,
     DocumentChunk,
@@ -833,6 +835,163 @@ def merge_findings(
     )
 
 
+JURISDICTION_CHECK_TOOL_SCHEMA = {
+    "name": "identify_unrecognized_jurisdictions",
+    "description": "Identify party names not matching known regulatory bodies",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "unrecognized_names": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Party names not matching any known regulatory body or jurisdiction",
+            }
+        },
+        "required": ["unrecognized_names"],
+    },
+}
+
+_VAGUE_DEADLINE_PHRASES = [
+    "not specified",
+    "as agreed",
+    "ongoing",
+    "to be determined",
+    "tbd",
+    "not stated",
+    "implement its fatf action plan",
+]
+
+_HIGH_URGENCY_SIGNALS = frozenset(["expired", "without delay", "immediately", "overdue"])
+_LOW_URGENCY_SIGNALS = frozenset(["informational", "no action required", "for information only", "awareness only"])
+
+_AMBIGUOUS_OWNER_PHRASES = [
+    "or their",
+    "designated representative",
+    "or equivalent",
+    "competent authority",
+    "relevant authority",
+    "or delegate",
+]
+
+
+def flag_ambiguities(
+    findings: MergedFindings,
+    classification: Classification,
+    client: anthropic.Anthropic,
+) -> list[AmbiguityFlag]:
+    """Detect ambiguities in MergedFindings + Classification that require
+    human judgment before routing.
+
+    Runs five deterministic checks (pure Python) and one lightweight LLM
+    call for unrecognized jurisdiction detection. Never crashes — the
+    jurisdiction check failure is caught and skipped.
+    """
+    flags: list[AmbiguityFlag] = []
+
+    # CHECK 1 — missing_deadline
+    if findings.all_action_items:
+        vague_count = sum(
+            1
+            for item in findings.all_action_items
+            if any(phrase in item.deadline_raw.lower() for phrase in _VAGUE_DEADLINE_PHRASES)
+        )
+        total = len(findings.all_action_items)
+        if vague_count / total > 0.5:
+            flags.append(AmbiguityFlag(
+                flag_type=AmbiguityType.MISSING_DEADLINE,
+                description=(
+                    f"{vague_count} of {total} action items have vague or unspecified deadlines. "
+                    "Human reviewer must determine actual deadline before prioritizing."
+                ),
+                severity=classification.urgency_level,
+            ))
+
+    # CHECK 2 — ambiguous_owner
+    for party in findings.all_responsible_parties:
+        value_lower = party.value.lower()
+        if any(phrase in value_lower for phrase in _AMBIGUOUS_OWNER_PHRASES):
+            flags.append(AmbiguityFlag(
+                flag_type=AmbiguityType.AMBIGUOUS_OWNER,
+                description=(
+                    f"Responsible party '{party.value}' is non-specific. "
+                    "Human reviewer must identify the actual owner before routing."
+                ),
+                severity=UrgencyLevel.HIGH,
+            ))
+
+    # CHECK 3 — cross_domain
+    if classification.is_cross_domain:
+        secondary = ", ".join(d.value for d in classification.secondary_domains)
+        flags.append(AmbiguityFlag(
+            flag_type=AmbiguityType.CROSS_DOMAIN,
+            description=(
+                f"Document spans multiple compliance domains: "
+                f"{classification.compliance_domain.value} (primary) + "
+                f"{secondary} (secondary). "
+                "Single-team routing may be insufficient — consider joint review."
+            ),
+            severity=UrgencyLevel.HIGH,
+        ))
+
+    # CHECK 4 — low_confidence
+    if classification.confidence < 0.70:
+        flags.append(AmbiguityFlag(
+            flag_type=AmbiguityType.LOW_CONFIDENCE,
+            description=(
+                f"Classification confidence is {classification.confidence:.0%}. "
+                f"Domain assignment ({classification.compliance_domain.value}) should be "
+                "verified by human reviewer before routing."
+            ),
+            severity=UrgencyLevel.MEDIUM,
+        ))
+
+    # CHECK 5 — contradictory_signals
+    signals_lower = [s.lower() for s in findings.dominant_urgency_signals]
+    has_high = any(kw in sig for sig in signals_lower for kw in _HIGH_URGENCY_SIGNALS)
+    has_low = any(kw in sig for sig in signals_lower for kw in _LOW_URGENCY_SIGNALS)
+    if has_high and has_low:
+        flags.append(AmbiguityFlag(
+            flag_type=AmbiguityType.CONTRADICTORY_SIGNALS,
+            description=(
+                "Document contains both high-urgency and low-urgency signals. "
+                "Human reviewer must determine actual priority level."
+            ),
+            severity=UrgencyLevel.HIGH,
+        ))
+
+    # CHECK 6 — unrecognized_jurisdiction (one LLM call)
+    party_names = [p.value for p in findings.all_responsible_parties]
+    if party_names:
+        try:
+            response = client.messages.create(
+                model="claude-haiku-4-5-20251001",
+                max_tokens=200,
+                system=JURISDICTION_CHECK_PROMPT,
+                tools=[JURISDICTION_CHECK_TOOL_SCHEMA],
+                tool_choice={"type": "tool", "name": "identify_unrecognized_jurisdictions"},
+                messages=[{
+                    "role": "user",
+                    "content": "Responsible party names to check:\n" + "\n".join(f"- {n}" for n in party_names),
+                }],
+            )
+            tool_block = next(b for b in response.content if b.type == "tool_use")
+            unrecognized = tool_block.input.get("unrecognized_names", [])
+            for name in unrecognized:
+                flags.append(AmbiguityFlag(
+                    flag_type=AmbiguityType.UNRECOGNIZED_JURISDICTION,
+                    description=(
+                        f"'{name}' is not a recognized regulatory body or jurisdiction in our "
+                        "routing rules. Human reviewer must determine appropriate owner before routing."
+                    ),
+                    severity=UrgencyLevel.HIGH,
+                ))
+        except Exception as exc:
+            print(f"[flag_ambiguities] WARNING: jurisdiction check failed, skipping: {exc}")
+
+    print(f"[flag_ambiguities] {len(flags)} flag(s) raised: {[f.flag_type.value for f in flags]}")
+    return flags
+
+
 EXPECTED_GREY_LIST_COUNTRIES = [
     "Algeria", "Angola", "Bolivia", "Bulgaria", "Cameroon", "Cote d'Ivoire",
     "Democratic Republic of the Congo", "Haiti", "Kenya", "Kuwait", "Lao PDR",
@@ -1117,3 +1276,76 @@ if __name__ == "__main__":
 
     classification = classify_document(mock_merged, anthropic_client)
     print(json.dumps(classification.model_dump(mode="json"), indent=2))
+
+    # ------------------------------------------------------------------
+    # flag_ambiguities() smoke test — 1 Haiku API call for jurisdiction check
+    # ------------------------------------------------------------------
+    print("\n=== flag_ambiguities() smoke test (1 Haiku API call) ===\n")
+
+    from schemas import AmbiguityFlag  # already imported at module level, explicit here for clarity
+
+    ambiguity_findings = MergedFindings(
+        document_id="fatf_grey_list_ambiguity_test",
+        all_risk_areas=[
+            GroundedClaim(value="strategic AML deficiencies", source_quote="address its strategic AML deficiencies", source_char_range=(0, 40)),
+        ],
+        all_action_items=[
+            ActionItem(
+                action="Implement risk-based supervision of DNFBPs",
+                owner_type="supervisory authority",
+                deadline_raw="implement its FATF action plan",
+                priority=UrgencyLevel.HIGH,
+                source_quote="implementing risk-based supervision of DNFBPs",
+                source_char_range=(100, 145),
+            ),
+            ActionItem(
+                action="Demonstrate increase in ML investigations",
+                owner_type="law enforcement",
+                deadline_raw="implement its FATF action plan",
+                priority=UrgencyLevel.HIGH,
+                source_quote="demonstrating an increase in ML investigations",
+                source_char_range=(200, 246),
+            ),
+            ActionItem(
+                action="Strengthen effectiveness of AML/CFT regime",
+                owner_type="government",
+                deadline_raw="within agreed timeframes",
+                priority=UrgencyLevel.MEDIUM,
+                source_quote="strengthen the effectiveness of its AML/CFT regime",
+                source_char_range=(300, 350),
+            ),
+        ],
+        all_responsible_parties=[
+            GroundedClaim(
+                value="competent authority or their designated representative",
+                source_quote="competent authority or their designated representative",
+                source_char_range=(400, 454),
+            ),
+            GroundedClaim(value="FATF", source_quote="work with the FATF", source_char_range=(500, 519)),
+        ],
+        all_deadlines=[
+            GroundedClaim(value="all deadlines have now expired", source_quote="all deadlines have now expired", source_char_range=(600, 630)),
+        ],
+        chunks_processed=21,
+        chunks_with_content=10,
+        overall_confidence=0.80,
+        dominant_urgency_signals=[
+            "all deadlines have now expired",
+            "informational update only",
+        ],
+        source_chunk_indices=list(range(10)),
+    )
+
+    ambiguity_classification = Classification(
+        compliance_domain=ComplianceDomain.AML,
+        urgency_level=UrgencyLevel.CRITICAL,
+        urgency_rationale="All deadlines have expired.",
+        confidence=0.65,
+        is_cross_domain=True,
+        secondary_domains=[ComplianceDomain.KYC],
+    )
+
+    ambiguity_flags = flag_ambiguities(ambiguity_findings, ambiguity_classification, anthropic_client)
+    for flag in ambiguity_flags:
+        print(json.dumps(flag.model_dump(mode="json"), indent=2))
+    print(f"\n{len(ambiguity_flags)} flags raised: {[f.flag_type.value for f in ambiguity_flags]}")
