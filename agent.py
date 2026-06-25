@@ -45,6 +45,7 @@ from __future__ import annotations
 
 import operator
 import os
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Annotated, TypedDict
@@ -75,6 +76,7 @@ from tools import (
     merge_findings,
     propose_routing,
 )
+from audit_log import build_audit_entries_from_state, save_triage_result
 
 load_dotenv()
 _client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
@@ -113,6 +115,12 @@ class AgentState(TypedDict):
     # Human decision (set when graph is resumed after interrupt)
     human_decision: dict | None
 
+    # Timing: step_name -> duration_ms (populated by sequential nodes)
+    timing: dict
+
+    # Path to the saved audit log file
+    audit_log_path: str
+
 
 # ---------------------------------------------------------------------------
 # Nodes
@@ -120,9 +128,14 @@ class AgentState(TypedDict):
 
 
 def ingest_and_chunk(state: AgentState) -> dict:
+    t0 = time.time()
     chunks = chunk_document(state["document_path"])
+    duration_ms = int((time.time() - t0) * 1000)
     print(f"[ingest_and_chunk] {len(chunks)} chunks created")
-    return {"chunks": [c.model_dump(mode="json") for c in chunks]}
+    return {
+        "chunks": [c.model_dump(mode="json") for c in chunks],
+        "timing": {**state.get("timing", {}), "ingest_and_chunk": duration_ms},
+    }
 
 
 def fan_out_extraction(state: AgentState) -> list[Send]:
@@ -155,37 +168,60 @@ def extract_one_chunk(state: AgentState) -> dict:
 
 
 def run_merge(state: AgentState) -> dict:
+    t0 = time.time()
     chunks = [DocumentChunk(**c) for c in state["chunks"]]
     entities = [ExtractedEntities(**e) for e in state["all_entities"]]
     merged = merge_findings(chunks, entities, state["document_id"])
+    duration_ms = int((time.time() - t0) * 1000)
     print(f"[merge] {merged.chunks_with_content} chunks had content")
-    return {"merged": merged.model_dump(mode="json")}
+    return {
+        "merged": merged.model_dump(mode="json"),
+        "timing": {**state.get("timing", {}), "run_merge": duration_ms},
+    }
 
 
 def run_classification(state: AgentState) -> dict:
+    t0 = time.time()
     findings = MergedFindings(**state["merged"])
     classification = classify_document(findings, _client)
+    duration_ms = int((time.time() - t0) * 1000)
     print(f"[classify] {classification.compliance_domain} / {classification.urgency_level}")
-    return {"classification": classification.model_dump(mode="json")}
+    return {
+        "classification": classification.model_dump(mode="json"),
+        "timing": {**state.get("timing", {}), "run_classification": duration_ms},
+    }
 
 
 def run_flag_ambiguities(state: AgentState) -> dict:
+    t0 = time.time()
     findings = MergedFindings(**state["merged"])
     classification = Classification(**state["classification"])
     flags = flag_ambiguities(findings, classification, _client)
+    duration_ms = int((time.time() - t0) * 1000)
     print(f"[flag] {len(flags)} ambiguity flags raised")
-    return {"flags": [f.model_dump(mode="json") for f in flags]}
+    return {
+        "flags": [f.model_dump(mode="json") for f in flags],
+        "timing": {**state.get("timing", {}), "run_flag_ambiguities": duration_ms},
+    }
 
 
 def run_propose_routing(state: AgentState) -> dict:
+    t0 = time.time()
     findings = MergedFindings(**state["merged"])
     classification = Classification(**state["classification"])
     flags = [AmbiguityFlag(**f) for f in state["flags"]]
     proposal = propose_routing(findings, classification, flags, _client)
-    return {"routing_proposal": proposal.model_dump(mode="json")}
+    duration_ms = int((time.time() - t0) * 1000)
+    return {
+        "routing_proposal": proposal.model_dump(mode="json"),
+        "timing": {**state.get("timing", {}), "run_propose_routing": duration_ms},
+    }
 
 
 def assemble_triage_result(state: AgentState) -> dict:
+    timing = state.get("timing", {})
+    audit_entries = build_audit_entries_from_state(state, timing)
+
     result = TriageResult(
         document_id=state["document_id"],
         document_name=Path(state["document_path"]).name,
@@ -194,11 +230,12 @@ def assemble_triage_result(state: AgentState) -> dict:
         classification=Classification(**state["classification"]),
         routing_proposal=RoutingProposal(**state["routing_proposal"]),
         ambiguity_flags=[AmbiguityFlag(**f) for f in state["flags"]],
-        audit_trail=[],  # audit_log.py will populate this in Phase 2
+        audit_trail=audit_entries,
         status=DocumentStatus.PENDING_HUMAN_REVIEW,
     )
     print(f"[assemble] TriageResult ready — status: {result.status}, flags: {len(result.ambiguity_flags)}")
-    return {"triage_result": result.model_dump(mode="json")}
+    filepath = save_triage_result(result, audit_entries)
+    return {"triage_result": result.model_dump(mode="json"), "audit_log_path": filepath}
 
 
 def record_decision(state: AgentState) -> dict:
@@ -209,6 +246,27 @@ def record_decision(state: AgentState) -> dict:
     triage = dict(state["triage_result"])
     triage["status"] = decision["action"]
     print(f"[record_decision] status updated to {decision['action']}")
+
+    # Reconstruct HumanDecision with original_proposal filled from state
+    from schemas import HumanDecision as HumanDecisionModel
+    human_decision_obj = HumanDecisionModel(
+        decision_id=decision.get("decision_id", ""),
+        document_id=state["document_id"],
+        reviewer_id=decision.get("reviewer_id", ""),
+        timestamp=decision.get("timestamp", datetime.utcnow().isoformat()),
+        action=decision["action"],
+        original_proposal=RoutingProposal(**state["routing_proposal"]),
+        final_routing=decision.get("final_routing", ""),
+        override_reason=decision.get("override_reason"),
+    )
+
+    # Rebuild TriageResult with updated status for the resave
+    final_result = TriageResult(**{**state["triage_result"], "status": decision["action"]})
+    audit_entries = [
+        AuditEntry(**e) for e in state["triage_result"].get("audit_trail", [])
+    ]
+    save_triage_result(final_result, audit_entries, human_decision=human_decision_obj)
+
     return {"triage_result": triage}
 
 
@@ -280,6 +338,8 @@ def run_triage(
         "routing_proposal": {},
         "triage_result": {},
         "human_decision": None,
+        "timing": {},
+        "audit_log_path": "",
     }
 
     final_state = graph.invoke(initial_state, config)

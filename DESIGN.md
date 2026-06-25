@@ -275,6 +275,19 @@ after the full extraction pipeline was complete:
   extraction calls to 5–10 at a time, reducing rate limit frequency
   without sacrificing parallelism.
 
+- **Extraction timing not captured in audit log:** parallel Send nodes
+  cannot write back to shared AgentState without race conditions, so
+  `duration_ms=0` is recorded for the extraction step. Phase 2 should
+  aggregate per-chunk timings (e.g. by tracking them in `all_entities`
+  entries or via a dedicated `Annotated[list, operator.add]` field).
+
+- **Token counts not captured in audit log (Phase 1):** `input_token_count`
+  and `output_token_count` are recorded as 0 for all steps. The Anthropic
+  SDK returns token counts in the raw API response; wiring these into audit
+  entries requires threading the response object out of each tool function
+  and up to the audit layer. Deferred to Phase 2 to keep tool signatures
+  clean.
+
 **6. Typographic quote and hyphenation-artifact normalization (follow-up to whitespace normalization)**
 - *Observed:* After the whitespace-normalization pass was in place, real LLM
   extraction testing revealed two further classes of rejected quotes that were
@@ -308,3 +321,5 @@ after the full extraction pipeline was complete:
 | 2026-06-24 | `resume_with_decision()` uses `graph.update_state()` then `invoke(None)` to resume from interrupt | `invoke({"human_decision": ...})` starts a fresh invocation, re-running the full pipeline. The correct LangGraph HITL resume pattern injects state into the checkpoint with `update_state`, then resumes from the interrupt point with `invoke(None)`. Discovered and fixed during end-to-end demo run. | `invoke(partial_state)` (rejected: re-runs entire pipeline, wastes tokens and latency, confirmed broken in testing) |
 | 2026-06-24 | Added retry with exponential backoff (tenacity) for chunk extraction | Parallel Send API fan-out triggers rate limits on documents with many chunks; without retry, temporary 429s cause permanent data loss for affected chunks | No retry (rejected: data loss risk unacceptable for compliance pipeline), synchronous extraction (rejected: ~10x slower) |
 | 2026-06-24 | Jurisdiction check updated to exclude sovereign nations explicitly | Initial implementation flagged every country name as unrecognized (17 flags on FATF grey list), drowning out genuinely useful flags for unknown private entities; prompt now instructs the LLM that sovereign nations are always recognized | Removing the check entirely (rejected: still useful for non-country entities), relying on the existing "treat as recognized" clause (rejected: LLM was not applying it reliably to country names) |
+| 2026-06-25 | Audit log writes JSON to `audit_logs/` (file-based for Phase 1) | Compliance paper trail is required; JSON files are human-readable, regulator-inspectable, and structurally identical to what an S3/Blob write would produce — same payload, different target in production | Database write (rejected: adds infra dependency with no benefit for single-document Phase 1), LangSmith only (rejected: external service, not self-contained for compliance audit) |
+| 2026-06-25 | `save_triage_result()` called twice per document — once pre-checkpoint (pending status) and once post-decision (final status) | The pre-checkpoint save ensures a record exists even if the human review step fails or times out; the post-decision save overwrites it with the final status and HumanDecision record | Single save only at end (rejected: no record if pipeline crashes before human review) |

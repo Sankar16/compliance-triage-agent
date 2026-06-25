@@ -82,8 +82,16 @@ exclude sovereign nations (AMBIGUITY_PROMPT_VERSION bumped to v2), reducing
 country-name false positives; (2) `extract_one_chunk()` now retries on
 RateLimitError with exponential backoff via tenacity (max 4 attempts,
 1–60s wait).
-Next: `audit_log.py` (compliance paper trail), then end-to-end demo on
-second sample document.
+`audit_log.py` complete and wired into `agent.py`:
+- `create_audit_entry()`, `save_triage_result()`, `load_triage_result()`,
+  `list_audit_logs()`, `build_audit_entries_from_state()` all implemented.
+- `agent.py` records timing per sequential node; builds audit entries in
+  `assemble_triage_result` and saves pre-checkpoint JSON; resaves with
+  `HumanDecision` in `record_decision` after human review.
+- Round-trip test confirmed (no API calls): PASS.
+Known Phase 1 limitations: extraction timing=0 (parallel Send nodes),
+token counts=0 (not threaded out of tool signatures yet).
+Next: end-to-end demo on second sample document (`fatf_stablecoins.pdf`).
 See DESIGN.md for full history and rationale.
 
 ## Chunking Config Reference
