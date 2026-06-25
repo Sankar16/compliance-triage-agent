@@ -160,6 +160,58 @@ class ExtractedEntities(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# Merged findings model
+# ---------------------------------------------------------------------------
+
+
+class MergedFindings(BaseModel):
+    """Consolidated extraction results across all chunks of a document,
+    ready for classification, ambiguity detection, and routing proposal.
+    This is produced by merge_findings() and consumed by all downstream
+    LLM-calling tools."""
+
+    document_id: str = Field(description="Unique identifier for the source document.")
+
+    all_risk_areas: list[GroundedClaim] = Field(
+        description="Deduplicated risk areas across all chunks."
+    )
+    all_action_items: list[ActionItem] = Field(
+        description="All action items across all chunks, preserving source attribution."
+    )
+    all_responsible_parties: list[GroundedClaim] = Field(
+        description="Deduplicated responsible parties across all chunks."
+    )
+    all_deadlines: list[GroundedClaim] = Field(
+        description="All deadlines across all chunks, preserving exact language."
+    )
+
+    chunks_processed: int = Field(
+        description="Total number of chunks the document was split into."
+    )
+    chunks_with_content: int = Field(
+        description="Number of chunks that returned at least one verified extraction."
+    )
+    overall_confidence: float = Field(
+        ge=0.0, le=1.0,
+        description="Average extraction_confidence across chunks that had content."
+    )
+
+    dominant_urgency_signals: list[str] = Field(
+        description=(
+            "Urgency-related phrases extracted verbatim from the document "
+            "(e.g. 'all deadlines have now expired', 'without delay', "
+            "'as soon as possible'). Collected from deadline values and "
+            "action item deadline_raw fields. Used by classify_document() "
+            "to determine urgency level."
+        )
+    )
+
+    source_chunk_indices: list[int] = Field(
+        description="Indices of chunks that contributed content to this merge."
+    )
+
+
+# ---------------------------------------------------------------------------
 # Classification model
 # ---------------------------------------------------------------------------
 

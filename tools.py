@@ -15,7 +15,7 @@ import fitz  # PyMuPDF
 from pydantic import ValidationError
 
 from prompts import EXTRACTION_SYSTEM_PROMPT
-from schemas import ActionItem, DocumentChunk, ExtractedEntities, GroundedClaim
+from schemas import ActionItem, DocumentChunk, ExtractedEntities, GroundedClaim, MergedFindings
 
 CHUNKING_CONFIG = {
     "target_chunk_size": 1500,
@@ -618,6 +618,100 @@ def extract_compliance_entities(chunk: DocumentChunk, client: anthropic.Anthropi
     )
 
 
+_URGENCY_KEYWORDS = frozenset([
+    "expired", "delay", "immediate", "urgent", "soon", "swiftly",
+    "critical", "without delay", "as soon as possible", "overdue",
+])
+
+_YEAR_PATTERN = re.compile(r"\b\d{4}\b")
+
+
+def merge_findings(
+    chunks: list[DocumentChunk],
+    all_entities: list[ExtractedEntities],
+    document_id: str,
+) -> MergedFindings:
+    """Consolidate per-chunk extraction results into a single MergedFindings
+    object. Pure Python — no LLM call.
+
+    Deduplicates risk_areas and responsible_parties by normalized value
+    (case-insensitive, whitespace-normalized). Preserves all action_items
+    and deadlines without deduplication. Collects urgency-signaling phrases
+    from deadline values and action_item deadline_raw fields.
+    """
+    seen_risk_keys: set[str] = set()
+    seen_party_keys: set[str] = set()
+    seen_urgency_keys: set[str] = set()
+
+    all_risk_areas: list[GroundedClaim] = []
+    all_action_items: list[ActionItem] = []
+    all_responsible_parties: list[GroundedClaim] = []
+    all_deadlines: list[GroundedClaim] = []
+    dominant_urgency_signals: list[str] = []
+    source_chunk_indices: list[int] = []
+
+    confidence_sum = 0.0
+    chunks_with_content = 0
+
+    def _is_urgency_signal(phrase: str) -> bool:
+        lower = phrase.lower()
+        if any(kw in lower for kw in _URGENCY_KEYWORDS):
+            return True
+        if _YEAR_PATTERN.search(phrase):
+            return True
+        return False
+
+    for entities in all_entities:
+        has_content = bool(
+            entities.risk_areas or entities.action_items or entities.deadlines
+        )
+        if has_content:
+            chunks_with_content += 1
+            confidence_sum += entities.extraction_confidence
+            source_chunk_indices.append(entities.source_chunk_index)
+
+        for claim in entities.risk_areas:
+            key = normalize_whitespace(claim.value).lower()
+            if key not in seen_risk_keys:
+                seen_risk_keys.add(key)
+                all_risk_areas.append(claim)
+
+        all_action_items.extend(entities.action_items)
+
+        for claim in entities.responsible_parties:
+            key = normalize_whitespace(claim.value).lower()
+            if key not in seen_party_keys:
+                seen_party_keys.add(key)
+                all_responsible_parties.append(claim)
+
+        all_deadlines.extend(entities.deadlines)
+
+        urgency_candidates = [d.value for d in entities.deadlines] + [
+            a.deadline_raw for a in entities.action_items
+        ]
+        for phrase in urgency_candidates:
+            normalized = normalize_whitespace(phrase)
+            key = normalized.lower()
+            if key not in seen_urgency_keys and _is_urgency_signal(normalized):
+                seen_urgency_keys.add(key)
+                dominant_urgency_signals.append(normalized)
+
+    overall_confidence = confidence_sum / chunks_with_content if chunks_with_content else 0.0
+
+    return MergedFindings(
+        document_id=document_id,
+        all_risk_areas=all_risk_areas,
+        all_action_items=all_action_items,
+        all_responsible_parties=all_responsible_parties,
+        all_deadlines=all_deadlines,
+        chunks_processed=len(chunks),
+        chunks_with_content=chunks_with_content,
+        overall_confidence=overall_confidence,
+        dominant_urgency_signals=dominant_urgency_signals,
+        source_chunk_indices=source_chunk_indices,
+    )
+
+
 EXPECTED_GREY_LIST_COUNTRIES = [
     "Algeria", "Angola", "Bolivia", "Bulgaria", "Cameroon", "Cote d'Ivoire",
     "Democratic Republic of the Congo", "Haiti", "Kenya", "Kuwait", "Lao PDR",
@@ -683,6 +777,8 @@ def _print_chunking_summary(sample_path: str) -> None:
 
 
 if __name__ == "__main__":
+    import json
+
     sample_paths = [
         "sample_docs/fatf_grey_list.pdf",
         "sample_docs/targeted-report-on-stablecoins-and-unhosted-wallets.pdf.coredownload.inline-2.pdf",
@@ -690,3 +786,138 @@ if __name__ == "__main__":
 
     for sample_path in sample_paths:
         _print_chunking_summary(sample_path)
+
+    # ------------------------------------------------------------------
+    # merge_findings() smoke test — no API calls, mock entities only
+    # ------------------------------------------------------------------
+    print("=== merge_findings() smoke test (mock data, no API calls) ===\n")
+
+    grey_list_chunks = chunk_document("sample_docs/fatf_grey_list.pdf")
+
+    def _claim(value: str, quote: str, start: int) -> GroundedClaim:
+        return GroundedClaim(value=value, source_quote=quote, source_char_range=(start, start + len(quote)))
+
+    def _action(action: str, owner: str, deadline_raw: str, priority: str, quote: str, start: int) -> ActionItem:
+        from schemas import UrgencyLevel
+        return ActionItem(
+            action=action,
+            owner_type=owner,
+            deadline_raw=deadline_raw,
+            priority=UrgencyLevel(priority),
+            source_quote=quote,
+            source_char_range=(start, start + len(quote)),
+        )
+
+    # chunk 0 — Algeria: 2 risk areas (one will be duplicated in chunk 4), 1 action item, 2 parties, 1 deadline
+    entities_0 = ExtractedEntities(
+        risk_areas=[
+            _claim("strategic AML deficiencies", "work remains to address its strategic AML deficiencies", 100),
+            _claim("terrorism financing gaps", "financial sanctions for terrorism financing", 200),
+        ],
+        action_items=[
+            _action(
+                "Implement risk-based supervision of DNFBPs",
+                "supervisory authority",
+                "all deadlines have now expired",
+                "critical",
+                "implementing risk-based supervision of DNFBPs",
+                300,
+            ),
+        ],
+        responsible_parties=[
+            _claim("FATF", "work with the FATF and ESAAMLG", 400),
+            _claim("ESAAMLG", "work with the FATF and ESAAMLG", 400),
+        ],
+        deadlines=[
+            _claim("all deadlines have now expired", "all deadlines have now expired", 500),
+        ],
+        source_chunk_index=0,
+        extraction_confidence=0.88,
+    )
+
+    # chunk 4 — Cameroon: 3 risk areas (first is a duplicate of chunk 0's first), 2 action items, 1 party, 2 deadlines
+    entities_4 = ExtractedEntities(
+        risk_areas=[
+            _claim("strategic AML deficiencies", "address its strategic AML deficiencies as soon as possible", 1000),  # duplicate
+            _claim("NPO oversight gaps", "risk-based monitoring of NPOs to prevent abuse for TF purposes", 1100),
+            _claim("beneficial ownership transparency", "ensuring beneficial ownership information is accurate", 1200),
+        ],
+        action_items=[
+            _action(
+                "Designate an authority for AML/CFT supervision of all DNFBPs",
+                "government authority",
+                "as soon as possible",
+                "high",
+                "designating an authority for AML/CFT supervision of all DNFBPs",
+                1300,
+            ),
+            _action(
+                "Demonstrate sustained increase in TF investigations and prosecutions",
+                "law enforcement",
+                "without delay",
+                "critical",
+                "demonstrating a sustained increase in the number of TF investigations",
+                1400,
+            ),
+        ],
+        responsible_parties=[
+            _claim("GABAC", "work with the FATF and GABAC", 1500),
+        ],
+        deadlines=[
+            _claim("as soon as possible", "continue to implement its action plan as soon as possible", 1600),
+            _claim("without delay", "implement targeted financial sanctions without delay", 1700),
+        ],
+        source_chunk_index=4,
+        extraction_confidence=0.85,
+    )
+
+    # chunk 6 — DRC: 1 risk area, 1 action item, 1 party, 1 deadline
+    entities_6 = ExtractedEntities(
+        risk_areas=[
+            _claim("ML investigation gaps", "demonstrating an increase in ML investigations and prosecutions", 2000),
+        ],
+        action_items=[
+            _action(
+                "Strengthen effectiveness of AML/CFT regime",
+                "government / competent authorities",
+                "within agreed timeframes",
+                "high",
+                "strengthen the effectiveness of its AML/CFT regime",
+                2100,
+            ),
+        ],
+        responsible_parties=[
+            _claim("FATF", "work with the FATF and GABAC to strengthen", 2200),  # duplicate party — should dedup
+        ],
+        deadlines=[
+            _claim("within agreed timeframes", "continue to work within agreed timeframes", 2300),
+        ],
+        source_chunk_index=6,
+        extraction_confidence=0.82,
+    )
+
+    # All other chunks: empty
+    empty_chunk_indices = [i for i in range(len(grey_list_chunks)) if i not in (0, 4, 6)]
+    mock_all_entities: list[ExtractedEntities] = []
+    for chunk in grey_list_chunks:
+        if chunk.chunk_index == 0:
+            mock_all_entities.append(entities_0)
+        elif chunk.chunk_index == 4:
+            mock_all_entities.append(entities_4)
+        elif chunk.chunk_index == 6:
+            mock_all_entities.append(entities_6)
+        else:
+            mock_all_entities.append(ExtractedEntities(
+                risk_areas=[], action_items=[], responsible_parties=[], deadlines=[],
+                source_chunk_index=chunk.chunk_index, extraction_confidence=0.1,
+            ))
+
+    merged = merge_findings(grey_list_chunks, mock_all_entities, document_id="fatf_grey_list_mock")
+    print(json.dumps(merged.model_dump(mode="json"), indent=2))
+
+    total_raw_risk_areas = sum(len(e.risk_areas) for e in mock_all_entities)
+    duplicates_removed = total_raw_risk_areas - len(merged.all_risk_areas)
+    print(f"\nDeduplication check: {len(merged.all_risk_areas)} unique risk areas from "
+          f"{total_raw_risk_areas} total ({duplicates_removed} duplicates removed)")
+    print(f"Urgency signals found: {merged.dominant_urgency_signals}")
+    print(f"Chunks with content: {merged.chunks_with_content} of {merged.chunks_processed} total")
