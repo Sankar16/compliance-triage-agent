@@ -39,13 +39,15 @@ other:
   policy-library queries ("has this requirement appeared in any prior
   filing?").
 
-**Implementation status (as of 2026-06-24):** all six tools are now
-implemented and individually validated: `chunk_document`,
+**Implementation status (as of 2026-06-24):** all six tools and `agent.py`
+are implemented and validated. Tools: `chunk_document`,
 `extract_compliance_entities`, `merge_findings`, `classify_document`,
-`flag_ambiguities`, `propose_routing`. The remaining work is `agent.py`
-(LangGraph orchestration graph with parallel chunk extraction and human
-checkpoint) and `audit_log.py` (compliance paper trail). These will be
-wired together for the end-to-end demo.
+`flag_ambiguities`, `propose_routing`. Graph: `agent.py` (LangGraph
+StateGraph with Send API parallel fan-out, MemorySaver checkpointer,
+`interrupt_before=["record_decision"]` HITL checkpoint). End-to-end demo
+run confirmed on `fatf_grey_list.pdf`: AML/CRITICAL, Chief Compliance
+Officer proposed, human decision recorded. Remaining: `audit_log.py`
+(compliance paper trail).
 
 ## 2. Schema Design Rationale
 
@@ -296,3 +298,4 @@ after the full extraction pipeline was complete:
 | 2026-06-24 | Confidence calculation moved from LLM to deterministic Python in `propose_routing()` | LLMs are unreliable at arithmetic; compliance audit trail requires explainable, reproducible scores; formula is `max(0.30, classification.confidence - 0.10 per ambiguity flag)` | LLM-calculated confidence (rejected: not auditable, not reproducible, returned wrong value in testing) |
 | 2026-06-24 | Routing rules stored in `routing_rules.yaml`, not hardcoded in code | Routing targets change as staff change; code changes for personnel changes are a maintenance risk; YAML file can be updated without touching agent logic | Hardcoded routing (rejected: brittle, requires code deployment for org changes) |
 | 2026-06-24 | `propose_routing()` uses `claude-haiku-4-5` with focused text summary input | Routing is a lookup + rationale task, not complex reasoning; Haiku sufficient and ~10x cheaper than Sonnet | Sonnet for routing (rejected: unnecessary cost for this task complexity) |
+| 2026-06-24 | `resume_with_decision()` uses `graph.update_state()` then `invoke(None)` to resume from interrupt | `invoke({"human_decision": ...})` starts a fresh invocation, re-running the full pipeline. The correct LangGraph HITL resume pattern injects state into the checkpoint with `update_state`, then resumes from the interrupt point with `invoke(None)`. Discovered and fixed during end-to-end demo run. | `invoke(partial_state)` (rejected: re-runs entire pipeline, wastes tokens and latency, confirmed broken in testing) |

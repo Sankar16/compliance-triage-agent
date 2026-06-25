@@ -70,9 +70,15 @@ explanations and rationale matter as much as working code.
 
 ## Current Status
 
-All six tools complete and validated. Next: `agent.py` (LangGraph graph
-with parallel extraction via Send API and human checkpoint interrupt),
-then `audit_log.py`, then end-to-end demo run on real document.
+All six tools complete and validated. `agent.py` complete and validated —
+LangGraph graph with parallel chunk extraction (Send API fan-out), sequential
+classify → flag → propose pipeline, `interrupt_before=["record_decision"]`
+HITL checkpoint, and `update_state`/`invoke(None)` resume pattern. End-to-end
+demo run confirmed on `fatf_grey_list.pdf`: domain=AML, urgency=CRITICAL,
+proposed owner=Chief Compliance Officer, human decision recorded, final
+status=approved.
+Next: `audit_log.py` (compliance paper trail), then end-to-end demo on
+second sample document.
 See DESIGN.md for full history and rationale.
 
 ## Chunking Config Reference
