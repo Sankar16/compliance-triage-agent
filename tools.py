@@ -14,8 +14,17 @@ import anthropic
 import fitz  # PyMuPDF
 from pydantic import ValidationError
 
-from prompts import EXTRACTION_SYSTEM_PROMPT
-from schemas import ActionItem, DocumentChunk, ExtractedEntities, GroundedClaim, MergedFindings
+from prompts import CLASSIFICATION_SYSTEM_PROMPT, EXTRACTION_SYSTEM_PROMPT
+from schemas import (
+    ActionItem,
+    Classification,
+    ComplianceDomain,
+    DocumentChunk,
+    ExtractedEntities,
+    GroundedClaim,
+    MergedFindings,
+    UrgencyLevel,
+)
 
 CHUNKING_CONFIG = {
     "target_chunk_size": 1500,
@@ -618,6 +627,118 @@ def extract_compliance_entities(chunk: DocumentChunk, client: anthropic.Anthropi
     )
 
 
+_DOMAIN_ENUM = ["aml", "data_privacy", "capital_requirements", "kyc", "sanctions", "reporting", "operational_risk", "other"]
+
+CLASSIFICATION_TOOL_SCHEMA = {
+    "name": "classify_document",
+    "description": "Classify a compliance document by its primary domain and urgency level, based on the provided extracted findings summary.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "compliance_domain": {
+                "type": "string",
+                "enum": _DOMAIN_ENUM,
+                "description": "The primary compliance domain this document falls under.",
+            },
+            "urgency_level": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"],
+                "description": "Overall urgency level assigned to the document.",
+            },
+            "urgency_rationale": {
+                "type": "string",
+                "description": "Explanation of the urgency level, citing specific phrases from the provided signals, deadlines, or risk areas.",
+            },
+            "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Model's confidence in this classification, from 0 to 1.",
+            },
+            "is_cross_domain": {
+                "type": "boolean",
+                "description": "Whether the document materially touches more than one compliance domain.",
+            },
+            "secondary_domains": {
+                "type": "array",
+                "items": {"type": "string", "enum": _DOMAIN_ENUM},
+                "description": "Additional compliance domains materially present in the document, if any.",
+            },
+        },
+        "required": ["compliance_domain", "urgency_level", "urgency_rationale", "confidence", "is_cross_domain", "secondary_domains"],
+    },
+}
+
+
+def classify_document(
+    findings: MergedFindings,
+    client: anthropic.Anthropic,
+) -> Classification:
+    """Call Claude (forced tool use) to classify a MergedFindings object by
+    compliance domain and urgency level.
+
+    Builds a focused text summary of the findings rather than dumping the
+    full JSON, to minimize tokens and surface exactly what the classifier
+    needs. Uses claude-haiku-4-5 (cheaper/faster than Sonnet — classification
+    is simpler than extraction).
+    """
+    urgency_block = (
+        "\n".join(f"- {s}" for s in findings.dominant_urgency_signals)
+        if findings.dominant_urgency_signals
+        else "None detected"
+    )
+    deadline_values = [d.value for d in findings.all_deadlines][:15]
+    deadlines_block = "\n".join(f"- {v}" for v in deadline_values) if deadline_values else "None"
+    risk_values = [r.value for r in findings.all_risk_areas][:15]
+    risks_block = "\n".join(f"- {v}" for v in risk_values) if risk_values else "None"
+    party_values = [p.value for p in findings.all_responsible_parties][:10]
+    parties_block = "\n".join(f"- {v}" for v in party_values) if party_values else "None"
+
+    user_message = (
+        f"Compliance Domain Classification Request\n\n"
+        f"Document ID: {findings.document_id}\n"
+        f"Chunks with content: {findings.chunks_with_content} of {findings.chunks_processed}\n"
+        f"Overall extraction confidence: {findings.overall_confidence:.2f}\n\n"
+        f"URGENCY SIGNALS (exact phrases from document):\n{urgency_block}\n\n"
+        f"DEADLINES (verbatim from document):\n{deadlines_block}\n\n"
+        f"RISK AREAS identified:\n{risks_block}\n\n"
+        f"RESPONSIBLE PARTIES:\n{parties_block}"
+    )
+
+    response = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=1000,
+        system=CLASSIFICATION_SYSTEM_PROMPT,
+        tools=[CLASSIFICATION_TOOL_SCHEMA],
+        tool_choice={"type": "tool", "name": "classify_document"},
+        messages=[{"role": "user", "content": user_message}],
+    )
+
+    tool_use_block = next(block for block in response.content if block.type == "tool_use")
+    raw = tool_use_block.input
+
+    try:
+        result = Classification(
+            compliance_domain=ComplianceDomain(raw["compliance_domain"]),
+            urgency_level=UrgencyLevel(raw["urgency_level"]),
+            urgency_rationale=raw["urgency_rationale"],
+            confidence=raw["confidence"],
+            is_cross_domain=raw["is_cross_domain"],
+            secondary_domains=[ComplianceDomain(d) for d in raw.get("secondary_domains", [])],
+        )
+    except ValidationError as exc:
+        raise RuntimeError(
+            f"[classify_document] Classification validation failed for document "
+            f"{findings.document_id!r}: {exc}"
+        ) from exc
+
+    print(
+        f"[classify_document] domain={result.compliance_domain} "
+        f"urgency={result.urgency_level} confidence={result.confidence:.2f}"
+    )
+    return result
+
+
 _URGENCY_KEYWORDS = frozenset([
     "expired", "delay", "immediate", "urgent", "soon", "swiftly",
     "critical", "without delay", "as soon as possible", "overdue",
@@ -921,3 +1042,78 @@ if __name__ == "__main__":
           f"{total_raw_risk_areas} total ({duplicates_removed} duplicates removed)")
     print(f"Urgency signals found: {merged.dominant_urgency_signals}")
     print(f"Chunks with content: {merged.chunks_with_content} of {merged.chunks_processed} total")
+
+    # ------------------------------------------------------------------
+    # classify_document() smoke test — one real Haiku API call
+    # ------------------------------------------------------------------
+    import os
+    from dotenv import load_dotenv
+
+    print("\n=== classify_document() smoke test (1 Haiku API call) ===\n")
+
+    load_dotenv()
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        raise RuntimeError("ANTHROPIC_API_KEY not found in environment or .env file.")
+
+    anthropic_client = anthropic.Anthropic(api_key=api_key)
+
+    # Build a realistic mock MergedFindings directly — no chunk_document() call
+    mock_merged = MergedFindings(
+        document_id="fatf_grey_list_2026",
+        all_risk_areas=[
+            GroundedClaim(value="strategic AML deficiencies", source_quote="address its strategic AML deficiencies", source_char_range=(100, 140)),
+            GroundedClaim(value="terrorism financing gaps", source_quote="financial sanctions for terrorism financing", source_char_range=(200, 243)),
+            GroundedClaim(value="NPO oversight gaps", source_quote="risk-based monitoring of NPOs to prevent abuse for TF purposes", source_char_range=(300, 362)),
+            GroundedClaim(value="beneficial ownership transparency", source_quote="ensuring beneficial ownership information is accurate", source_char_range=(400, 453)),
+            GroundedClaim(value="ML investigation and prosecution deficiencies", source_quote="demonstrating an increase in ML investigations and prosecutions", source_char_range=(500, 563)),
+        ],
+        all_action_items=[
+            ActionItem(
+                action="Implement risk-based supervision of DNFBPs",
+                owner_type="supervisory authority",
+                deadline_raw="all deadlines have now expired",
+                priority=UrgencyLevel.CRITICAL,
+                source_quote="implementing risk-based supervision of DNFBPs",
+                source_char_range=(600, 645),
+            ),
+            ActionItem(
+                action="Designate an authority for AML/CFT supervision of all DNFBPs",
+                owner_type="government authority",
+                deadline_raw="as soon as possible",
+                priority=UrgencyLevel.HIGH,
+                source_quote="designating an authority for AML/CFT supervision of all DNFBPs",
+                source_char_range=(700, 762),
+            ),
+            ActionItem(
+                action="Demonstrate increase in TF investigations without delay",
+                owner_type="law enforcement",
+                deadline_raw="without delay",
+                priority=UrgencyLevel.CRITICAL,
+                source_quote="demonstrating a sustained increase in the number of TF investigations",
+                source_char_range=(800, 869),
+            ),
+        ],
+        all_responsible_parties=[
+            GroundedClaim(value="FATF", source_quote="work with the FATF and ESAAMLG", source_char_range=(900, 930)),
+            GroundedClaim(value="ESAAMLG", source_quote="work with the FATF and ESAAMLG", source_char_range=(900, 930)),
+            GroundedClaim(value="GABAC", source_quote="work with the FATF and GABAC", source_char_range=(1000, 1028)),
+        ],
+        all_deadlines=[
+            GroundedClaim(value="all deadlines have now expired", source_quote="all deadlines have now expired", source_char_range=(1100, 1130)),
+            GroundedClaim(value="as soon as possible", source_quote="continue to implement its action plan as soon as possible", source_char_range=(1200, 1257)),
+            GroundedClaim(value="without delay", source_quote="implement targeted financial sanctions without delay", source_char_range=(1300, 1351)),
+        ],
+        chunks_processed=21,
+        chunks_with_content=15,
+        overall_confidence=0.86,
+        dominant_urgency_signals=[
+            "all deadlines have now expired",
+            "as soon as possible",
+            "without delay",
+        ],
+        source_chunk_indices=list(range(15)),
+    )
+
+    classification = classify_document(mock_merged, anthropic_client)
+    print(json.dumps(classification.model_dump(mode="json"), indent=2))
