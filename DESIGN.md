@@ -288,6 +288,12 @@ after the full extraction pipeline was complete:
   and up to the audit layer. Deferred to Phase 2 to keep tool signatures
   clean.
 
+- **Evaluation ground truth is manually labeled for 2 documents only.**
+  Production evaluation requires 50+ labeled documents to be statistically
+  meaningful. The evaluation framework (`eval.py` + `ground_truth.yaml`) is
+  designed to scale — add entries to `ground_truth.yaml` as more documents
+  are processed and reviewed.
+
 **6. Typographic quote and hyphenation-artifact normalization (follow-up to whitespace normalization)**
 - *Observed:* After the whitespace-normalization pass was in place, real LLM
   extraction testing revealed two further classes of rejected quotes that were
@@ -324,3 +330,4 @@ after the full extraction pipeline was complete:
 | 2026-06-25 | Audit log writes JSON to `audit_logs/` (file-based for Phase 1) | Compliance paper trail is required; JSON files are human-readable, regulator-inspectable, and structurally identical to what an S3/Blob write would produce — same payload, different target in production | Database write (rejected: adds infra dependency with no benefit for single-document Phase 1), LangSmith only (rejected: external service, not self-contained for compliance audit) |
 | 2026-06-25 | `save_triage_result()` called twice per document — once pre-checkpoint (pending status) and once post-decision (final status) | The pre-checkpoint save ensures a record exists even if the human review step fails or times out; the post-decision save overwrites it with the final status and HumanDecision record | Single save only at end (rejected: no record if pipeline crashes before human review) |
 | 2026-06-25 | Moved confidence thresholds to `routing_rules.yaml` | Compliance managers should be able to tune sensitivity without code changes; different firms have different risk tolerances for routing confidence | Hardcoded thresholds (rejected: requires code deployment to adjust firm-specific settings) |
+| 2026-06-25 | Evaluation runs on existing audit logs, not re-running the pipeline | Re-running would cost API tokens and introduce variability; audit logs capture the exact output to evaluate — evaluation is free if audit logs exist | Re-run evaluation (rejected: expensive, non-deterministic, would make evaluation a luxury rather than a routine check) |

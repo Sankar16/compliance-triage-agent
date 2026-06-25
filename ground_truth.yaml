@@ -1,0 +1,26 @@
+documents:
+  - document_name: "dear-ceo-letter.pdf"
+    expected_domain: "aml"
+    expected_urgency: "high"
+    expected_owner_role: "AML Compliance Officer"
+    must_contain_risk_areas:
+      - "financial crime controls"
+      - "due diligence"
+      - "money laundering"
+    must_contain_action_items:
+      - "gap analysis"
+      - "six months"
+    notes: "FCA Dear CEO letter — AML control failings, 6-month deadline for gap analysis"
+
+  - document_name: "fatf_grey_list.pdf"
+    expected_domain: "aml"
+    expected_urgency: "critical"
+    expected_owner_role: "Head of AML Compliance"
+    must_contain_risk_areas:
+      - "AML"
+      - "financial sanctions"
+      - "beneficial ownership"
+    must_contain_action_items:
+      - "implement"
+      - "deadline"
+    notes: "FATF grey list — multiple countries, expired deadlines, critical urgency"
