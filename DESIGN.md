@@ -39,6 +39,14 @@ other:
   policy-library queries ("has this requirement appeared in any prior
   filing?").
 
+**Implementation status (as of 2026-06-24):** the five tools covering the
+automated portion of the pipeline are now complete and validated:
+`chunk_document`, `extract_compliance_entities`, `merge_findings`,
+`classify_document`, and `flag_ambiguities`. The remaining Phase 1 pieces
+are `propose_routing()` (the final LLM-calling tool) and the LangGraph
+graph wiring in `agent.py` that connects all steps through the mandatory
+human checkpoint.
+
 ## 2. Schema Design Rationale
 
 - **`GroundedClaim`** — every extracted `risk_area`, `responsible_party`, and
@@ -198,6 +206,26 @@ zero matches. Going forward, verify file state directly (grep for a
 distinctive new identifier and show the output) rather than trusting a "done"
 summary on its own. This is now a standing convention — see `CLAUDE.md`.
 
+### Extraction validation across document types
+
+`extract_compliance_entities()` was validated against both sample documents
+after the full extraction pipeline was complete:
+
+- **Document 1 (FATF grey list, browser-printed):** full 21-chunk run.
+  400/400 quotes verified, 0 rejected, 100% grounding verification rate.
+  Six chunks (Angola, Bulgaria, Côte d'Ivoire, Kuwait, Monaco, Syria)
+  produced zero extractions with `extraction_confidence=0.1` — correct
+  behaviour, as these are the near-empty country stub entries in the
+  source document.
+- **Document 2 (FATF Stablecoins report, formally typeset):** 3-chunk spot
+  check. 4/4 quotes verified on content chunks. Low-content chunks (table
+  of contents, abbreviations list) produced `extraction_confidence` of
+  0.35–0.45 and minimal useful extraction — appropriate behaviour, since
+  these chunks contain no actionable compliance content.
+- Full extraction validation on Document 2 is deferred to Phase 2
+  alongside `section_title` reliability improvements for formally typeset
+  documents (see Section 4).
+
 ## 4. Known Limitations / Phase 2 Candidates
 
 - **`section_title` is unreliable on densely-typeset PDFs with footnotes and
@@ -215,6 +243,16 @@ summary on its own. This is now a standing convention — see `CLAUDE.md`.
   known future improvement in the code where it was written, but has not yet
   been exercised against real LLM output, since no extraction tool exists yet
   at time of writing.
+
+- **Full extraction validation on formally typeset documents (Document 2)
+  is scoped to Phase 2.** The 3-chunk spot check confirms extraction works
+  correctly on prose content chunks. However, `section_title` metadata is
+  unreliable on this document type (detected titles include bare URLs,
+  footnote references, and single-word fragments), and low-content chunks
+  (table of contents, abbreviations list) produce appropriately low
+  confidence scores but minimal useful extraction. A full 21-chunk run on
+  this document is deferred until `section_title` reliability improvements
+  are tackled in Phase 2.
 
 **6. Typographic quote and hyphenation-artifact normalization (follow-up to whitespace normalization)**
 - *Observed:* After the whitespace-normalization pass was in place, real LLM
@@ -239,3 +277,7 @@ summary on its own. This is now a standing convention — see `CLAUDE.md`.
 | 2026-06-20 | Chose LangGraph over raw SDK loop or CrewAI | State machine model matches HITL checkpoint requirement natively, industry-standard for this pattern | Raw SDK (more manual, harder to get HITL interrupt semantics right), CrewAI (built for multi-agent role-play, overkill for this linear pipeline) |
 | 2026-06-20 | Chose hybrid structural+fixed-size chunking over pure fixed-size | Semantic coherence matters more for extraction quality on regulatory text | Pure fixed-size (simpler but cuts content arbitrarily), pure semantic/embedding-based chunking (overkill for single-document analysis, adds embedding dependency for marginal gain) |
 | 2026-06-24 | Extended `normalize_whitespace()` to cover typographic quote normalization and PDF hyphenation artifacts | Real LLM extraction testing revealed remaining rejections after whitespace normalization; inspected and confirmed both were formatting artifacts not hallucinations; fixed since they were cheap and well-understood | Deferred (would have left known false rejections in production) |
+| 2026-06-24 | Did not deduplicate action_items and deadlines in `merge_findings()` | Compliance context: false negatives (missing an obligation) worse than false positives (seeing a similar obligation twice); deduplication risks losing nuance in multi-country regulatory documents | Deduplication (rejected: risks silently dropping distinct obligations that share similar wording) |
+| 2026-06-24 | Used focused text summary (not full JSON dump) as input to `classify_document()` | ~400 tokens vs ~4000 tokens per call; classifier only needs urgency signals, deadlines, risk areas, and parties — not full grounding metadata | Full JSON dump (rejected: token cost, context noise, no quality benefit for classification task) |
+| 2026-06-24 | Used `claude-haiku-4-5` for `classify_document()` and `flag_ambiguities()` jurisdiction check | Classification and jurisdiction lookup are simpler reasoning tasks than extraction; Haiku is ~10x cheaper and sufficient for these tasks | `claude-sonnet` for all steps (rejected: unnecessary cost for simpler tasks) |
+| 2026-06-24 | `flag_ambiguities()` uses mostly pure Python logic with one LLM call only for jurisdiction check | Deterministic conditions (missing deadline, cross-domain, low confidence, contradictory signals) don't need LLM reasoning; only semantic recognition of unknown regulatory bodies requires it | LLM for all checks (rejected: adds cost and non-determinism to checks that can be done reliably with code) |

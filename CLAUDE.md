@@ -70,11 +70,10 @@ explanations and rationale matter as much as working code.
 
 ## Current Status
 
-Chunking and ingestion (`tools.py`) complete and validated against two real,
-structurally different FATF documents (a browser-printed grey-list PDF and a
-formal multi-section Stablecoins report). Entity extraction (the first
-LLM-calling tool) not yet implemented. See DESIGN.md for full history and
-rationale.
+`chunk_document`, `extract_compliance_entities`, `merge_findings`,
+`classify_document`, `flag_ambiguities` all implemented and validated.
+`propose_routing()` next, then LangGraph graph wiring in `agent.py`.
+See DESIGN.md for full history and rationale.
 
 ## Chunking Config Reference
 
