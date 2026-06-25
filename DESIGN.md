@@ -39,13 +39,13 @@ other:
   policy-library queries ("has this requirement appeared in any prior
   filing?").
 
-**Implementation status (as of 2026-06-24):** the five tools covering the
-automated portion of the pipeline are now complete and validated:
-`chunk_document`, `extract_compliance_entities`, `merge_findings`,
-`classify_document`, and `flag_ambiguities`. The remaining Phase 1 pieces
-are `propose_routing()` (the final LLM-calling tool) and the LangGraph
-graph wiring in `agent.py` that connects all steps through the mandatory
-human checkpoint.
+**Implementation status (as of 2026-06-24):** all six tools are now
+implemented and individually validated: `chunk_document`,
+`extract_compliance_entities`, `merge_findings`, `classify_document`,
+`flag_ambiguities`, `propose_routing`. The remaining work is `agent.py`
+(LangGraph orchestration graph with parallel chunk extraction and human
+checkpoint) and `audit_log.py` (compliance paper trail). These will be
+wired together for the end-to-end demo.
 
 ## 2. Schema Design Rationale
 
@@ -254,6 +254,18 @@ after the full extraction pipeline was complete:
   this document is deferred until `section_title` reliability improvements
   are tackled in Phase 2.
 
+- **`routing_rules.yaml` is a static file with placeholder owner names.**
+  In production this should integrate with the firm's HR/org system to
+  validate that named owners still exist and hold the relevant role.
+  Routing staleness (owner left the firm) is a known risk documented in
+  the failure mode analysis.
+
+- **Confidence floor of 0.30 means the system always produces a routing
+  proposal even under maximum uncertainty.** In Phase 2, consider adding
+  a hard escalation threshold — if confidence falls below 0.35, skip the
+  routing proposal entirely and escalate directly to Chief Compliance
+  Officer with a mandatory human decision flag.
+
 **6. Typographic quote and hyphenation-artifact normalization (follow-up to whitespace normalization)**
 - *Observed:* After the whitespace-normalization pass was in place, real LLM
   extraction testing revealed two further classes of rejected quotes that were
@@ -281,3 +293,6 @@ after the full extraction pipeline was complete:
 | 2026-06-24 | Used focused text summary (not full JSON dump) as input to `classify_document()` | ~400 tokens vs ~4000 tokens per call; classifier only needs urgency signals, deadlines, risk areas, and parties — not full grounding metadata | Full JSON dump (rejected: token cost, context noise, no quality benefit for classification task) |
 | 2026-06-24 | Used `claude-haiku-4-5` for `classify_document()` and `flag_ambiguities()` jurisdiction check | Classification and jurisdiction lookup are simpler reasoning tasks than extraction; Haiku is ~10x cheaper and sufficient for these tasks | `claude-sonnet` for all steps (rejected: unnecessary cost for simpler tasks) |
 | 2026-06-24 | `flag_ambiguities()` uses mostly pure Python logic with one LLM call only for jurisdiction check | Deterministic conditions (missing deadline, cross-domain, low confidence, contradictory signals) don't need LLM reasoning; only semantic recognition of unknown regulatory bodies requires it | LLM for all checks (rejected: adds cost and non-determinism to checks that can be done reliably with code) |
+| 2026-06-24 | Confidence calculation moved from LLM to deterministic Python in `propose_routing()` | LLMs are unreliable at arithmetic; compliance audit trail requires explainable, reproducible scores; formula is `max(0.30, classification.confidence - 0.10 per ambiguity flag)` | LLM-calculated confidence (rejected: not auditable, not reproducible, returned wrong value in testing) |
+| 2026-06-24 | Routing rules stored in `routing_rules.yaml`, not hardcoded in code | Routing targets change as staff change; code changes for personnel changes are a maintenance risk; YAML file can be updated without touching agent logic | Hardcoded routing (rejected: brittle, requires code deployment for org changes) |
+| 2026-06-24 | `propose_routing()` uses `claude-haiku-4-5` with focused text summary input | Routing is a lookup + rationale task, not complex reasoning; Haiku sufficient and ~10x cheaper than Sonnet | Sonnet for routing (rejected: unnecessary cost for this task complexity) |

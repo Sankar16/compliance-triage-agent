@@ -70,9 +70,9 @@ explanations and rationale matter as much as working code.
 
 ## Current Status
 
-`chunk_document`, `extract_compliance_entities`, `merge_findings`,
-`classify_document`, `flag_ambiguities` all implemented and validated.
-`propose_routing()` next, then LangGraph graph wiring in `agent.py`.
+All six tools complete and validated. Next: `agent.py` (LangGraph graph
+with parallel extraction via Send API and human checkpoint interrupt),
+then `audit_log.py`, then end-to-end demo run on real document.
 See DESIGN.md for full history and rationale.
 
 ## Chunking Config Reference
